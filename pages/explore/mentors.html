@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentor & Alumni Directory — FIRE | NIT Trichy</title>
+  <meta name="description" content="Connect with accomplished NIT Trichy alumni founders, venture capitalists, engineering leaders, and IP attorneys who mentor campus innovators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb & Header -->
+    <section class="section-sm" style="padding-top: var(--sp-12); padding-bottom: var(--sp-8); background: linear-gradient(180deg, rgba(12,21,38,0.9) 0%, var(--c-bg) 100%); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Explore</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Mentors & Alumni</span>
+        </nav>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <div class="section-label">Alumni Network & Industry Guidance</div>
+            <h1 class="heading-1" style="margin-top:var(--sp-2);">Mentor & Alumni Directory</h1>
+            <p class="text-muted" style="max-width: 680px; margin-top:var(--sp-2);">
+              Distinguished NITT graduates and industry veterans who offer office hours, technical critiques, pitch evaluations, and strategic venture counsel to campus founders.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3); align-items:center;">
+            <a href="../resources/processes.html#PR005" class="btn btn-outline btn-sm">
+              📋 Mentorship Guidelines
+            </a>
+            <a href="../connect/mentors.html" class="btn btn-primary btn-sm">
+              Join as Mentor 🤝
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Notice Banner -->
+    <section class="section-sm" style="padding-top: var(--sp-4); padding-bottom: var(--sp-4); background: var(--c-bg-surface); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <div class="alert alert-info" style="align-items:center; background: rgba(0, 198, 162, 0.08); border-color: var(--c-border-accent);">
+          <span style="font-size:1.25rem;">🔒</span>
+          <div style="flex:1; font-size:var(--fs-xs); color:var(--c-text-primary);">
+            <strong>Privacy & Verified Routing:</strong> Contact details are strictly private to respect our mentors' time. All mentorship requests and session bookings are coordinated and moderated through the FIRE Connect platform.
+          </div>
+          <a href="../resources/processes.html#PR005" class="btn btn-outline btn-sm" style="padding:4px 10px; font-size:11px;">
+            How It Works →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Directory Section -->
+    <section class="section-sm" style="padding-top: var(--sp-8);">
+      <div class="container">
+        
+        <!-- Filter Bar -->
+        <div class="card card-glass" style="padding: var(--sp-5); margin-bottom: var(--sp-8);">
+          <div class="filter-bar" style="margin-bottom:0; gap:var(--sp-4);">
+            
+            <!-- Search Input -->
+            <div class="search-bar" style="flex: 2; max-width: none;">
+              <span>🔍</span>
+              <input type="text" id="mentorSearch" placeholder="Search mentor name, company, batch, or skill…">
+            </div>
+
+            <!-- Domain Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Domain:</span>
+              <select class="filter-select" id="mentorDomainFilter">
+                <option value="all">All Domains</option>
+                <option value="AgriTech">AgriTech</option>
+                <option value="Deep Tech">Deep Tech</option>
+                <option value="SaaS">SaaS & Cloud</option>
+                <option value="Manufacturing">Manufacturing & EV</option>
+                <option value="HealthTech">HealthTech</option>
+                <option value="IP Law">IP & Legal Tech</option>
+              </select>
+            </div>
+
+            <!-- Expertise Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Expertise:</span>
+              <select class="filter-select" id="mentorExpertiseFilter">
+                <option value="all">All Expertise</option>
+                <option value="Fundraising">Fundraising & Angels</option>
+                <option value="Product-Market Fit">Product-Market Fit</option>
+                <option value="Technical Architecture">Technical Architecture</option>
+                <option value="Patent Filing">Patent & IP Strategy</option>
+                <option value="Go-to-Market">Go-to-Market</option>
+              </select>
+            </div>
+
+            <!-- Availability Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Availability:</span>
+              <select class="filter-select" id="mentorAvailabilityFilter">
+                <option value="all">All Statuses</option>
+                <option value="available">Available for Sessions</option>
+                <option value="booked">Booked this Quarter</option>
+              </select>
+            </div>
+
+            <!-- Reset Button -->
+            <button class="btn btn-ghost btn-sm" id="resetMentorFiltersBtn" style="color:var(--c-text-muted);">
+              Reset ↺
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status Summary -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--sp-6);">
+          <div id="mentorResultsCount" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-secondary);">
+            Showing 6 of 6 alumni mentors
+          </div>
+          <div style="display:flex; gap:var(--sp-2); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <span>🟢 Available: 1:1 Slots open</span>
+            <span>·</span>
+            <span>🔴 Booked: Request waitlist</span>
+          </div>
+        </div>
+
+        <!-- Grid-3 of Mentor Cards -->
+        <div class="grid-3" id="mentorsGrid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="mentorEmptyState" style="display:none; padding:var(--sp-20) 0;">
+          <div class="empty-state-icon">🤝</div>
+          <h3 class="empty-state-title">No matching mentors found</h3>
+          <p class="empty-state-desc">Try clearing your filters or searching by mentor company like 'Zoho', 'TVS', or 'Stellaris'.</p>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllMentorFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- ================= MENTORSHIP REQUEST MODAL ================= -->
+  <div class="modal-overlay" id="mentorshipModal">
+    <div class="modal" style="max-width: 620px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-5" id="mentorshipModalTitle">Request Mentorship</h3>
+          <p class="text-muted text-xs" id="mentorshipModalSubtitle" style="margin-top:2px;">
+            Target Mentor: Vikram Nair (AgriSense Technologies)
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      
+      <form id="mentorshipForm" data-validate>
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <input type="hidden" id="mentorTargetId" name="mentorId">
+          <input type="hidden" id="mentorTargetName" name="mentorName">
+          
+          <div class="alert alert-info" style="font-size:var(--fs-xs);">
+            <span>⏱️</span>
+            <div>
+              Mentors receive requests via FIRE and respond within <strong>5 working days</strong>. Clearly defining your venture bottleneck ensures high acceptance rates.
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Full Name *</label>
+              <input type="text" class="form-input" id="reqName" required placeholder="e.g. S. Meenakshi">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current Role / Year *</label>
+              <select class="form-select" id="reqRole" required>
+                <option value="UG Student">UG Student (NITT)</option>
+                <option value="PG Researcher">PG / Doctoral Researcher</option>
+                <option value="Startup Founder">Campus Startup Founder</option>
+                <option value="Faculty">Faculty Researcher</option>
+                <option value="Alumni Founder">Recent Alumni Founder</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Venture or Project Name *</label>
+              <input type="text" class="form-input" id="reqProjectName" required placeholder="e.g. BioShield Pack">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current Stage *</label>
+              <select class="form-select" id="reqStage" required>
+                <option value="Idea">Idea / Conceptualisation</option>
+                <option value="Prototype" selected>Working Prototype</option>
+                <option value="Pilot">Pilot Testing / Field Trials</option>
+                <option value="Revenue">Early Revenue / Incorporated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Domain & Challenge Description *</label>
+            <textarea class="form-textarea" id="reqChallengeDesc" required placeholder="Briefly describe what your venture does and the key technical or business challenge you are facing..." style="min-height:90px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Type of Help Needed *</label>
+            <select class="form-select" id="reqHelpType" required>
+              <option value="1:1 Mentoring">1:1 Mentoring (Strategic Guidance)</option>
+              <option value="Pitch Review">Pitch Deck & Investment Evaluation</option>
+              <option value="Technical Review">Technical Architecture Review</option>
+              <option value="IP Strategy">Patent & IP Strategy Guidance</option>
+              <option value="GTM">Go-to-Market & Industry Introductions</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Preferred Meeting Format *</label>
+              <select class="form-select" id="reqFormat" required>
+                <option value="Online Zoom / Google Meet">Online (Zoom / Google Meet)</option>
+                <option value="In-person at NITT Campus">In-person at NITT Campus</option>
+                <option value="Flexible">Flexible / Mentor Preference</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Frequency Preference *</label>
+              <select class="form-select" id="reqFrequency" required>
+                <option value="One-time 45m Session">One-time 45m Advisory Session</option>
+                <option value="Bi-weekly Check-ins">Bi-weekly Check-ins (Cohort style)</option>
+                <option value="Monthly Milestone Review">Monthly Milestone Review</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Specific Questions for This Mentor (Optional)</label>
+            <input type="text" class="form-input" id="reqQuestions" placeholder="e.g. How did you secure your first 5 agricultural pilot customers?">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Request 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MENTOR PROFILE MODAL ================= -->
+  <div class="modal-overlay" id="mentorProfileModal">
+    <div class="modal" style="max-width: 660px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2); margin-bottom:4px;">
+            <span class="badge badge-active" id="modalMentorAvailBadge">Available</span>
+            <span class="badge badge-prototype" id="modalMentorBatchBadge">NITT 2014</span>
+            <span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-text-muted);" id="modalMentorId">M001</span>
+          </div>
+          <h3 class="heading-4" id="modalMentorName">Vikram Nair</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-5);">
+        
+        <!-- Mentor Info Card -->
+        <div style="display:flex; gap:var(--sp-4); align-items:center; padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div class="avatar avatar-xl" id="modalMentorAvatar">VN</div>
+          <div>
+            <div style="font-size:var(--fs-lg); font-weight:var(--fw-bold); color:var(--c-text-primary);" id="modalMentorRole">Founder & CEO</div>
+            <div style="font-size:var(--fs-base); color:var(--c-accent); font-weight:var(--fw-semibold);" id="modalMentorCompany">AgriSense Technologies</div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); margin-top:2px;">Alma Mater: <span id="modalMentorAlma">NITT 2014, ECE</span> · Verified FIRE Mentor</div>
+          </div>
+        </div>
+
+        <!-- Domains -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Industry & Domain Coverage</h4>
+          <div class="mentor-card-tags" id="modalMentorDomains">
+            <!-- Domains -->
+          </div>
+        </div>
+
+        <!-- Mentorship Expertise -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Advisory Strengths & Topics</h4>
+          <div class="mentor-card-tags" id="modalMentorExpertise">
+            <!-- Expertise -->
+          </div>
+        </div>
+
+        <!-- Engagement Formats -->
+        <div style="padding:var(--sp-4); background:var(--c-accent-dim); border:1px solid var(--c-border-accent); border-radius:var(--radius-md);">
+          <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-accent); text-transform:uppercase; letter-spacing:0.06em;">
+            OFFERED ENGAGEMENT FORMATS
+          </div>
+          <div style="display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-top:var(--sp-2);" id="modalMentorEngagement">
+            <!-- Engagement pills -->
+          </div>
+        </div>
+
+        <!-- Privacy & Routing -->
+        <div class="grid-2" style="background:var(--c-bg-card); padding:var(--sp-4); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Session Routing</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">Moderated via FIRE Connect</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Typical Response Time</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-accent); margin-top:2px;">Within 5 Business Days</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer" style="justify-content:space-between;">
+        <span class="text-xs text-muted" style="align-self:center;">🔒 Mentor contact info is never shared publicly</span>
+        <div style="display:flex; gap:var(--sp-3);">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Close</button>
+          <button type="button" class="btn btn-primary btn-sm" id="modalRequestMentorshipBtn">
+            Request Session 🤝
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    function getInitials(name) {
+      if (!name) return 'ME';
+      return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function openMentorProfile(mentorId) {
+      const m = FIRE_DATA.mentors.find(item => item.id === mentorId);
+      if (!m) return;
+
+      document.getElementById('modalMentorId').textContent = m.id;
+      document.getElementById('modalMentorName').textContent = m.name;
+      document.getElementById('modalMentorRole').textContent = m.role;
+      document.getElementById('modalMentorCompany').textContent = m.company;
+      document.getElementById('modalMentorAlma').textContent = m.batch;
+      document.getElementById('modalMentorBatchBadge').textContent = m.batch.split(',')[0].trim();
+      document.getElementById('modalMentorAvatar').textContent = getInitials(m.name);
+
+      const availBadge = document.getElementById('modalMentorAvailBadge');
+      availBadge.className = `badge ${m.available ? 'badge-active' : 'badge-closed'}`;
+      availBadge.textContent = m.available ? 'Available' : 'Booked this quarter';
+
+      const domContainer = document.getElementById('modalMentorDomains');
+      domContainer.innerHTML = m.domains.map(d => `<span class="tag tag-active">${d}</span>`).join('');
+
+      const expContainer = document.getElementById('modalMentorExpertise');
+      expContainer.innerHTML = m.expertise.map(e => `<span class="tag">${e}</span>`).join('');
+
+      const engContainer = document.getElementById('modalMentorEngagement');
+      engContainer.innerHTML = m.engagement.map(e => `<span class="badge badge-pilot">💬 ${e}</span>`).join('');
+
+      const reqBtn = document.getElementById('modalRequestMentorshipBtn');
+      if (m.available) {
+        reqBtn.disabled = false;
+        reqBtn.style.opacity = '1';
+        reqBtn.style.cursor = 'pointer';
+        reqBtn.textContent = 'Request Session 🤝';
+        reqBtn.onclick = () => {
+          document.getElementById('mentorProfileModal').classList.remove('open');
+          openMentorshipModal(m.id, m.name, m.company);
+        };
+      } else {
+        reqBtn.disabled = true;
+        reqBtn.style.opacity = '0.5';
+        reqBtn.style.cursor = 'not-allowed';
+        reqBtn.textContent = 'Currently Booked';
+      }
+
+      document.getElementById('mentorProfileModal').classList.add('open');
+    }
+
+    function openMentorshipModal(id, name, company) {
+      const modal = document.getElementById('mentorshipModal');
+      document.getElementById('mentorTargetId').value = id;
+      document.getElementById('mentorTargetName').value = name;
+      document.getElementById('mentorshipModalTitle').textContent = `Request Mentorship: ${name}`;
+      document.getElementById('mentorshipModalSubtitle').textContent = `${company} · Ref: ${id}`;
+      modal.classList.add('open');
+    }
+
+    function resetAllMentorFilters() {
+      document.getElementById('mentorSearch').value = '';
+      document.getElementById('mentorDomainFilter').value = 'all';
+      document.getElementById('mentorExpertiseFilter').value = 'all';
+      document.getElementById('mentorAvailabilityFilter').value = 'all';
+      filterMentors();
+    }
+
+    function filterMentors() {
+      const search = (document.getElementById('mentorSearch')?.value || '').toLowerCase();
+      const domainFilter = document.getElementById('mentorDomainFilter')?.value || 'all';
+      const expertiseFilter = document.getElementById('mentorExpertiseFilter')?.value || 'all';
+      const availFilter = document.getElementById('mentorAvailabilityFilter')?.value || 'all';
+
+      const filtered = FIRE_DATA.mentors.filter(m => {
+        const matchSearch = !search ||
+          m.name.toLowerCase().includes(search) ||
+          m.role.toLowerCase().includes(search) ||
+          m.company.toLowerCase().includes(search) ||
+          m.batch.toLowerCase().includes(search) ||
+          m.domains.some(d => d.toLowerCase().includes(search)) ||
+          m.expertise.some(e => e.toLowerCase().includes(search));
+        
+        const matchDomain = domainFilter === 'all' || m.domains.some(d => d.toLowerCase().includes(domainFilter.toLowerCase()));
+        const matchExpertise = expertiseFilter === 'all' || m.expertise.some(e => e.toLowerCase().includes(expertiseFilter.toLowerCase()));
+        const matchAvail = availFilter === 'all' || 
+          (availFilter === 'available' && m.available) || 
+          (availFilter === 'booked' && !m.available);
+
+        return matchSearch && matchDomain && matchExpertise && matchAvail;
+      });
+
+      renderMentors(filtered);
+    }
+
+    function renderMentors(mentors) {
+      const container = document.getElementById('mentorsGrid');
+      const emptyState = document.getElementById('mentorEmptyState');
+      const counter = document.getElementById('mentorResultsCount');
+
+      counter.textContent = `Showing ${mentors.length} of ${FIRE_DATA.mentors.length} alumni mentors`;
+
+      if (mentors.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'flex';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      container.innerHTML = mentors.map(m => `
+        <div class="card mentor-card anim-on-scroll">
+          <div class="mentor-card-head">
+            <div class="avatar avatar-lg">${getInitials(m.name)}</div>
+            <div class="mentor-card-info">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <h3 class="mentor-card-name">${m.name}</h3>
+                <span class="badge ${m.available ? 'badge-active' : 'badge-closed'}">
+                  ${m.available ? 'Available' : 'Booked'}
+                </span>
+              </div>
+              <div class="mentor-card-role">${m.role}</div>
+              <div class="mentor-card-company">${m.company}</div>
+              <div style="font-size:11px; color:var(--c-text-muted); margin-top:2px;">🎓 ${m.batch}</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:var(--sp-2);">
+            <div style="font-size:11px; font-weight:var(--fw-semibold); color:var(--c-accent); text-transform:uppercase; letter-spacing:0.04em;">DOMAINS:</div>
+            <div class="mentor-card-tags">
+              ${m.domains.map(d => `<span class="tag tag-active">${d}</span>`).join('')}
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:var(--sp-2);">
+            <div style="font-size:11px; font-weight:var(--fw-semibold); color:var(--c-text-muted); text-transform:uppercase; letter-spacing:0.04em;">KEY EXPERTISE:</div>
+            <div class="mentor-card-tags">
+              ${m.expertise.map(e => `<span class="tag">${e}</span>`).join('')}
+            </div>
+          </div>
+
+          <div style="padding:var(--sp-2) var(--sp-3); background:var(--c-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--c-border); font-size:var(--fs-xs); color:var(--c-text-secondary);">
+            <span style="color:var(--c-text-primary); font-weight:var(--fw-medium);">Modes:</span> ${m.engagement.join(', ')}
+          </div>
+
+          <div class="mentor-card-footer">
+            <button type="button" class="btn btn-outline btn-sm" onclick="openMentorProfile('${m.id}')">
+              Profile 👁️
+            </button>
+            <button type="button" class="btn ${m.available ? 'btn-primary' : 'btn-ghost'} btn-sm" 
+              ${m.available ? '' : 'disabled style="opacity:0.5; cursor:not-allowed;"'} 
+              onclick="openMentorshipModal('${m.id}', '${m.name.replace(/'/g, "\\'")}', '${m.company.replace(/'/g, "\\'")}')">
+              ${m.available ? 'Request Mentorship 🤝' : 'Waitlist Only'}
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('mentorSearch')?.addEventListener('input', debounce(filterMentors, 200));
+      document.getElementById('mentorDomainFilter')?.addEventListener('change', filterMentors);
+      document.getElementById('mentorExpertiseFilter')?.addEventListener('change', filterMentors);
+      document.getElementById('mentorAvailabilityFilter')?.addEventListener('change', filterMentors);
+      document.getElementById('resetMentorFiltersBtn')?.addEventListener('click', resetAllMentorFilters);
+
+      // Render initial
+      filterMentors();
+
+      // Check URL query parameters (e.g. ?id=M001)
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedId = urlParams.get('id');
+      if (requestedId) {
+        setTimeout(() => openMentorProfile(requestedId), 300);
+      }
+
+      // Handle Mentorship Form Submission
+      const mentorshipForm = document.getElementById('mentorshipForm');
+      mentorshipForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const mName = document.getElementById('mentorTargetName').value || 'Alumni Mentor';
+        const modal = document.getElementById('mentorshipModal');
+        modal.classList.remove('open');
+        showToast(`Mentorship request submitted to ${mName}. FIRE Operations will coordinate your session slot.`, 'success');
+        mentorshipForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard &amp; Moderation Overview — FIRE | NIT Trichy</title>
+  <meta name="description" content="Central administrative control panel and moderation overview for NITT FIRE platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    .admin-top-banner {
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.16), rgba(15, 25, 46, 0.95) 70%);
+      border-bottom: 1px solid rgba(255, 107, 53, 0.35);
+      padding: 8px var(--sp-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 50;
+    }
+    .admin-sidebar .sidebar-link.active {
+      color: var(--c-accent-warm) !important;
+      background: rgba(255, 107, 53, 0.12) !important;
+      border-left: 3px solid var(--c-accent-warm);
+      font-weight: var(--fw-semibold);
+    }
+    .admin-sidebar .sidebar-link:hover {
+      color: var(--c-accent-warm);
+    }
+    .admin-badge-count {
+      font-size: 11px;
+      font-weight: var(--fw-bold);
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 107, 53, 0.2);
+      color: var(--c-accent-warm);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+    }
+    .health-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      position: relative;
+      overflow: hidden;
+    }
+    .health-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+    .health-card.operational::before { background: var(--c-success); }
+    .health-card.review::before { background: var(--c-info); }
+    .health-card.audit::before { background: var(--c-accent-warm); }
+    .activity-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .activity-item {
+      display: flex;
+      gap: var(--sp-4);
+      padding: var(--sp-4) 0;
+      border-bottom: 1px solid var(--c-border-light);
+      position: relative;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-sm);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Top Warning Banner -->
+    <div class="admin-top-banner">
+      <div style="display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;">
+        <span class="badge" style="background:rgba(255,107,53,0.22);color:var(--c-accent-warm);border:1px solid rgba(255,107,53,0.45);font-size:10px;">RESTRICTED AREA</span>
+        <span style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);letter-spacing:0.04em;color:var(--c-text-primary);">Admin Area — Restricted Access</span>
+        <span style="font-size:var(--fs-xs);color:var(--c-text-muted);">| Authenticated as System Administrator (FIRE Ops Council)</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3);">
+        <span class="badge badge-active" style="font-size:10px;"><span class="badge-dot"></span> Live Mode</span>
+        <a href="../../index.html" class="btn btn-ghost btn-sm" style="font-size:var(--fs-xs);padding:3px 10px;">Exit to Main Site ↗</a>
+      </div>
+    </div>
+
+    <!-- Admin Sidebar Layout -->
+    <div class="sidebar-layout">
+      <!-- Admin Sidebar -->
+      <aside class="sidebar admin-sidebar">
+        <div style="padding: 0 var(--sp-4) var(--sp-4); border-bottom: 1px solid var(--c-border); margin-bottom: var(--sp-3);">
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);display:flex;align-items:center;justify-content:center;color:var(--c-accent-warm);font-weight:var(--fw-bold);font-size:var(--fs-sm);">⚡</div>
+            <div>
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:0.05em;text-transform:uppercase;color:var(--c-text-primary);">FIRE Control</div>
+              <div style="font-size:10px;color:var(--c-text-muted);">Institutional Admin</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="sidebar-section-label">OVERVIEW</div>
+          <a href="index.html" class="sidebar-link active"><span>📊</span> Dashboard</a>
+
+          <div class="sidebar-section-label">CONTENT</div>
+          <a href="users.html" class="sidebar-link"><span>👥</span> User Management</a>
+          <a href="projects.html" class="sidebar-link"><span>📁</span> Project Moderation</a>
+          <a href="projects.html#challenges" class="sidebar-link"><span>💼</span> Challenge Moderation</a>
+          <a href="users.html#mentors" class="sidebar-link"><span>🤝</span> Mentor Management</a>
+          <a href="../../pages/resources/processes.html" class="sidebar-link"><span>📋</span> Process Repository</a>
+          <a href="../../pages/resources/facilities.html" class="sidebar-link"><span>🔧</span> Facility Directory</a>
+          <a href="../../pages/resources/funding.html" class="sidebar-link"><span>💰</span> Funding Directory</a>
+          <a href="events.html" class="sidebar-link"><span>🎤</span> Event Management</a>
+
+          <div class="sidebar-section-label">OPERATIONS</div>
+          <a href="requests.html" class="sidebar-link">
+            <span>📥</span> Request Management
+            <span class="admin-badge-count" style="margin-left:auto;">28</span>
+          </a>
+          <a href="javascript:void(0)" onclick="showToast('Notification dispatch queue is empty and active.', 'info')" class="sidebar-link"><span>🔔</span> Notification Management</a>
+
+          <div class="sidebar-section-label">ANALYTICS</div>
+          <a href="analytics.html" class="sidebar-link"><span>📈</span> Analytics &amp; Reporting</a>
+          <a href="audit.html" class="sidebar-link"><span>📜</span> Audit Logs</a>
+
+          <div class="sidebar-section-label">SYSTEM</div>
+          <a href="javascript:void(0)" onclick="showToast('System configuration synchronized with NITT Central Server.', 'success')" class="sidebar-link"><span>⚙️</span> Settings</a>
+        </nav>
+
+        <div style="padding:var(--sp-6) var(--sp-4) 0;margin-top:auto;">
+          <div style="padding:var(--sp-3);background:var(--c-bg-elevated);border-radius:var(--radius-md);border:1px solid var(--c-border);display:flex;align-items:center;gap:var(--sp-3);">
+            <div class="avatar" style="width:34px;height:34px;font-size:12px;background:var(--grad-warm);color:#fff;">AD</div>
+            <div style="min-width:0;flex:1;">
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);color:var(--c-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Admin Council</div>
+              <div style="font-size:10px;color:var(--c-accent-warm);">Level 4 Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Dashboard Content -->
+      <main class="sidebar-main">
+        <!-- Dashboard Header -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-8);flex-wrap:wrap;gap:var(--sp-4);">
+          <div>
+            <div class="section-label" style="color:var(--c-accent-warm);margin-bottom:var(--sp-2);">EXECUTIVE COMMAND CONSOLE</div>
+            <h1 class="heading-2" style="margin-bottom:var(--sp-1);">Platform Overview &amp; Moderation Hub</h1>
+            <p class="text-muted" style="font-size:var(--fs-sm);">Real-time governance, pending moderation pipelines, and operational health metrics for NIT Trichy.</p>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);align-items:center;">
+            <a href="audit.html" class="btn btn-outline btn-sm"><span>📜</span> Audit Logs</a>
+            <button class="btn btn-warm btn-sm" onclick="showToast('Initiating real-time queue refresh...', 'info'); setTimeout(()=>showToast('Queue refreshed. All nodes synchronized.', 'success'), 800);"><span>🔄</span> Refresh Queue</button>
+          </div>
+        </div>
+
+        <!-- Admin Stats Row (4 cards requested: Pending Reviews 12, Open Requests 28, Active Users 340, Upcoming Events 3) -->
+        <div class="stats-row" style="margin-bottom:var(--sp-8);">
+          <div class="card stat-widget" style="border-left:3px solid var(--c-accent-warm);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="stat-widget-label">Pending Reviews</span>
+              <span style="font-size:1.25rem;">⚠️</span>
+            </div>
+            <div class="stat-widget-num" style="color:var(--c-accent-warm);" data-count="12">12</div>
+            <div style="display:flex;align-items:center;gap:var(--sp-1);font-size:var(--fs-xs);color:var(--c-text-secondary);">
+              <span style="color:var(--c-accent-warm);font-weight:var(--fw-semibold);">5 critical</span> requiring prompt signoff
+            </div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-accent);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="stat-widget-label">Open Requests</span>
+              <span style="font-size:1.25rem;">📥</span>
+            </div>
+            <div class="stat-widget-num text-accent" data-count="28">28</div>
+            <div style="display:flex;align-items:center;gap:var(--sp-1);font-size:var(--fs-xs);color:var(--c-text-secondary);">
+              <span>8 Idea · 11 Facility · 9 Mentors</span>
+            </div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-info);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="stat-widget-label">Active Users</span>
+              <span style="font-size:1.25rem;">👥</span>
+            </div>
+            <div class="stat-widget-num" data-count="340">340</div>
+            <div style="display:flex;align-items:center;gap:var(--sp-1);font-size:var(--fs-xs);color:var(--c-success);">
+              <span>↑ +18 this week</span> (280 students, 42 faculty)
+            </div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-warning);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="stat-widget-label">Upcoming Events</span>
+              <span style="font-size:1.25rem;">🎤</span>
+            </div>
+            <div class="stat-widget-num" data-count="3">3</div>
+            <div style="display:flex;align-items:center;gap:var(--sp-1);font-size:var(--fs-xs);color:var(--c-text-secondary);">
+              <span>Next: Founder Orientation, Nov 10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Required Section: 5 rows needing review -->
+        <div class="card" style="margin-bottom:var(--sp-8);">
+          <div style="padding:var(--sp-5) var(--sp-6);border-bottom:1px solid var(--c-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-3);">
+            <div>
+              <div style="display:flex;align-items:center;gap:var(--sp-2);">
+                <h2 class="heading-4">Action Required: Moderation Queue</h2>
+                <span class="badge" style="background:rgba(255,107,53,0.18);color:var(--c-accent-warm);border:1px solid rgba(255,107,53,0.35);">5 Pending Decisions</span>
+              </div>
+              <p class="text-muted" style="font-size:var(--fs-xs);margin-top:2px;">Submissions awaiting institutional validation, resource allocation, and public listing clearance.</p>
+            </div>
+            <a href="requests.html" class="btn btn-secondary btn-sm" style="color:var(--c-accent);border-color:var(--c-border-accent);">View All 28 Requests →</a>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Item / Category</th>
+                  <th>Title &amp; Submitter</th>
+                  <th>Department / Source</th>
+                  <th>Priority</th>
+                  <th>Submitted</th>
+                  <th style="text-align:right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1: New Idea Submission -->
+                <tr>
+                  <td>
+                    <span class="badge badge-idea">💡 Idea Submission</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">IoT Drone Soil Quality Analyzer</div>
+                    <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">K. Arvind (Roll: 103123044) · Team of 3 UG students</div>
+                  </td>
+                  <td>Civil &amp; Environmental Engg</td>
+                  <td><span class="badge" style="background:rgba(239,68,68,0.15);color:var(--c-error);border:1px solid rgba(239,68,68,0.3);">High Priority</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">Yesterday (16:40)</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-primary btn-sm" style="padding:4px 12px;font-size:var(--fs-xs);" onclick="openActionModal('IoT Drone Soil Quality Analyzer', 'Idea Intake Assessment', 'K. Arvind (Civil Engg)', 'Evaluated for institutional support route. Candidate for NIDHI Prayas PoC grant.')">Review &amp; Assign</button>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Facility Request -->
+                <tr>
+                  <td>
+                    <span class="badge badge-prototype">🔧 Facility Request</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">SCIEnT Prototyping: CNC Router &amp; 3D Lab</div>
+                    <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">EFlames Electronics Club (Lead: Karthick Raja)</div>
+                  </td>
+                  <td>SCIEnT FabLab / ECE Dept</td>
+                  <td><span class="badge badge-pending">Medium</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">2 days ago</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-secondary btn-sm" style="padding:4px 12px;font-size:var(--fs-xs);" onclick="openActionModal('SCIEnT Prototyping: CNC Router & 3D Lab', 'Facility Booking Approval', 'EFlames Electronics Club', 'Requested 18 hours machine slot over upcoming weekend for air quality chassis fabrication.')">Approve Slot</button>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Challenge Submission -->
+                <tr>
+                  <td>
+                    <span class="badge badge-pilot">💼 Industry Challenge</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Pipeline Leak Acoustic Detection System</div>
+                    <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">TN Water Supply &amp; Drainage Board (TWAD)</div>
+                  </td>
+                  <td>Municipal Infrastructure Partner</td>
+                  <td><span class="badge" style="background:rgba(239,68,68,0.15);color:var(--c-error);border:1px solid rgba(239,68,68,0.3);">High Priority</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">3 days ago</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-primary btn-sm" style="padding:4px 12px;font-size:var(--fs-xs);" onclick="openActionModal('Pipeline Leak Acoustic Detection System', 'Corporate Challenge Verification', 'Tamil Nadu Water Supply & Drainage Board', 'Verify RFP terms, student IP policy clauses, and stipendiary grant allocation.')">Moderate</button>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Mentor Profile Review -->
+                <tr>
+                  <td>
+                    <span class="badge badge-research">🤝 Mentor Profile</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Dr. Lakshmi Narayanan (Alumni NITT '11)</div>
+                    <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">VP of Deep Tech Systems, Continental AG</div>
+                  </td>
+                  <td>Alumni Directory / Sensor Tech</td>
+                  <td><span class="badge" style="background:rgba(255,255,255,0.06);color:var(--c-text-muted);border:1px solid var(--c-border);">Routine</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">4 days ago</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-secondary btn-sm" style="padding:4px 12px;font-size:var(--fs-xs);" onclick="openActionModal('Dr. Lakshmi Narayanan Profile', 'Alumni Mentor Verification', 'NIT Trichy Class of 2011 (ECE)', 'Profile information cross-referenced with Institute Alumni Relations database.')">Verify Profile</button>
+                  </td>
+                </tr>
+
+                <!-- Row 5: Process Update -->
+                <tr>
+                  <td>
+                    <span class="badge badge-active">📋 Process Update</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">IP Filing Standard Operating Procedure 2026-v2</div>
+                    <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Drafted by NITT IPR Cell &amp; Dean (R&amp;C) Office</div>
+                  </td>
+                  <td>Legal &amp; Institutional Governance</td>
+                  <td><span class="badge badge-pending">Medium</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">5 days ago</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-outline btn-sm" style="padding:4px 12px;font-size:var(--fs-xs);" onclick="openActionModal('IP Filing SOP 2026-v2', 'Institutional Document Clearance', 'NITT IPR Cell', 'Updated timeline to 2 weeks for provisional patent recommendation.')">Publish Review</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Split Grid: Recent Activity Feed (10 actions) + System Health Widgets (3 cards) -->
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:var(--sp-6);">
+          <!-- Recent Activity Feed: 10 recent actions -->
+          <div class="card" style="padding:var(--sp-6);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-5);border-bottom:1px solid var(--c-border);padding-bottom:var(--sp-4);">
+              <div>
+                <h3 class="heading-4">Recent Administrative Activity</h3>
+                <p class="text-muted" style="font-size:var(--fs-xs);">Real-time ledger of actions executed across FIRE moderators and automated services.</p>
+              </div>
+              <span class="badge" style="background:var(--c-bg-elevated);color:var(--c-text-secondary);border:1px solid var(--c-border);">Last 24 Hours</span>
+            </div>
+
+            <div class="activity-timeline">
+              <!-- Item 1 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-success);background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);">✓</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">M. Sundaram</strong> (FIRE Ops) approved Project publication for <span class="text-accent">"SPIDER Campus AR Navigation"</span>.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">12 mins ago · Project ID: CP001</div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-accent);background:rgba(0,198,162,0.1);border-color:rgba(0,198,162,0.3);">🤝</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">Dr. K. Ramanathan</strong> (Faculty Lead) verified Mentor profile <span class="text-accent">"Vikram Nair (AgriSense)"</span>.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">35 mins ago · Mentor ID: M001</div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-info);background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);">📸</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">Admin System Daemon</strong> triggered automated system audit snapshot <span style="font-family:var(--font-mono);font-size:11px;">#AUD-2026-1049</span>.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">1 hour ago · Compliance Check Passed</div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-accent-warm);background:rgba(255,107,53,0.1);border-color:rgba(255,107,53,0.3);">➡️</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">S. Meenakshi</strong> (Moderator) assigned Idea <span style="font-family:var(--font-mono);font-size:11px;">#REQ-8821</span> to Dean R&amp;C review queue.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">2 hours ago · Deep-tech hardware category</div>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-success);background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);">🔧</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">S. Meenakshi</strong> (Moderator) approved Facility Request <span style="font-family:var(--font-mono);font-size:11px;">#REQ-8818</span> for SCIEnT 3D printers.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">3 hours ago · Slot confirmed Oct 27</div>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-accent);background:rgba(0,198,162,0.1);border-color:rgba(0,198,162,0.3);">🎤</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">M. Sundaram</strong> (FIRE Ops) published Event <span class="text-accent">"Deep Tech Pitch Day — Autumn 2026"</span>.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">4 hours ago · Event ID: EV002 (SAC Main Hall)</div>
+                </div>
+              </div>
+
+              <!-- Item 7 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-warning);background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);">⚠️</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">Security Guardrail</strong> flagged user account <span style="font-family:var(--font-mono);font-size:11px;">#USR-1083</span> for duplicate login attempts.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">5 hours ago · Automatic suspension applied</div>
+                </div>
+              </div>
+
+              <!-- Item 8 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-info);background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);">💼</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">Dr. K. Ramanathan</strong> (Faculty Lead) updated Industry Challenge <span class="text-accent">#IC002</span> status to 'Published'.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">6 hours ago · TWAD Board Leak Detection</div>
+                </div>
+              </div>
+
+              <!-- Item 9 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-success);background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);">🏆</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">S. Meenakshi</strong> (Moderator) endorsed Club Project <span class="text-accent">#CP003 (EFlames)</span> for hardware grant.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">8 hours ago · Director's Discretionary Fund route</div>
+                </div>
+              </div>
+
+              <!-- Item 10 -->
+              <div class="activity-item">
+                <div class="activity-icon-wrap" style="color:var(--c-accent-warm);background:rgba(255,107,53,0.1);border-color:rgba(255,107,53,0.3);">💾</div>
+                <div style="flex:1;">
+                  <div style="font-size:var(--fs-sm);color:var(--c-text-primary);">
+                    <strong style="color:#fff;">Admin System Task</strong> archived Process Repository v2.4 to institutional cold storage.
+                  </div>
+                  <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">Yesterday · SHA-256 integrity checksum validated</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Health Widgets (3 cards requested) -->
+          <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+            <!-- Health Card 1: Platform Status: Operational -->
+            <div class="health-card operational">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-2);">
+                <div style="font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:0.06em;color:var(--c-success);text-transform:uppercase;">Platform Health</div>
+                <span class="badge badge-active" style="font-size:10px;">99.98% Uptime</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-3);">
+                <div style="width:10px;height:10px;border-radius:50%;background:var(--c-success);box-shadow:0 0 10px var(--c-success);"></div>
+                <h3 class="heading-4" style="color:var(--c-text-primary);margin:0;">Status: Operational</h3>
+              </div>
+              <p style="font-size:var(--fs-xs);color:var(--c-text-secondary);line-height:var(--lh-normal);margin-bottom:var(--sp-4);">
+                All primary clusters, campus intranet API endpoints, and authentication gateways are responding within expected parameters (avg latency 42ms).
+              </p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);padding:var(--sp-3);background:var(--c-bg-elevated);border-radius:var(--radius-md);font-size:var(--fs-xs);">
+                <div><span class="text-muted">Database:</span> <span style="color:var(--c-success);">Optimal (14%)</span></div>
+                <div><span class="text-muted">Storage:</span> <span style="color:var(--c-text-primary);">412 GB / 2 TB</span></div>
+              </div>
+            </div>
+
+            <!-- Health Card 2: Last Content Review: 2 days ago -->
+            <div class="health-card review">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-2);">
+                <div style="font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:0.06em;color:var(--c-info);text-transform:uppercase;">Governance Check</div>
+                <span class="badge" style="background:var(--c-info-dim);color:var(--c-info);font-size:10px;">Compliant</span>
+              </div>
+              <h3 class="heading-4" style="color:var(--c-text-primary);margin-bottom:var(--sp-2);">Last Content Review</h3>
+              <div style="font-size:var(--fs-xl);font-weight:var(--fw-bold);color:var(--c-info);margin-bottom:var(--sp-2);">2 Days Ago</div>
+              <p style="font-size:var(--fs-xs);color:var(--c-text-secondary);line-height:var(--lh-normal);margin-bottom:var(--sp-3);">
+                Executed by Faculty Content Council. 14 new project abstracts, 2 startup disclosures, and 6 event schedules inspected for institutional alignment.
+              </p>
+              <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                Next scheduled review cycle: <span style="color:var(--c-text-primary);">Friday, 3:00 PM</span>
+              </div>
+            </div>
+
+            <!-- Health Card 3: Next Scheduled Audit: Dec 2026 -->
+            <div class="health-card audit">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-2);">
+                <div style="font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:0.06em;color:var(--c-accent-warm);text-transform:uppercase;">Regulatory Compliance</div>
+                <span class="badge" style="background:rgba(255,107,53,0.15);color:var(--c-accent-warm);font-size:10px;">Institutional</span>
+              </div>
+              <h3 class="heading-4" style="color:var(--c-text-primary);margin-bottom:var(--sp-2);">Next Scheduled Audit</h3>
+              <div style="font-size:var(--fs-xl);font-weight:var(--fw-bold);color:var(--c-accent-warm);margin-bottom:var(--sp-2);">December 2026</div>
+              <p style="font-size:var(--fs-xs);color:var(--c-text-secondary);line-height:var(--lh-normal);margin-bottom:var(--sp-3);">
+                Annual Innovation &amp; Entrepreneurship Governance Review conducted by NIT Trichy Oversight Committee &amp; External Academic Observers.
+              </p>
+              <a href="audit.html" class="btn btn-outline btn-sm" style="width:100%;font-size:var(--fs-xs);border-color:rgba(255,107,53,0.3);color:var(--c-accent-warm);">
+                View Audit Trail Logs →
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Action Modal -->
+  <div class="modal-overlay" id="quickActionModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4" id="modalItemTitle">Review Moderation Item</h3>
+          <div style="font-size:var(--fs-xs);color:var(--c-accent-warm);" id="modalItemType">Category</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:var(--c-bg-card);border:1px solid var(--c-border);border-radius:var(--radius-md);padding:var(--sp-4);margin-bottom:var(--sp-4);">
+          <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Submitter Details</div>
+          <div style="font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--c-text-primary);" id="modalSubmitter">Submitter Name</div>
+          <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);margin-top:var(--sp-2);" id="modalDesc">Description text here</div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:var(--sp-4);">
+          <label class="form-label">Review Verdict</label>
+          <select class="form-select" id="modalVerdict">
+            <option value="approved">Approve &amp; Advance to Next Stage</option>
+            <option value="changes">Request Revisions from Submitter</option>
+            <option value="escalate">Escalate to Faculty Oversight Board</option>
+            <option value="reject">Decline with Feedback</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Moderator Internal Notes / Comments</label>
+          <textarea class="form-textarea" placeholder="Enter comments or guidance for the applicant..." style="min-height:90px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+        <button class="btn btn-warm btn-sm" onclick="submitVerdict()">Commit Decision</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    function openActionModal(title, type, submitter, desc) {
+      document.getElementById('modalItemTitle').textContent = title;
+      document.getElementById('modalItemType').textContent = type;
+      document.getElementById('modalSubmitter').textContent = submitter;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('quickActionModal').classList.add('open');
+    }
+
+    function submitVerdict() {
+      const modal = document.getElementById('quickActionModal');
+      modal.classList.remove('open');
+      showToast('Moderation action recorded successfully in audit ledger.', 'success');
+    }
+  </script>
+</body>
+</html>

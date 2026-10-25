@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Have an Idea — Submission Intake | FIRE — NIT Trichy</title>
+  <meta name="description" content="Submit your innovative idea to NITT FIRE. Access mentoring, prototyping labs, grant support, and incubation pathways. Safe 5-step intake.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    /* Custom styling for Idea 5-Step Form */
+    .form-container-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    @media (max-width: 640px) {
+      .form-container-card {
+        padding: var(--sp-5);
+      }
+    }
+
+    .form-nav-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      margin-top: var(--sp-8);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--c-border);
+    }
+
+    .step-title {
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-primary);
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+    .step-subtitle {
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      margin-bottom: var(--sp-6);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-3);
+    }
+    @media (max-width: 640px) {
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .custom-checkbox-card {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      padding: var(--sp-4);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      user-select: none;
+    }
+    .custom-checkbox-card:hover {
+      border-color: var(--c-border-accent);
+      background: rgba(0,198,162,0.04);
+    }
+    .custom-checkbox-card.selected {
+      border-color: var(--c-accent);
+      background: var(--c-accent-dim);
+    }
+    .custom-checkbox-card input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--c-accent);
+      cursor: pointer;
+    }
+
+    .radio-pill-group {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .radio-pill-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 0.5rem 1rem;
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      transition: all var(--t-fast);
+    }
+    .radio-pill-item:hover {
+      border-color: var(--c-accent);
+      color: var(--c-text-primary);
+    }
+    .radio-pill-item input[type="radio"] {
+      accent-color: var(--c-accent);
+    }
+    .radio-pill-item.active {
+      border-color: var(--c-accent);
+      background: var(--c-accent-dim);
+      color: var(--c-accent);
+      font-weight: var(--fw-semibold);
+    }
+
+    /* Review Card layout */
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+    }
+    @media (max-width: 768px) {
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .review-box {
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4);
+    }
+    .review-box-title {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-3);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .review-field {
+      margin-bottom: var(--sp-2);
+      font-size: var(--fs-sm);
+    }
+    .review-field:last-child {
+      margin-bottom: 0;
+    }
+    .review-label {
+      color: var(--c-text-muted);
+      font-size: var(--fs-xs);
+      display: block;
+    }
+    .review-value {
+      color: var(--c-text-primary);
+      font-weight: var(--fw-medium);
+      word-break: break-word;
+    }
+
+    /* Success state */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: var(--sp-12) var(--sp-8);
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border-accent);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-accent);
+      animation: fadeIn 0.5s ease both;
+    }
+    .success-icon-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--c-accent-dim);
+      border: 2px solid var(--c-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.25rem;
+      margin: 0 auto var(--sp-6);
+      box-shadow: 0 0 30px var(--c-accent-glow);
+    }
+    .request-id-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      background: var(--c-bg-elevated);
+      border: 1px dashed var(--c-border-accent);
+      padding: var(--sp-2) var(--sp-6);
+      border-radius: var(--radius-md);
+      margin: var(--sp-4) 0 var(--sp-6);
+      letter-spacing: 0.1em;
+    }
+    .timeline-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+      margin: var(--sp-8) 0;
+      text-align: left;
+    }
+    @media (max-width: 640px) {
+      .timeline-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+    .timeline-mini-box {
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4);
+    }
+    .timeline-day-tag {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--sp-1);
+    }
+    .timeline-day-title {
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-semibold);
+      color: var(--c-text-primary);
+      margin-bottom: var(--sp-1);
+    }
+    .timeline-day-desc {
+      font-size: var(--fs-xs);
+      color: var(--c-text-muted);
+      line-height: var(--lh-snug);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero / Header -->
+    <header class="section-sm" style="background: var(--c-bg-surface); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Start Here</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">I Have an Idea</span>
+        </nav>
+
+        <div style="max-width: 760px;">
+          <div class="hero-badge" style="margin-bottom: var(--sp-3);">
+            <div class="hero-badge-dot"></div>
+            Standard Intake Protocol (PR003)
+          </div>
+          <h1 class="heading-1" style="margin-bottom: var(--sp-3);">
+            Tell Us About Your <span class="text-gradient">Idea</span>
+          </h1>
+          <p class="text-muted" style="line-height: var(--lh-relaxed);">
+            Take the first official step to engage NIT Trichy's innovation resources. Complete this 5-step structured intake to connect with prototyping labs, alumni mentors, domain advisors, and seed grant mechanisms.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="section">
+      <div class="container" style="max-width: 920px;">
+
+        <!-- Disclaimer Banner -->
+        <div class="alert alert-warning" style="margin-bottom: var(--sp-8);">
+          <span style="font-size: 1.35rem; flex-shrink: 0;">🔒</span>
+          <div>
+            <div style="font-weight: 600; color: #FCD34D; font-size: var(--fs-sm); margin-bottom: 2px;">
+              IP Safeguard Notice & Non-Confidential Disclosure
+            </div>
+            <div style="font-size: var(--fs-xs); color: #FDE68A; line-height: var(--lh-normal);">
+              <strong>Do not include sensitive technical details, unreleased IP, source code algorithms, or confidential proprietary trade secrets in this form.</strong>
+              All project descriptions provided here will only be used by the FIRE intake team for routing and initial mentor matching. Patentable innovations will be referred confidentially to the NITT IPR Cell before public disclosure.
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Wrapper -->
+        <div id="formContainer" class="form-container-card">
+
+          <!-- 5-Step Stepper Header -->
+          <div class="form-stepper" id="intakeStepper">
+            <div class="form-step-item active" data-step-indicator="0">
+              <div class="form-step-circle">1</div>
+              <span class="form-step-label">Applicant Info</span>
+              <div class="form-step-line"></div>
+            </div>
+            <div class="form-step-item" data-step-indicator="1">
+              <div class="form-step-circle">2</div>
+              <span class="form-step-label">Your Idea</span>
+              <div class="form-step-line"></div>
+            </div>
+            <div class="form-step-item" data-step-indicator="2">
+              <div class="form-step-circle">3</div>
+              <span class="form-step-label">Current Stage</span>
+              <div class="form-step-line"></div>
+            </div>
+            <div class="form-step-item" data-step-indicator="3">
+              <div class="form-step-circle">4</div>
+              <span class="form-step-label">Support Needed</span>
+              <div class="form-step-line"></div>
+            </div>
+            <div class="form-step-item" data-step-indicator="4">
+              <div class="form-step-circle">5</div>
+              <span class="form-step-label">Review & Submit</span>
+            </div>
+          </div>
+
+          <!-- The Multi-Step Form -->
+          <form id="ideaIntakeForm" data-multistep novalidate>
+
+            <!-- ================= STEP 1: WHO ARE YOU? ================= -->
+            <div data-step="0">
+              <div class="step-title">
+                <span>👤</span> Step 1: Who are you?
+              </div>
+              <div class="step-subtitle">
+                Provide your primary contact and institutional affiliation within or outside NIT Trichy.
+              </div>
+
+              <div class="form-row" style="margin-bottom: var(--sp-4);">
+                <div class="form-group">
+                  <label class="form-label" for="applicantName">Full Name <span style="color:var(--c-error)">*</span></label>
+                  <input type="text" id="applicantName" name="applicantName" class="form-input" placeholder="e.g. S. Karthik Raja" required>
+                  <span class="form-hint">Primary applicant and lead contact person</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applicantEmail">Email Address <span style="color:var(--c-error)">*</span></label>
+                  <input type="email" id="applicantEmail" name="applicantEmail" class="form-input" placeholder="e.g. karthik.108122045@nitt.edu" required>
+                  <span class="form-hint">Use official @nitt.edu email where available</span>
+                </div>
+              </div>
+
+              <div class="form-row" style="margin-bottom: var(--sp-4);">
+                <div class="form-group">
+                  <label class="form-label" for="applicantPhone">Phone Number <span style="color:var(--c-error)">*</span></label>
+                  <input type="tel" id="applicantPhone" name="applicantPhone" class="form-input" placeholder="+91 98765 43210" required>
+                  <span class="form-hint">WhatsApp enabled number preferred</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applicantType">Applicant Type <span style="color:var(--c-error)">*</span></label>
+                  <select id="applicantType" name="applicantType" class="form-select" required>
+                    <option value="" disabled selected>Select your profile</option>
+                    <option value="Undergraduate Student">Undergraduate Student (B.Tech / B.Arch)</option>
+                    <option value="Postgraduate Researcher">Postgraduate Researcher (M.Tech / M.Sc / MS)</option>
+                    <option value="Ph.D. Scholar">Ph.D. Scholar / Research Fellow</option>
+                    <option value="Faculty Member">Faculty Member</option>
+                    <option value="Club Team Representative">Club Team Representative</option>
+                    <option value="NITT Alumni">NITT Alumni Founder</option>
+                    <option value="External Innovator">External Innovator / Startup Founder</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row" style="margin-bottom: var(--sp-4);">
+                <div class="form-group">
+                  <label class="form-label" for="rollNo">Roll Number / Employee ID <span style="color:var(--c-error)">*</span></label>
+                  <input type="text" id="rollNo" name="rollNo" class="form-input" placeholder="e.g. 106122045 or FAC-089" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="department">Department / Centre <span style="color:var(--c-error)">*</span></label>
+                  <select id="department" name="department" class="form-select" required>
+                    <option value="" disabled selected>Select department</option>
+                    <option value="Computer Science & Engineering">Computer Science & Engineering (CSE)</option>
+                    <option value="Electronics & Communication Engineering">Electronics & Communication Engineering (ECE)</option>
+                    <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering (EEE)</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Instrumentation & Control Engineering">Instrumentation & Control Engineering (ICE)</option>
+                    <option value="Production Engineering">Production Engineering</option>
+                    <option value="Metallurgical & Materials Engineering">Metallurgical & Materials Engineering (MME)</option>
+                    <option value="Department of Architecture">Department of Architecture</option>
+                    <option value="Management Studies (DOMS)">Management Studies (DOMS)</option>
+                    <option value="Computer Applications (CA)">Computer Applications (CA)</option>
+                    <option value="Physics / Chemistry / Mathematics">Physics / Chemistry / Mathematics</option>
+                    <option value="Centre for Energy & Environment">Centre for Energy & Environment</option>
+                    <option value="Other / Non-NITT">Other / Non-NITT</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="yearOfStudy">Year of Study / Seniority <span style="color:var(--c-error)">*</span></label>
+                <select id="yearOfStudy" name="yearOfStudy" class="form-select" required>
+                  <option value="" disabled selected>Select year of study</option>
+                  <option value="1st Year UG">1st Year UG</option>
+                  <option value="2nd Year UG">2nd Year UG</option>
+                  <option value="3rd Year UG">3rd Year UG</option>
+                  <option value="4th Year UG">4th Year UG</option>
+                  <option value="5th Year B.Arch">5th Year B.Arch</option>
+                  <option value="Postgraduate (1st / 2nd Year)">Postgraduate (1st / 2nd Year)</option>
+                  <option value="Doctoral Scholar">Doctoral Scholar</option>
+                  <option value="Faculty / Staff Member">Faculty / Staff Member</option>
+                  <option value="Alumni / Graduated">Alumni / Graduated</option>
+                </select>
+              </div>
+
+              <div class="form-nav-buttons">
+                <div></div>
+                <button type="button" class="btn btn-primary" data-next-step="1">
+                  Next: Your Idea →
+                </button>
+              </div>
+            </div>
+
+            <!-- ================= STEP 2: YOUR IDEA ================= -->
+            <div data-step="1" style="display: none;">
+              <div class="step-title">
+                <span>💡</span> Step 2: Your Idea
+              </div>
+              <div class="step-subtitle">
+                Summarize what problem you are tackling and how your solution approaches it differently.
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="ideaTitle">Idea / Project Title <span style="color:var(--c-error)">*</span></label>
+                <input type="text" id="ideaTitle" name="ideaTitle" class="form-input" placeholder="e.g. Hyperlocal Real-time Air Quality Network for Urban Corridors" required>
+                <span class="form-hint">A concise, descriptive name (max 100 characters)</span>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="domain">Primary Technology Domain <span style="color:var(--c-error)">*</span></label>
+                <select id="domain" name="domain" class="form-select" required>
+                  <option value="" disabled selected>Select primary domain</option>
+                  <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning (AI/ML)</option>
+                  <option value="CleanTech, Water & Renewable Energy">CleanTech, Water & Renewable Energy</option>
+                  <option value="Healthcare & MedTech">Healthcare & MedTech</option>
+                  <option value="Robotics, Drones & Autonomous Systems">Robotics, Drones & Autonomous Systems</option>
+                  <option value="Hardware, Embedded & IoT">Hardware, Embedded & IoT</option>
+                  <option value="AgriTech & Rural Solutions">AgriTech & Rural Solutions</option>
+                  <option value="FinTech & Web3">FinTech & Web3</option>
+                  <option value="EdTech & Skill Development">EdTech & Skill Development</option>
+                  <option value="Enterprise SaaS & Developer Tools">Enterprise SaaS & Developer Tools</option>
+                  <option value="Advanced Materials & Nanotechnology">Advanced Materials & Nanotechnology</option>
+                  <option value="Social Impact & Governance">Social Impact & Governance</option>
+                  <option value="Other Domain">Other Domain</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="problemStatement">Problem Being Addressed <span style="color:var(--c-error)">*</span></label>
+                <textarea id="problemStatement" name="problemStatement" class="form-textarea" placeholder="Describe the specific pain point, user friction, or industry limitation you observed. Who experiences this problem and why does existing technology fall short?" required></textarea>
+                <span class="form-hint">Focus on the problem and affected stakeholders (2-4 paragraphs recommended)</span>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="proposedSolution">Proposed Solution & Core Mechanism <span style="color:var(--c-error)">*</span></label>
+                <textarea id="proposedSolution" name="proposedSolution" class="form-textarea" placeholder="Explain your concept at a high level. How does your solution resolve the problem? What makes your approach technically viable or novel without revealing secret code/formulas?" required></textarea>
+                <span class="form-hint">High-level description without confidential formulas or trade secrets</span>
+              </div>
+
+              <div class="form-nav-buttons">
+                <button type="button" class="btn btn-outline" data-prev-step="0">
+                  ← Back: Applicant
+                </button>
+                <button type="button" class="btn btn-primary" data-next-step="2">
+                  Next: Current Stage →
+                </button>
+              </div>
+            </div>
+
+            <!-- ================= STEP 3: CURRENT STAGE ================= -->
+            <div data-step="2" style="display: none;">
+              <div class="step-title">
+                <span>📊</span> Step 3: Current Stage
+              </div>
+              <div class="step-subtitle">
+                Help us assess the maturity of your project to route you to the appropriate support level.
+              </div>
+
+              <div class="form-row" style="margin-bottom: var(--sp-4);">
+                <div class="form-group">
+                  <label class="form-label" for="projectStage">Current Maturity Stage <span style="color:var(--c-error)">*</span></label>
+                  <select id="projectStage" name="projectStage" class="form-select" required>
+                    <option value="" disabled selected>Select current stage</option>
+                    <option value="Concept / Raw Idea">Concept / Raw Idea (Problem identified, exploring solutions)</option>
+                    <option value="User Research & Validation">User Research & Validation (Surveying customers, market validation)</option>
+                    <option value="Proof of Concept (PoC)">Proof of Concept (Lab scale or software prototype functional)</option>
+                    <option value="Working Hardware/Software Prototype">Working Prototype (Functional alpha ready for testing)</option>
+                    <option value="Field Pilot / Beta Testing">Field Pilot / Beta Testing (Underway with real users/partners)</option>
+                    <option value="Incorporated / Revenue Generating">Incorporated Venture (Entity registered, looking to scale)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="teamCount">Team Members Count <span style="color:var(--c-error)">*</span></label>
+                  <input type="number" id="teamCount" name="teamCount" class="form-input" min="1" max="15" value="1" required>
+                  <span class="form-hint">Including yourself and core co-builders</span>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label">Do you already have a faculty mentor / departmental guide? <span style="color:var(--c-error)">*</span></label>
+                <div class="radio-pill-group" style="margin-top: var(--sp-1);">
+                  <label class="radio-pill-item" id="mentorRadioNo">
+                    <input type="radio" name="hasFacultyMentor" value="No" checked>
+                    <span>No, looking for a mentor</span>
+                  </label>
+                  <label class="radio-pill-item" id="mentorRadioYes">
+                    <input type="radio" name="hasFacultyMentor" value="Yes">
+                    <span>Yes, I have an existing mentor</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group" id="mentorDetailsGroup" style="display: none; margin-bottom: var(--sp-4);">
+                <label class="form-label" for="facultyMentorName">Faculty Mentor Name & Department</label>
+                <input type="text" id="facultyMentorName" name="facultyMentorName" class="form-input" placeholder="e.g. Dr. Rajesh Kumar, Department of Civil Engineering">
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="externalCommitments">Existing IP, Hackathons, or External Commitments</label>
+                <textarea id="externalCommitments" name="externalCommitments" class="form-textarea" style="min-height: 80px;" placeholder="Mention any relevant context: Did this project win a hackathon (e.g. SIH)? Is it part of a funded sponsored research grant? Are there any third-party agreements or published papers? (Leave blank if none)"></textarea>
+                <span class="form-hint">Optional: Helps us confirm freedom-to-operate and competition eligibility</span>
+              </div>
+
+              <div class="form-nav-buttons">
+                <button type="button" class="btn btn-outline" data-prev-step="1">
+                  ← Back: The Idea
+                </button>
+                <button type="button" class="btn btn-primary" data-next-step="3">
+                  Next: Support Needed →
+                </button>
+              </div>
+            </div>
+
+            <!-- ================= STEP 4: SUPPORT NEEDED ================= -->
+            <div data-step="3" style="display: none;">
+              <div class="step-title">
+                <span>🛠️</span> Step 4: Support Needed
+              </div>
+              <div class="step-subtitle">
+                Select all resources you are requesting from the NITT FIRE platform.
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-5);">
+                <label class="form-label" style="margin-bottom: var(--sp-2);">Assistance Categories (Check all that apply) <span style="color:var(--c-error)">*</span></label>
+                <div class="checkbox-grid">
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="1:1 Alumni & Domain Mentoring">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Alumni & Domain Mentoring</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">1-on-1 strategy, technical architecture, and pitch guidance</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="SCIEnT & Prototyping Facility Access">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Facility & Equipment Access</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">SCIEnT 3D printers, laser cutters, electronics lab, or clean room</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="GPU HPC Cluster Compute">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">HPC Cluster Compute</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">NVIDIA A100 GPU compute allocations for AI/ML workloads</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="Non-Dilutive Seed Funding Guidance">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Funding & Seed Grants</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">NIDHI Prayas (₹10L), SISFS, or NITT Director's Discretionary Fund</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="NITT IPR Cell & Patent Guidance">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">IP & Patent Evaluation</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Prior-art searches and provisional patent filing support via IPR Cell</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="Technical Collaborators / Co-Founders">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Collaborator Matching</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Recruit student developers, designers, or co-founders across campus</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="Industry Challenges & Field Trials">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Industry & Corporate Connect</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Connect with corporate sponsors, municipalities, or pilot testers</div>
+                    </div>
+                  </label>
+
+                  <label class="custom-checkbox-card">
+                    <input type="checkbox" name="supportTypes" value="Design Thinking & User Testing">
+                    <div>
+                      <div style="font-weight: 600; color: var(--c-text-primary); font-size: var(--fs-sm);">Design & User Validation</div>
+                      <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Studio access for customer interviews and sprint workshops</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--sp-4);">
+                <label class="form-label" for="additionalNotes">Additional Notes & Specific Expectations</label>
+                <textarea id="additionalNotes" name="additionalNotes" class="form-textarea" style="min-height: 90px;" placeholder="Tell us if you have an upcoming competition deadline, specific component needs, or any unique circumstances..."></textarea>
+              </div>
+
+              <div class="form-nav-buttons">
+                <button type="button" class="btn btn-outline" data-prev-step="2">
+                  ← Back: Stage
+                </button>
+                <button type="button" class="btn btn-primary" data-next-step="4">
+                  Next: Review & Submit →
+                </button>
+              </div>
+            </div>
+
+            <!-- ================= STEP 5: REVIEW & SUBMIT ================= -->
+            <div data-step="4" style="display: none;">
+              <div class="step-title">
+                <span>📋</span> Step 5: Review & Submit
+              </div>
+              <div class="step-subtitle">
+                Please verify your entered information before submitting to the FIRE operations team.
+              </div>
+
+              <!-- Live Summary Display -->
+              <div class="review-grid">
+                
+                <!-- Box 1: Applicant -->
+                <div class="review-box">
+                  <div class="review-box-title">
+                    <span>👤</span> Applicant Profile
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Name</span>
+                    <span class="review-value" id="revName">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Email & Phone</span>
+                    <span class="review-value" id="revContact">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Profile & Roll No</span>
+                    <span class="review-value" id="revProfile">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Department & Year</span>
+                    <span class="review-value" id="revDept">—</span>
+                  </div>
+                </div>
+
+                <!-- Box 2: Idea Overview -->
+                <div class="review-box">
+                  <div class="review-box-title">
+                    <span>💡</span> Idea Overview
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Title</span>
+                    <span class="review-value" id="revTitle">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Domain</span>
+                    <span class="review-value" id="revDomain">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Problem Summary</span>
+                    <span class="review-value" id="revProblem" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">—</span>
+                  </div>
+                </div>
+
+                <!-- Box 3: Stage & Team -->
+                <div class="review-box">
+                  <div class="review-box-title">
+                    <span>📊</span> Maturity & Team
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Current Stage</span>
+                    <span class="review-value" id="revStage">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Team Members</span>
+                    <span class="review-value" id="revTeam">—</span>
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Faculty Mentor</span>
+                    <span class="review-value" id="revMentor">—</span>
+                  </div>
+                </div>
+
+                <!-- Box 4: Requested Support -->
+                <div class="review-box">
+                  <div class="review-box-title">
+                    <span>🛠️</span> Support Requested
+                  </div>
+                  <div class="review-field">
+                    <span class="review-label">Selected Categories</span>
+                    <span class="review-value" id="revSupport">—</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Confidentiality Checkbox -->
+              <div class="card" style="padding: var(--sp-4); background: var(--c-bg-elevated); margin-bottom: var(--sp-6); border-color: var(--c-border-accent);">
+                <label style="display: flex; gap: var(--sp-3); align-items: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="confidentialityAck" required style="accent-color: var(--c-accent); margin-top: 3px;">
+                  <span style="font-size: var(--fs-xs); color: var(--c-text-secondary); line-height: var(--lh-normal);">
+                    <strong>Confidentiality & Non-Disclosure Acknowledgement:</strong> I confirm that the information provided does not compromise unfiled proprietary inventions, trade secrets, or unreleased sponsor agreements. I understand that FIRE will coordinate an intake evaluation and connect me with institutional support within 3 to 5 working days under official NITT policies.
+                  </span>
+                </label>
+              </div>
+
+              <div class="form-nav-buttons">
+                <button type="button" class="btn btn-outline" data-prev-step="3">
+                  ← Back: Support Needed
+                </button>
+                <button type="submit" id="submitFormBtn" class="btn btn-primary btn-lg">
+                  Submit Idea to FIRE 🚀
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- ================= POST-SUBMIT SUCCESS STATE ================= -->
+        <div id="successCard" class="success-card">
+          <div class="success-icon-badge">✅</div>
+          <span class="badge badge-active" style="margin-bottom: var(--sp-2);">Submission Confirmed</span>
+          <h2 class="heading-2" style="margin-bottom: var(--sp-2);">
+            Your Idea Has Been Successfully Received!
+          </h2>
+          <p class="text-muted" style="max-width: 600px; margin: 0 auto;">
+            Thank you for submitting your project to the NITT FIRE platform. An automated intake record has been logged in the central operations registry.
+          </p>
+
+          <div class="request-id-pill" id="displayRequestId">FIRE-XXXX</div>
+
+          <div style="font-size: var(--fs-sm); color: var(--c-text-secondary); margin-bottom: var(--sp-6);">
+            A confirmation receipt has been sent to <span id="displayReceiptEmail" style="color:var(--c-accent);font-weight:600;">your email</span>.
+          </div>
+
+          <!-- Timeline of Next Steps -->
+          <div style="text-align: left; max-width: 760px; margin: 0 auto;">
+            <div class="section-label" style="margin-bottom: var(--sp-2);">Review Process</div>
+            <h3 class="heading-4" style="margin-bottom: var(--sp-4);">What Happens Next?</h3>
+            
+            <div class="timeline-strip">
+              <div class="timeline-mini-box">
+                <div class="timeline-day-tag">Day 1 — Triage</div>
+                <div class="timeline-day-title">Intake & Verification</div>
+                <div class="timeline-day-desc">
+                  FIRE Operations verifies your NITT affiliation, roll number, and initial safety/IP clearance.
+                </div>
+              </div>
+
+              <div class="timeline-mini-box">
+                <div class="timeline-day-tag">Days 2–3 — Review</div>
+                <div class="timeline-day-title">Domain Assessment</div>
+                <div class="timeline-day-desc">
+                  Assigned domain coordinator reviews technical scope and matches requested lab & compute tools.
+                </div>
+              </div>
+
+              <div class="timeline-mini-box">
+                <div class="timeline-day-tag">Days 4–5 — Action</div>
+                <div class="timeline-day-title">Clinic Invitation</div>
+                <div class="timeline-day-desc">
+                  Invitation to an upcoming Idea Clinic or 1-on-1 advisor connect to formalize your project route.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; margin-top: var(--sp-8);">
+            <a href="../../pages/my-fire/index.html" class="btn btn-primary">
+              View Status in My FIRE →
+            </a>
+            <a href="../../pages/resources/processes.html" class="btn btn-secondary">
+              Review Process PR003 📋
+            </a>
+            <a href="index.html#faq" class="btn btn-outline">
+              Read Common FAQs
+            </a>
+            <button type="button" class="btn btn-ghost" id="btnSubmitAnother">
+              Submit Another Idea 🔄
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize components with depth 2
+    Components.init(2);
+
+    // Multi-Step Form Logic for idea.html
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('ideaIntakeForm');
+      const formContainer = document.getElementById('formContainer');
+      const successCard = document.getElementById('successCard');
+      const stepDivs = form.querySelectorAll('[data-step]');
+      const stepIndicators = document.querySelectorAll('#intakeStepper .form-step-item');
+      let currentStep = 0;
+
+      // Check URL parameters for preset applicant type (e.g. ?type=pg)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('type') === 'pg') {
+        const applicantSelect = document.getElementById('applicantType');
+        if (applicantSelect) {
+          applicantSelect.value = 'Postgraduate Researcher';
+        }
+      }
+
+      // Checkbox visual toggle
+      document.querySelectorAll('.custom-checkbox-card').forEach(card => {
+        const input = card.querySelector('input[type="checkbox"]');
+        card.addEventListener('click', (e) => {
+          if (e.target !== input) {
+            input.checked = !input.checked;
+          }
+          card.classList.toggle('selected', input.checked);
+        });
+      });
+
+      // Faculty mentor radio toggle
+      const mentorRadioYes = document.getElementById('mentorRadioYes');
+      const mentorRadioNo = document.getElementById('mentorRadioNo');
+      const mentorDetailsGroup = document.getElementById('mentorDetailsGroup');
+
+      if (mentorRadioYes && mentorRadioNo && mentorDetailsGroup) {
+        document.querySelectorAll('input[name="hasFacultyMentor"]').forEach(radio => {
+          radio.addEventListener('change', () => {
+            if (radio.value === 'Yes') {
+              mentorDetailsGroup.style.display = 'block';
+              mentorRadioYes.classList.add('active');
+              mentorRadioNo.classList.remove('active');
+            } else {
+              mentorDetailsGroup.style.display = 'none';
+              mentorRadioNo.classList.add('active');
+              mentorRadioYes.classList.remove('active');
+            }
+          });
+        });
+      }
+
+      function goToStep(n) {
+        // Hide all steps, show target step
+        stepDivs.forEach((div, i) => {
+          div.style.display = i === n ? 'block' : 'none';
+        });
+
+        // Update stepper indicators
+        stepIndicators.forEach((ind, i) => {
+          ind.classList.remove('active', 'done');
+          if (i < n) ind.classList.add('done');
+          if (i === n) ind.classList.add('active');
+        });
+
+        currentStep = n;
+
+        // If step 5 (Review), populate review summary
+        if (n === 4) {
+          populateReview();
+        }
+
+        // Scroll smoothly to top of form card
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Validate inputs for current step
+      function validateStep(stepIndex) {
+        const currentDiv = form.querySelector(`[data-step="${stepIndex}"]`);
+        const requiredFields = currentDiv.querySelectorAll('[required]');
+        let valid = true;
+
+        requiredFields.forEach(field => {
+          if (!field.value.trim() || (field.tagName === 'SELECT' && !field.value)) {
+            field.style.borderColor = 'var(--c-error)';
+            field.style.boxShadow = '0 0 0 2px var(--c-error-dim)';
+            valid = false;
+          } else {
+            field.style.borderColor = '';
+            field.style.boxShadow = '';
+          }
+        });
+
+        if (stepIndex === 3) {
+          // Check at least one support checkbox is selected
+          const checked = currentDiv.querySelectorAll('input[name="supportTypes"]:checked');
+          if (checked.length === 0) {
+            showToast('Please select at least one support category', 'warning');
+            valid = false;
+          }
+        }
+
+        if (!valid) {
+          showToast('Please fill out all required fields before continuing', 'warning');
+        }
+        return valid;
+      }
+
+      // Next buttons
+      form.querySelectorAll('[data-next-step]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetStep = parseInt(btn.dataset.nextStep);
+          if (validateStep(currentStep)) {
+            goToStep(targetStep);
+          }
+        });
+      });
+
+      // Prev buttons
+      form.querySelectorAll('[data-prev-step]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetStep = parseInt(btn.dataset.prevStep);
+          goToStep(targetStep);
+        });
+      });
+
+      // Populate Step 5 Review
+      function populateReview() {
+        document.getElementById('revName').textContent = document.getElementById('applicantName').value || '—';
+        document.getElementById('revContact').textContent = `${document.getElementById('applicantEmail').value || '—'} · ${document.getElementById('applicantPhone').value || '—'}`;
+        document.getElementById('revProfile').textContent = `${document.getElementById('applicantType').value || '—'} (${document.getElementById('rollNo').value || '—'})`;
+        document.getElementById('revDept').textContent = `${document.getElementById('department').value || '—'} · ${document.getElementById('yearOfStudy').value || '—'}`;
+
+        document.getElementById('revTitle').textContent = document.getElementById('ideaTitle').value || '—';
+        document.getElementById('revDomain').textContent = document.getElementById('domain').value || '—';
+        document.getElementById('revProblem').textContent = document.getElementById('problemStatement').value || '—';
+
+        document.getElementById('revStage').textContent = document.getElementById('projectStage').value || '—';
+        document.getElementById('revTeam').textContent = `${document.getElementById('teamCount').value || '1'} member(s)`;
+        
+        const hasMentor = document.querySelector('input[name="hasFacultyMentor"]:checked')?.value === 'Yes';
+        const mentorName = document.getElementById('facultyMentorName').value;
+        document.getElementById('revMentor').textContent = hasMentor && mentorName ? mentorName : 'None assigned yet';
+
+        const selectedSupport = Array.from(document.querySelectorAll('input[name="supportTypes"]:checked')).map(el => el.value);
+        document.getElementById('revSupport').textContent = selectedSupport.length ? selectedSupport.join(', ') : 'None selected';
+      }
+
+      // Handle Submission
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const ack = document.getElementById('confidentialityAck');
+        if (!ack.checked) {
+          showToast('Please check the Confidentiality & Non-Disclosure acknowledgement', 'warning');
+          ack.focus();
+          return;
+        }
+
+        // Generate random Request ID
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const reqId = `FIRE-${randomNum}`;
+
+        // Populate Success State
+        document.getElementById('displayRequestId').textContent = reqId;
+        document.getElementById('displayReceiptEmail').textContent = document.getElementById('applicantEmail').value || 'your registered email';
+
+        // Hide form, show success
+        formContainer.style.display = 'none';
+        successCard.style.display = 'block';
+        successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        showToast(`Idea submitted successfully! Request ID: ${reqId}`, 'success');
+      });
+
+      // Submit another button
+      document.getElementById('btnSubmitAnother').addEventListener('click', () => {
+        form.reset();
+        document.querySelectorAll('.custom-checkbox-card').forEach(c => c.classList.remove('selected'));
+        mentorDetailsGroup.style.display = 'none';
+        successCard.style.display = 'none';
+        formContainer.style.display = 'block';
+        goToStep(0);
+      });
+    });
+  </script>
+</body>
+</html>

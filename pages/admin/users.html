@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management &amp; Access Control — FIRE | NIT Trichy</title>
+  <meta name="description" content="Manage student, faculty, and alumni user profiles, institutional verification, and role assignments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    .admin-top-banner {
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.16), rgba(15, 25, 46, 0.95) 70%);
+      border-bottom: 1px solid rgba(255, 107, 53, 0.35);
+      padding: 8px var(--sp-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 50;
+    }
+    .admin-sidebar .sidebar-link.active {
+      color: var(--c-accent-warm) !important;
+      background: rgba(255, 107, 53, 0.12) !important;
+      border-left: 3px solid var(--c-accent-warm);
+      font-weight: var(--fw-semibold);
+    }
+    .admin-sidebar .sidebar-link:hover {
+      color: var(--c-accent-warm);
+    }
+    .admin-badge-count {
+      font-size: 11px;
+      font-weight: var(--fw-bold);
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 107, 53, 0.2);
+      color: var(--c-accent-warm);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+    }
+    .bulk-bar {
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-3) var(--sp-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sp-4);
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+    }
+    .action-dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 4px);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-1);
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+      display: none;
+    }
+    .action-dropdown-menu.show {
+      display: block;
+      animation: fadeIn 0.15s ease;
+    }
+    .action-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 7px 12px;
+      font-size: var(--fs-xs);
+      color: var(--c-text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      width: 100%;
+      text-align: left;
+    }
+    .action-dropdown-item:hover {
+      background: var(--c-bg-card);
+      color: var(--c-text-primary);
+    }
+    .action-dropdown-item.danger:hover {
+      color: var(--c-error);
+      background: rgba(239, 68, 68, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Top Warning Banner -->
+    <div class="admin-top-banner">
+      <div style="display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;">
+        <span class="badge" style="background:rgba(255,107,53,0.22);color:var(--c-accent-warm);border:1px solid rgba(255,107,53,0.45);font-size:10px;">RESTRICTED AREA</span>
+        <span style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);letter-spacing:0.04em;color:var(--c-text-primary);">Admin Area — Restricted Access</span>
+        <span style="font-size:var(--fs-xs);color:var(--c-text-muted);">| User Directory &amp; RBAC Console</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3);">
+        <span class="badge badge-active" style="font-size:10px;"><span class="badge-dot"></span> Live Mode</span>
+        <a href="../../index.html" class="btn btn-ghost btn-sm" style="font-size:var(--fs-xs);padding:3px 10px;">Exit to Main Site ↗</a>
+      </div>
+    </div>
+
+    <!-- Admin Sidebar Layout -->
+    <div class="sidebar-layout">
+      <!-- Admin Sidebar -->
+      <aside class="sidebar admin-sidebar">
+        <div style="padding: 0 var(--sp-4) var(--sp-4); border-bottom: 1px solid var(--c-border); margin-bottom: var(--sp-3);">
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);display:flex;align-items:center;justify-content:center;color:var(--c-accent-warm);font-weight:var(--fw-bold);font-size:var(--fs-sm);">⚡</div>
+            <div>
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:0.05em;text-transform:uppercase;color:var(--c-text-primary);">FIRE Control</div>
+              <div style="font-size:10px;color:var(--c-text-muted);">Institutional Admin</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="sidebar-section-label">OVERVIEW</div>
+          <a href="index.html" class="sidebar-link"><span>📊</span> Dashboard</a>
+
+          <div class="sidebar-section-label">CONTENT</div>
+          <a href="users.html" class="sidebar-link active"><span>👥</span> User Management</a>
+          <a href="projects.html" class="sidebar-link"><span>📁</span> Project Moderation</a>
+          <a href="projects.html#challenges" class="sidebar-link"><span>💼</span> Challenge Moderation</a>
+          <a href="#mentors" class="sidebar-link" onclick="filterByRole('Alumni')"><span>🤝</span> Mentor Management</a>
+          <a href="../../pages/resources/processes.html" class="sidebar-link"><span>📋</span> Process Repository</a>
+          <a href="../../pages/resources/facilities.html" class="sidebar-link"><span>🔧</span> Facility Directory</a>
+          <a href="../../pages/resources/funding.html" class="sidebar-link"><span>💰</span> Funding Directory</a>
+          <a href="events.html" class="sidebar-link"><span>🎤</span> Event Management</a>
+
+          <div class="sidebar-section-label">OPERATIONS</div>
+          <a href="requests.html" class="sidebar-link">
+            <span>📥</span> Request Management
+            <span class="admin-badge-count" style="margin-left:auto;">28</span>
+          </a>
+          <a href="javascript:void(0)" onclick="showToast('Notification queue operational.', 'info')" class="sidebar-link"><span>🔔</span> Notification Management</a>
+
+          <div class="sidebar-section-label">ANALYTICS</div>
+          <a href="analytics.html" class="sidebar-link"><span>📈</span> Analytics &amp; Reporting</a>
+          <a href="audit.html" class="sidebar-link"><span>📜</span> Audit Logs</a>
+
+          <div class="sidebar-section-label">SYSTEM</div>
+          <a href="javascript:void(0)" onclick="showToast('Authentication via LDAP / NITT Octa SSO.', 'info')" class="sidebar-link"><span>⚙️</span> Settings</a>
+        </nav>
+
+        <div style="padding:var(--sp-6) var(--sp-4) 0;margin-top:auto;">
+          <div style="padding:var(--sp-3);background:var(--c-bg-elevated);border-radius:var(--radius-md);border:1px solid var(--c-border);display:flex;align-items:center;gap:var(--sp-3);">
+            <div class="avatar" style="width:34px;height:34px;font-size:12px;background:var(--grad-warm);color:#fff;">AD</div>
+            <div style="min-width:0;flex:1;">
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);color:var(--c-text-primary);">User Registrar</div>
+              <div style="font-size:10px;color:var(--c-accent-warm);">Level 4 Admin</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="sidebar-main">
+        <!-- Page Header -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-6);flex-wrap:wrap;gap:var(--sp-4);">
+          <div>
+            <div class="section-label" style="color:var(--c-accent-warm);margin-bottom:var(--sp-2);">INSTITUTIONAL DIRECTORY</div>
+            <h1 class="heading-2" style="margin-bottom:var(--sp-1);">User &amp; Identity Management</h1>
+            <p class="text-muted" style="font-size:var(--fs-sm);">Audit institute credentials, configure access privileges, and manage role-based authorization.</p>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);align-items:center;">
+            <button class="btn btn-outline btn-sm" onclick="exportUserCSV()"><span>📥</span> Export CSV</button>
+            <button class="btn btn-warm btn-sm" onclick="openRoleModal('New User', 'USR-NEW', 'Student')"><span>➕</span> Provision Account</button>
+          </div>
+        </div>
+
+        <!-- Stats Row (Total: 340, Students: 280, Faculty: 42, Alumni: 18, Pending: 4) -->
+        <div class="stats-row" style="grid-template-columns:repeat(5, 1fr);margin-bottom:var(--sp-6);">
+          <div class="card stat-widget" style="border-left:3px solid var(--c-accent-warm);">
+            <span class="stat-widget-label">Total Users</span>
+            <div class="stat-widget-num" style="color:var(--c-accent-warm);" data-count="340">340</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);">Enrolled across NITT</div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-accent);">
+            <span class="stat-widget-label">Students</span>
+            <div class="stat-widget-num text-accent" data-count="280">280</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);">UG, PG &amp; PhD scholars</div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-info);">
+            <span class="stat-widget-label">Faculty</span>
+            <div class="stat-widget-num" style="color:var(--c-info);" data-count="42">42</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);">Advisors &amp; Investigators</div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-accent-purple);">
+            <span class="stat-widget-label">Alumni</span>
+            <div class="stat-widget-num" style="color:#A78BFA;" data-count="18">18</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);">Founders &amp; Mentors</div>
+          </div>
+
+          <div class="card stat-widget" style="border-left:3px solid var(--c-warning);">
+            <span class="stat-widget-label">Pending Verification</span>
+            <div class="stat-widget-num" style="color:var(--c-warning);" data-count="4">4</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-warning);">Awaiting webmail check</div>
+          </div>
+        </div>
+
+        <!-- Filter + Search Bar -->
+        <div class="card" style="padding:var(--sp-4);margin-bottom:var(--sp-4);">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-4);">
+            <div class="search-bar" style="max-width:420px;flex:1;">
+              <span style="color:var(--c-text-muted);">🔍</span>
+              <input type="text" id="userSearchInput" placeholder="Filter by name, roll no, department, or email..." onkeyup="filterUsers()">
+            </div>
+
+            <div class="filter-pills" id="roleFilterPills">
+              <button class="filter-pill active" onclick="setRoleFilter('all', this)">All Roles (340)</button>
+              <button class="filter-pill" onclick="setRoleFilter('Student', this)">Students (280)</button>
+              <button class="filter-pill" onclick="setRoleFilter('Faculty', this)">Faculty (42)</button>
+              <button class="filter-pill" onclick="setRoleFilter('Alumni', this)">Alumni (18)</button>
+              <button class="filter-pill" onclick="setRoleFilter('Pending', this)">Pending (4)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk Action Bar -->
+        <div class="bulk-bar" id="bulkBar">
+          <div style="display:flex;align-items:center;gap:var(--sp-3);">
+            <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)" style="cursor:pointer;width:16px;height:16px;accent-color:var(--c-accent-warm);">
+            <span style="font-size:var(--fs-sm);font-weight:var(--fw-medium);" id="selectedCountText">Select all 10 users on this page</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-right:var(--sp-2);">Bulk Operations:</span>
+            <button class="btn btn-secondary btn-sm" onclick="bulkAction('Assign Role')">Assign Role</button>
+            <button class="btn btn-outline btn-sm" onclick="bulkAction('Verify')">Verify Selected</button>
+            <button class="btn btn-outline btn-sm" style="color:var(--c-error);border-color:rgba(239,68,68,0.3);" onclick="bulkAction('Suspend')">Suspend Selected</button>
+          </div>
+        </div>
+
+        <!-- Full User Table (10 sample users shown) -->
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table" id="usersTable">
+              <thead>
+                <tr>
+                  <th style="width:40px;"></th>
+                  <th>User ID</th>
+                  <th>Name &amp; Profile</th>
+                  <th>Email (Masked)</th>
+                  <th>Role</th>
+                  <th>Department / Batch</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- User 1: Student (Club Lead) -->
+                <tr data-role="Student" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1092</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--grad-accent);color:#070D1B;">AS</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Aravind Selvam</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Club Lead (SPIDER)</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">a.sel***@nitt.edu</td>
+                  <td><span class="badge badge-pilot">Student</span></td>
+                  <td>B.Tech CSE '26</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">12 Oct 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-1', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-1">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Aravind Selvam', 'USR-1092', 'Student (Club Lead)', 'B.Tech Computer Science & Engg (Class of 2026)', 'a.selvam@nitt.edu', 'Lead Developer for Campus AR Navigation. High platform activity.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Aravind Selvam', 'USR-1092', 'Student')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('USR-1092 webmail already verified.', 'info')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('USR-1092 marked for suspension review.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Access revocation requires 2FA confirmation.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 2: Faculty -->
+                <tr data-role="Faculty" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1091</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--grad-warm);color:#fff;">RK</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Dr. Rajesh Kumar</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Associate Professor</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">r.kum***@nitt.edu</td>
+                  <td><span class="badge" style="background:var(--c-info-dim);color:var(--c-info);border:1px solid rgba(59,130,246,0.3);">Faculty</span></td>
+                  <td>Civil Engineering</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">01 Aug 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-2', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-2">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Dr. Rajesh Kumar', 'USR-1091', 'Faculty Investigator', 'Dept of Civil Engineering', 'rajeshkumar@nitt.edu', 'Principal Investigator for AI Water Quality Monitoring (FP001). 14 publications.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Dr. Rajesh Kumar', 'USR-1091', 'Faculty')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Faculty verification confirmed.', 'success')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspension blocked for Tenured Faculty.', 'error')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Revocation blocked by Dean policy.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 3: Alumni (Mentor) -->
+                <tr data-role="Alumni" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1090</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:rgba(124,58,237,0.3);color:#A78BFA;border:1px solid rgba(124,58,237,0.5);">VN</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Vikram Nair</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Founder, AgriSense</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">v.nai***@alumni.nitt.edu</td>
+                  <td><span class="badge" style="background:rgba(124,58,237,0.15);color:#A78BFA;border:1px solid rgba(124,58,237,0.3);">Alumni Mentor</span></td>
+                  <td>B.Tech ECE '14</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">18 Sep 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-3', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-3">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Vikram Nair', 'USR-1090', 'Alumni Mentor & Angel', 'NITT Class of 2014 (ECE)', 'vikram.nair@agrisense.io', 'CEO AgriSense Technologies. Mentoring 4 hardware startup teams on FIRE.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Vikram Nair', 'USR-1090', 'Alumni')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Alumni credentials re-validated via Alumni Cell.', 'success')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Account suspended temporarily.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Access revoked.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 4: Student (Pending Verification) -->
+                <tr data-role="Student" data-status="Pending">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1089</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--c-bg-elevated);color:var(--c-text-secondary);border:1px solid var(--c-border);">PK</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Preethi Kannan</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-warning);">Pending Webmail Token</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">p.kan***@nitt.edu</td>
+                  <td><span class="badge badge-pilot">Student</span></td>
+                  <td>B.Tech CSE '28</td>
+                  <td><span class="badge badge-pending">Pending Verification</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">24 Oct 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-4', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-4">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Preethi Kannan', 'USR-1089', 'Undergraduate Student', 'B.Tech CSE (First Year)', 'preethi.kannan@nitt.edu', 'Submitted account registration 24 hours ago. CodeChefs club member.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Preethi Kannan', 'USR-1089', 'Student')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Manual verification granted for Preethi Kannan.', 'success')"><span>✓</span> Verify Now</button>
+                      <button class="action-dropdown-item" onclick="showToast('Registration paused.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Registration cancelled.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 5: Faculty -->
+                <tr data-role="Faculty" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1088</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--grad-accent);color:#070D1B;">PS</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Dr. Priya Subramaniam</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Professor &amp; Head</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">p.sub***@nitt.edu</td>
+                  <td><span class="badge" style="background:var(--c-info-dim);color:var(--c-info);border:1px solid rgba(59,130,246,0.3);">Faculty</span></td>
+                  <td>Chemical Engineering</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">15 Jul 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-5', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-5">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Dr. Priya Subramaniam', 'USR-1088', 'Faculty Lead', 'Chemical Engineering', 'priya.subramaniam@nitt.edu', 'Lead for Biodegradable Packaging from Agricultural Waste (FP002).')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Dr. Priya Subramaniam', 'USR-1088', 'Faculty')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Account active and verified.', 'info')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspension restricted.', 'error')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Action not permitted.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 6: Student (E-Cell Lead) -->
+                <tr data-role="Student" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1087</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--grad-warm);color:#fff;">NP</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Nithya Priya</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">President, E-Cell NITT</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">n.pri***@nitt.edu</td>
+                  <td><span class="badge badge-pilot">Student</span></td>
+                  <td>MBA '26 (DoMS)</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">05 Aug 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-6', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-6">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Nithya Priya', 'USR-1087', 'Club Administrator', 'Department of Management Studies (MBA \'26)', 'nithya.priya@nitt.edu', 'E-Cell President. Coordinating Rural Artisan Marketplace platform.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Nithya Priya', 'USR-1087', 'Club Administrator')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Re-verification sent.', 'info')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspended.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Access removed.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 7: Alumni -->
+                <tr data-role="Alumni" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1086</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:rgba(124,58,237,0.3);color:#A78BFA;border:1px solid rgba(124,58,237,0.5);">AR</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Arjun Ramesh</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Director of Engg, Zoho</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">a.ram***@alumni.nitt.edu</td>
+                  <td><span class="badge" style="background:rgba(124,58,237,0.15);color:#A78BFA;border:1px solid rgba(124,58,237,0.3);">Alumni Mentor</span></td>
+                  <td>B.Tech IT '08</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">22 Sep 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-7', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-7">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Arjun Ramesh', 'USR-1086', 'Alumni Mentor', 'NITT Class of 2008 (IT)', 'arjun.ramesh@zoho.com', 'Director of Engineering Zoho. Expert in SaaS Architecture and scaling.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Arjun Ramesh', 'USR-1086', 'Alumni')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Alumni credentials verified.', 'success')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspended.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Removed.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 8: Student -->
+                <tr data-role="Student" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1085</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--grad-accent);color:#070D1B;">KR</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Karthick Raja</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Lead, EFlames Club</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">k.raj***@nitt.edu</td>
+                  <td><span class="badge badge-pilot">Student</span></td>
+                  <td>B.Tech ECE '27</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">10 Sep 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-8', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-8">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Karthick Raja', 'USR-1085', 'Student Lead', 'B.Tech ECE (Class of 2027)', 'karthick.raja@nitt.edu', 'Lead developer on CP003 Low-Cost Air Quality Station.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Karthick Raja', 'USR-1085', 'Student')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Verified.', 'success')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspended.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Removed.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 9: Alumni (Mentor) -->
+                <tr data-role="Alumni" data-status="Active">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1084</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:rgba(124,58,237,0.3);color:#A78BFA;border:1px solid rgba(124,58,237,0.5);">MK</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Meera Krishnan</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">CIO, TVS Group</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">m.kri***@alumni.nitt.edu</td>
+                  <td><span class="badge" style="background:rgba(124,58,237,0.15);color:#A78BFA;border:1px solid rgba(124,58,237,0.3);">Alumni Mentor</span></td>
+                  <td>B.Tech Mech '05</td>
+                  <td><span class="badge badge-active"><span class="badge-dot"></span> Active</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">03 Oct 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-9', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-9">
+                      <button class="action-dropdown-item" onclick="openProfileModal('Meera Krishnan', 'USR-1084', 'Alumni Industry Mentor', 'NITT Class of 2005 (Mechanical)', 'meera.krishnan@tvs.in', 'Chief Innovation Officer TVS Group. Automotive & EV ecosystem mentor.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('Meera Krishnan', 'USR-1084', 'Alumni')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="showToast('Verified.', 'success')"><span>✓</span> Re-Verify</button>
+                      <button class="action-dropdown-item" onclick="showToast('Suspended.', 'warning')"><span>⏸️</span> Suspend</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Removed.', 'error')"><span>🗑️</span> Remove Access</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- User 10: Student (Suspended) -->
+                <tr data-role="Student" data-status="Suspended">
+                  <td><input type="checkbox" class="user-check" onchange="updateSelectedCount()" style="cursor:pointer;width:15px;height:15px;accent-color:var(--c-accent-warm);"></td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--c-text-muted);">USR-1083</td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                      <div class="avatar" style="width:32px;height:32px;font-size:11px;background:var(--c-error-dim);color:var(--c-error);border:1px solid rgba(239,68,68,0.4);">SV</div>
+                      <div>
+                        <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">S. Vigneshwar</div>
+                        <div style="font-size:var(--fs-xs);color:var(--c-error);">Access Suspended</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">s.vig***@nitt.edu</td>
+                  <td><span class="badge badge-pilot">Student</span></td>
+                  <td>B.Tech ICE '27</td>
+                  <td><span class="badge" style="background:var(--c-error-dim);color:var(--c-error);border:1px solid rgba(239,68,68,0.3);"><span class="badge-dot"></span> Suspended</span></td>
+                  <td style="font-size:var(--fs-xs);color:var(--c-text-muted);">20 Aug 2026</td>
+                  <td style="text-align:right;position:relative;">
+                    <button class="btn btn-ghost btn-sm" onclick="toggleRowDropdown('drop-10', event)" style="padding:4px 8px;">•••</button>
+                    <div class="action-dropdown-menu" id="drop-10">
+                      <button class="action-dropdown-item" onclick="openProfileModal('S. Vigneshwar', 'USR-1083', 'Student (Suspended)', 'B.Tech ICE (\'27)', 'vigneshwar@nitt.edu', 'Flagged for multiple concurrent login sessions and automated scraping attempts.')"><span>👤</span> View Profile</button>
+                      <button class="action-dropdown-item" onclick="openRoleModal('S. Vigneshwar', 'USR-1083', 'Student')"><span>⚙️</span> Edit Role</button>
+                      <button class="action-dropdown-item" onclick="reinstateUser('USR-1083')"><span>🔄</span> Reinstate Access</button>
+                      <button class="action-dropdown-item danger" onclick="showToast('Account permanently terminated.', 'error')"><span>🗑️</span> Purge Account</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Role Assignment Modal -->
+  <div class="modal-overlay" id="roleModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4">Assign Role &amp; Permissions</h3>
+          <div style="font-size:var(--fs-xs);color:var(--c-accent-warm);" id="roleModalSub">Configuring User Access</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" style="margin-bottom:var(--sp-4);">
+          <label class="form-label">User Identifier</label>
+          <input type="text" id="roleModalUserId" class="form-input" readonly style="background:var(--c-bg-card);color:var(--c-text-muted);font-family:var(--font-mono);">
+        </div>
+
+        <div class="form-group" style="margin-bottom:var(--sp-4);">
+          <label class="form-label">Institutional Role</label>
+          <select class="form-select" id="roleSelect">
+            <option value="Student">Student (Project Participant &amp; Founder)</option>
+            <option value="Club Lead">Club Administrator / Project Lead</option>
+            <option value="Faculty">Faculty Principal Investigator / Advisor</option>
+            <option value="Alumni Mentor">Alumni Mentor &amp; Industry Expert</option>
+            <option value="FIRE Moderator">FIRE Moderator (Staff Council)</option>
+            <option value="System Admin">Institutional Administrator (Level 4)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom:var(--sp-4);">
+          <label class="form-label">Department / Institutional Affiliation</label>
+          <input type="text" class="form-input" id="deptInput" value="Computer Science &amp; Engineering">
+        </div>
+
+        <div class="form-group" style="margin-bottom:var(--sp-4);">
+          <label class="form-label">Access Privileges Checklist</label>
+          <div style="display:flex;flex-direction:column;gap:var(--sp-2);background:var(--c-bg-card);padding:var(--sp-3);border-radius:var(--radius-md);border:1px solid var(--c-border);font-size:var(--fs-xs);">
+            <label style="display:flex;align-items:center;gap:var(--sp-2);cursor:pointer;">
+              <input type="checkbox" checked style="accent-color:var(--c-accent-warm);"> Submit Ideas &amp; Booking Requests
+            </label>
+            <label style="display:flex;align-items:center;gap:var(--sp-2);cursor:pointer;">
+              <input type="checkbox" checked style="accent-color:var(--c-accent-warm);"> Club Project Public Listings
+            </label>
+            <label style="display:flex;align-items:center;gap:var(--sp-2);cursor:pointer;">
+              <input type="checkbox" style="accent-color:var(--c-accent-warm);"> Content Moderation &amp; Approval Authority
+            </label>
+            <label style="display:flex;align-items:center;gap:var(--sp-2);cursor:pointer;">
+              <input type="checkbox" style="accent-color:var(--c-accent-warm);"> Audit Trail &amp; Compliance Inspector
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+        <button class="btn btn-warm btn-sm" onclick="saveRoleChanges()">Save Role Assignment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Profile Modal -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4" id="profName">User Profile</h3>
+          <div style="font-size:var(--fs-xs);color:var(--c-accent);" id="profId">USR-ID</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-4);">
+          <div style="background:var(--c-bg-card);padding:var(--sp-3);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+            <div style="font-size:10px;text-transform:uppercase;color:var(--c-text-muted);">Assigned Role</div>
+            <div style="font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--c-text-primary);" id="profRole">Role</div>
+          </div>
+          <div style="background:var(--c-bg-card);padding:var(--sp-3);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+            <div style="font-size:10px;text-transform:uppercase;color:var(--c-text-muted);">Affiliation</div>
+            <div style="font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--c-text-primary);" id="profDept">Dept</div>
+          </div>
+        </div>
+
+        <div style="background:var(--c-bg-card);padding:var(--sp-4);border-radius:var(--radius-md);border:1px solid var(--c-border);margin-bottom:var(--sp-4);">
+          <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">Official Email Address</div>
+          <div style="font-size:var(--fs-sm);color:var(--c-text-primary);font-family:var(--font-mono);margin-top:2px;" id="profEmail">user@nitt.edu</div>
+          <div style="font-size:var(--fs-xs);color:var(--c-text-secondary);margin-top:var(--sp-3);" id="profNotes">Notes...</div>
+        </div>
+
+        <div style="background:var(--c-bg-elevated);border-left:3px solid var(--c-success);padding:var(--sp-3);border-radius:var(--radius-sm);font-size:var(--fs-xs);">
+          <div style="font-weight:var(--fw-semibold);color:var(--c-text-primary);">Institutional Verification Status: Verified</div>
+          <div style="color:var(--c-text-muted);margin-top:2px;">Authenticated via Octa LDAP SSO on NIT Trichy Intranet.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Impersonation mode restricted to Level 5 Sysadmin.', 'warning')">Impersonate User</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    // Filter Users by Search
+    function filterUsers() {
+      const q = document.getElementById('userSearchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#usersTable tbody tr');
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        r.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+
+    // Filter by Role Pills
+    function setRoleFilter(role, pill) {
+      document.querySelectorAll('#roleFilterPills .filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const rows = document.querySelectorAll('#usersTable tbody tr');
+      rows.forEach(r => {
+        if (role === 'all') {
+          r.style.display = '';
+        } else if (role === 'Pending') {
+          r.style.display = r.dataset.status === 'Pending' ? '' : 'none';
+        } else {
+          r.style.display = r.dataset.role === role ? '' : 'none';
+        }
+      });
+    }
+
+    function filterByRole(role) {
+      const pills = document.querySelectorAll('#roleFilterPills .filter-pill');
+      pills.forEach(p => {
+        if (p.textContent.includes(role)) {
+          setRoleFilter(role, p);
+        }
+      });
+    }
+
+    // Toggle Dropdown per row
+    function toggleRowDropdown(id, e) {
+      e.stopPropagation();
+      document.querySelectorAll('.action-dropdown-menu').forEach(m => {
+        if (m.id !== id) m.classList.remove('show');
+      });
+      const target = document.getElementById(id);
+      if (target) target.classList.toggle('show');
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.action-dropdown-menu').forEach(m => m.classList.remove('show'));
+    });
+
+    // Modals
+    function openRoleModal(name, id, role) {
+      document.getElementById('roleModalUserId').value = `${name} (${id})`;
+      document.getElementById('roleModalSub').textContent = `Configuring role for ${name}`;
+      document.getElementById('roleModal').classList.add('open');
+    }
+
+    function saveRoleChanges() {
+      document.getElementById('roleModal').classList.remove('open');
+      showToast('Role permissions updated and recorded in audit ledger.', 'success');
+    }
+
+    function openProfileModal(name, id, role, dept, email, notes) {
+      document.getElementById('profName').textContent = name;
+      document.getElementById('profId').textContent = id;
+      document.getElementById('profRole').textContent = role;
+      document.getElementById('profDept').textContent = dept;
+      document.getElementById('profEmail').textContent = email;
+      document.getElementById('profNotes').textContent = notes;
+      document.getElementById('profileModal').classList.add('open');
+    }
+
+    function reinstateUser(id) {
+      showToast(`${id} account reinstated to Active status.`, 'success');
+    }
+
+    // Bulk selection
+    function toggleSelectAll(master) {
+      const checks = document.querySelectorAll('.user-check');
+      checks.forEach(c => c.checked = master.checked);
+      updateSelectedCount();
+    }
+
+    function updateSelectedCount() {
+      const selected = document.querySelectorAll('.user-check:checked').length;
+      const text = document.getElementById('selectedCountText');
+      text.textContent = selected ? `${selected} user(s) selected` : 'Select all 10 users on this page';
+    }
+
+    function bulkAction(action) {
+      const selected = document.querySelectorAll('.user-check:checked').length;
+      if (!selected) {
+        showToast('Please select at least one user to perform bulk operations.', 'warning');
+        return;
+      }
+      showToast(`Bulk ${action} executed for ${selected} user(s).`, 'success');
+    }
+
+    function exportUserCSV() {
+      showToast('Generating sanitized User Directory CSV export...', 'info');
+      setTimeout(() => showToast('Export completed: NITT_FIRE_Users_20261025.csv', 'success'), 700);
+    }
+  </script>
+</body>
+</html>

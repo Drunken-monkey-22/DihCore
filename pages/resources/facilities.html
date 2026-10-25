@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facility Directory — FIRE | NIT Trichy</title>
+  <meta name="description" content="Explore and book prototyping laboratories, supercomputing clusters, nanotechnology cleanrooms, and testing facilities across the NIT Trichy campus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    .facilities-hero {
+      padding: var(--sp-12) 0 var(--sp-8);
+    }
+    .facility-card-modern {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-normal);
+    }
+    .facility-card-modern:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 198, 162, 0.1);
+    }
+    .facility-head-wrap {
+      padding: var(--sp-6);
+      border-bottom: 1px solid var(--c-border);
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+      background: linear-gradient(180deg, rgba(17, 30, 51, 0.6) 0%, rgba(15, 25, 46, 0.2) 100%);
+    }
+    .facility-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0, 198, 162, 0.15);
+    }
+    .equipment-chips-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: var(--sp-3) 0 var(--sp-4);
+    }
+    .equipment-chip {
+      font-size: 11px;
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-secondary);
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .facility-info-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-size: var(--fs-xs);
+      color: var(--c-text-muted);
+      margin-top: var(--sp-2);
+    }
+    .access-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-8);
+      position: relative;
+    }
+    @media (max-width: 1024px) {
+      .access-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .access-steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .access-step-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .access-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--c-accent-dim);
+      border: 1px solid var(--c-border-accent);
+      color: var(--c-accent);
+      font-weight: var(--fw-bold);
+      font-size: var(--fs-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--sp-3);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="container">
+      <!-- Breadcrumb & Hero -->
+      <header class="facilities-hero">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Resources</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Facility Directory</span>
+        </nav>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6);">
+          <div>
+            <div class="section-label">State-of-the-Art Research Infrastructure</div>
+            <h1 class="heading-1">Facility <span class="text-gradient">Directory</span></h1>
+            <p class="text-muted" style="max-width: 680px; margin-top: var(--sp-2);">
+              Explore specialized prototyping labs, advanced fabrication machinery, NVIDIA A100 computing clusters, cleanrooms, and testing facilities available to NIT Trichy students, research scholars, and faculty innovators.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap;">
+            <div class="search-bar" style="max-width: 340px; width: 100%;">
+              <span>🔍</span>
+              <input type="text" id="facilitySearchInput" placeholder="Search facilities, equipment, tools…" autocomplete="off">
+            </div>
+            <button class="btn btn-outline btn-sm" id="resetFacilityFilters">Reset</button>
+          </div>
+        </div>
+
+        <!-- Equipment Type Filter Pills -->
+        <div style="display: flex; gap: var(--sp-2); overflow-x: auto; padding-bottom: var(--sp-2); margin-top: var(--sp-5);" id="facilityPillList">
+          <button class="filter-pill active" data-filter="all">All Facilities</button>
+          <button class="filter-pill" data-filter="Prototyping">3D Printing & Prototyping</button>
+          <button class="filter-pill" data-filter="Computing">HPC & AI Computing</button>
+          <button class="filter-pill" data-filter="Nanotechnology">Nanotechnology Cleanroom</button>
+          <button class="filter-pill" data-filter="Ideation">Design & Ideation</button>
+          <button class="filter-pill" data-filter="Biomedical">Biomedical & Wet Lab</button>
+          <button class="filter-pill" data-filter="Energy">Renewable Energy</button>
+          <button class="filter-pill" data-filter="Robotics">Robotics & Autonomous</button>
+          <button class="filter-pill" data-filter="Electronics">IoT & RF Testing</button>
+        </div>
+      </header>
+
+      <!-- Facility Grid Section -->
+      <section class="section-sm" style="padding-top: var(--sp-4);">
+        <div style="margin-bottom: var(--sp-4); display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-size: var(--fs-xs); color: var(--c-text-muted);" id="facilityCounter">
+            Showing all 8 campus facilities
+          </div>
+        </div>
+
+        <div class="grid-2" id="facilitiesGrid">
+          <!-- Facility cards rendered by JS -->
+        </div>
+
+        <div id="noFacilityResults" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">🔧</div>
+          <div class="empty-state-title">No matching facilities found</div>
+          <div class="empty-state-desc">Try clearing your search query or choosing another equipment category.</div>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllFacilityFilters()">Reset All Filters</button>
+        </div>
+      </section>
+
+      <!-- How Facility Access Works (5 Steps) -->
+      <section class="section" style="border-top: 1px solid var(--c-border); padding-top: var(--sp-12);">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Access Workflow</div>
+            <h2 class="heading-2">How Facility Access Works</h2>
+            <p class="text-muted" style="max-width: 600px;">
+              A standardized 5-step operational pipeline ensuring safe equipment utilization, verified training, and priority project allocation.
+            </p>
+          </div>
+        </div>
+
+        <div class="access-steps-grid">
+          <!-- Step 1 -->
+          <div class="access-step-card">
+            <div>
+              <div class="access-step-num">1</div>
+              <h4 class="heading-5" style="color: var(--c-text-primary); font-size: 1rem; margin-bottom: var(--sp-2);">Identify & Check Specs</h4>
+              <p class="text-muted" style="font-size: var(--fs-xs); line-height: var(--lh-relaxed);">
+                Search the facility directory for required machines, tool tolerances, consumable materials, and eligibility guidelines.
+              </p>
+            </div>
+            <div style="font-size: 11px; color: var(--c-accent); margin-top: var(--sp-4); padding-top: var(--sp-2); border-top: 1px solid var(--c-border);">
+              Deliverable: Tool list & specs
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="access-step-card">
+            <div>
+              <div class="access-step-num">2</div>
+              <h4 class="heading-5" style="color: var(--c-text-primary); font-size: 1rem; margin-bottom: var(--sp-2);">Submit Access Form</h4>
+              <p class="text-muted" style="font-size: var(--fs-xs); line-height: var(--lh-relaxed);">
+                Click 'Start Access Request' on the facility card. Specify your project title, faculty supervisor, and requested run hours.
+              </p>
+            </div>
+            <div style="font-size: 11px; color: var(--c-accent); margin-top: var(--sp-4); padding-top: var(--sp-2); border-top: 1px solid var(--c-border);">
+              Turnaround: 2–5 working days
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="access-step-card">
+            <div>
+              <div class="access-step-num">3</div>
+              <h4 class="heading-5" style="color: var(--c-text-primary); font-size: 1rem; margin-bottom: var(--sp-2);">Safety & Competency</h4>
+              <p class="text-muted" style="font-size: var(--fs-xs); line-height: var(--lh-relaxed);">
+                Complete the mandatory lab safety induction. Demonstrate equipment operating knowledge with the laboratory technician.
+              </p>
+            </div>
+            <div style="font-size: 11px; color: var(--c-accent); margin-top: var(--sp-4); padding-top: var(--sp-2); border-top: 1px solid var(--c-border);">
+              Output: Lab clearance badge
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="access-step-card">
+            <div>
+              <div class="access-step-num">4</div>
+              <h4 class="heading-5" style="color: var(--c-text-primary); font-size: 1rem; margin-bottom: var(--sp-2);">Slot Booking & Access</h4>
+              <p class="text-muted" style="font-size: var(--fs-xs); line-height: var(--lh-relaxed);">
+                Receive slot confirmation via email. Smartcard/biometric entry credentials are programmed for the approved duration.
+              </p>
+            </div>
+            <div style="font-size: 11px; color: var(--c-accent); margin-top: var(--sp-4); padding-top: var(--sp-2); border-top: 1px solid var(--c-border);">
+              Status: Biometric access live
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="access-step-card">
+            <div>
+              <div class="access-step-num">5</div>
+              <h4 class="heading-5" style="color: var(--c-text-primary); font-size: 1rem; margin-bottom: var(--sp-2);">Session Log & Post-Work</h4>
+              <p class="text-muted" style="font-size: var(--fs-xs); line-height: var(--lh-relaxed);">
+                Operate machinery according to safety SOPs. Log machine runtime hours in the digital register and clear waste materials.
+              </p>
+            </div>
+            <div style="font-size: 11px; color: var(--c-accent); margin-top: var(--sp-4); padding-top: var(--sp-2); border-top: 1px solid var(--c-border);">
+              Completion: Usage log signed
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Facility Safety & Rules Banner -->
+      <section class="section-sm" style="margin-bottom: var(--sp-12);">
+        <div class="card card-glass" style="padding: var(--sp-8); border-left: 4px solid var(--c-accent);">
+          <div style="display: flex; gap: var(--sp-5); align-items: flex-start; flex-wrap: wrap;">
+            <div style="font-size: 2rem;">🦺</div>
+            <div style="flex: 1; min-width: 280px;">
+              <h3 class="heading-4" style="color: var(--c-text-primary);">Mandatory Laboratory Safety Rules</h3>
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed); margin-top: var(--sp-2);">
+                All laboratory attendees must wear certified Personal Protective Equipment (PPE) including safety glasses, lab coats, and closed-toe footwear where designated. Equipment must never be operated unattended or overnight without explicit written permission from the Laboratory In-Charge.
+              </p>
+              <div style="display: flex; gap: var(--sp-4); margin-top: var(--sp-4); flex-wrap: wrap;">
+                <a href="templates.html" class="btn btn-secondary btn-sm">Download Lab Safety Checklist</a>
+                <a href="processes.html?id=PR002" class="btn btn-outline btn-sm">Read Full SCIEnT Access SOP →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Modal: Start Facility Access Request -->
+  <div class="modal-overlay" id="facilityRequestModal">
+    <div class="modal" style="max-width: 640px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: var(--sp-3);">
+          <div id="modalFacilityIcon" style="font-size: 1.5rem;">🔧</div>
+          <div>
+            <h3 class="heading-4" style="color: var(--c-text-primary);">Start Facility Access Request</h3>
+            <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Standard Application for Equipment & Laboratory Reservation</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-icon" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="facilityRequestForm" onsubmit="handleFacilitySubmit(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: var(--sp-4);">
+          <!-- Facility Name Pre-filled -->
+          <div class="form-group">
+            <label class="form-label">Facility Requested</label>
+            <input type="text" id="reqFacilityName" class="form-input" readonly style="background: var(--c-bg-card); color: var(--c-accent); font-weight: 600;">
+          </div>
+
+          <!-- Applicant Name & Roll -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqUserName">Your Full Name <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+              <input type="text" id="reqUserName" class="form-input" placeholder="e.g. Aravind Selvam" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqUserRoll">Roll Number / Staff ID <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+              <input type="text" id="reqUserRoll" class="form-input" placeholder="e.g. 106121014" required>
+            </div>
+          </div>
+
+          <!-- Project Title & Department -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqProjectTitle">Project / Startup Title <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+              <input type="text" id="reqProjectTitle" class="form-input" placeholder="e.g. Autonomous Warehouse Sorter" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqDepartment">Academic Department <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+              <select id="reqDepartment" class="form-select" required>
+                <option value="">Select department...</option>
+                <option value="CSE">Computer Science & Engineering</option>
+                <option value="ECE">Electronics & Communication</option>
+                <option value="EEE">Electrical & Electronics</option>
+                <option value="MECH">Mechanical Engineering</option>
+                <option value="CHEM">Chemical Engineering</option>
+                <option value="CIVIL">Civil Engineering</option>
+                <option value="BIO">Biotechnology</option>
+                <option value="PROD">Production Engineering</option>
+                <option value="META">Metallurgical & Materials</option>
+                <option value="ICE">Instrumentation & Control</option>
+                <option value="OTHER">Other / Multidisciplinary</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Specific Equipment List -->
+          <div class="form-group">
+            <label class="form-label">Specific Equipment Required</label>
+            <input type="text" id="reqEquipmentInput" class="form-input" placeholder="e.g. FDM 3D Printer (×2), PCB Prototyper">
+            <span class="form-hint">List machines, testing benches, or specific tools needed for your work.</span>
+          </div>
+
+          <!-- Intended Use -->
+          <div class="form-group">
+            <label class="form-label" for="reqIntendedUse">Intended Technical Scope & Objectives <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+            <textarea id="reqIntendedUse" class="form-textarea" placeholder="Briefly describe what you will fabricate or test, materials to be used, and expected outcomes..." required style="min-height: 90px;"></textarea>
+          </div>
+
+          <!-- Required Dates & Timeslot Preference -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqDates">Requested Date / Duration <span style="color: var(--c-accent); font-weight: bold;">*</span></label>
+              <input type="text" id="reqDates" class="form-input" placeholder="e.g. Nov 12 – Nov 18, 2026" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqSlot">Preferred Slot</label>
+              <select id="reqSlot" class="form-select">
+                <option value="Morning">Morning Slot (09:00 AM – 01:00 PM)</option>
+                <option value="Afternoon">Afternoon Slot (02:00 PM – 06:00 PM)</option>
+                <option value="Full Day">Full Day (09:00 AM – 06:00 PM)</option>
+                <option value="Evening/Night">Evening Research Access (with Supervisor Approval)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Relevant Documents Note -->
+          <div class="form-group">
+            <label class="form-label">Relevant Documents & Faculty Endorsement</label>
+            <div style="padding: var(--sp-3); background: var(--c-bg-card); border: 1px dashed var(--c-border); border-radius: var(--radius-md); font-size: var(--fs-xs); color: var(--c-text-muted);">
+              📎 <strong>Required Attachments at Induction:</strong> Please bring a signed physical copy of the <em>Faculty Project Endorsement</em> or upload a Google Drive / OneDrive link below.
+              <input type="url" id="reqDocLink" class="form-input" placeholder="https://drive.google.com/... (link to endorsed proposal)" style="margin-top: 8px;">
+            </div>
+          </div>
+
+          <!-- Safety Declaration Checkbox -->
+          <div style="display: flex; gap: var(--sp-2); align-items: flex-start; margin-top: var(--sp-2);">
+            <input type="checkbox" id="reqSafetyAck" required style="margin-top: 3px;">
+            <label for="reqSafetyAck" style="font-size: var(--fs-xs); color: var(--c-text-secondary); cursor: pointer;">
+              I certify that I have read the laboratory SOPs and will comply with all environmental, health, and equipment safety guidelines of NIT Trichy.
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Access Request →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Complete facilities dataset combining mock-data with extended specialized research facilities
+    const ALL_FACILITIES = [
+      {
+        id: "FAC001",
+        name: "SCIEnT Prototyping Lab",
+        unit: "SCIEnT — Student Centre for Innovation and Entrepreneurship",
+        icon: "🔧",
+        category: "Prototyping",
+        summary: "Full-service rapid prototyping facility with high-precision 3D printers, laser cutters, electronics workstations, and automated PCB fabrication tools.",
+        equipment: ["FDM 3D Printer (×4)", "Resin 3D Printer", "Laser Cutter (100W)", "CNC Router", "Electronics Bench", "Digital Storage Oscilloscopes", "Voltera V-One PCB Prototyper"],
+        eligibility: "All NITT students and faculty with an approved project",
+        eligibilityBadge: "Open to All Students",
+        charges: "Nominal material cost; equipment usage free for approved projects",
+        availability: "Mon–Sat, 9 AM – 6 PM"
+      },
+      {
+        id: "FAC002",
+        name: "High Performance Computing Cluster",
+        unit: "Department of Computer Science & Engineering",
+        icon: "💻",
+        category: "Computing",
+        summary: "Dedicated enterprise GPU-equipped HPC cluster engineered for deep learning model training, computational fluid dynamics, large-scale simulations, and big data workloads.",
+        equipment: ["NVIDIA A100 GPUs (×8)", "64-Core AMD EPYC Nodes", "1 PB High-Speed NVMe Storage", "Mellanox InfiniBand Interconnect", "Slurm Workload Manager"],
+        eligibility: "Faculty-led projects; students under registered faculty supervision",
+        eligibilityBadge: "Faculty Supervised",
+        charges: "Free for approved academic and venture projects; priority compute allocated",
+        availability: "24×7 Scheduled Remote SSH Access"
+      },
+      {
+        id: "FAC003",
+        name: "Centre for Nanotechnology — Clean Room",
+        unit: "Centre for Nanotechnology",
+        icon: "🔬",
+        category: "Nanotechnology",
+        summary: "Certified Class 1000/100 micro/nanofabrication cleanroom facility for thin film deposition, optical lithography, semiconductor characterisation, and nanoscale surface profiling.",
+        equipment: ["E-beam Evaporator", "Automated Spin Coater", "Maskless Photolithography Unit", "Field Emission SEM", "Atomic Force Microscope (AFM)"],
+        eligibility: "Faculty and PG researchers; UG students under direct technician supervision",
+        eligibilityBadge: "PG & Specialized Access",
+        charges: "Subsidized institutional usage charges apply; refer to tariff sheet",
+        availability: "By appointment; certified safety induction mandatory"
+      },
+      {
+        id: "FAC004",
+        name: "Design Thinking & Ideation Studio",
+        unit: "FIRE / SCIEnT",
+        icon: "🎨",
+        category: "Ideation",
+        summary: "Collaborative, agile workspace designed for customer discovery, rapid wireframing, sprint ideation, and design thinking workshops. Outfitted with interactive smart boards and modular pods.",
+        equipment: ["Interactive Smart Whiteboards (×3)", "A3 Color Plotter & Laser Printer", "Video Conferencing Telepresence", "Design Sprint Prototyping Kits", "Post-it Facilitation Walls"],
+        eligibility: "All NITT students, student clubs, and faculty innovation teams",
+        eligibilityBadge: "Open Booking",
+        charges: "Free for booked ideation and workshop sessions",
+        availability: "Mon–Fri, 8 AM – 8 PM"
+      },
+      {
+        id: "FAC005",
+        name: "Biomedical & Biosensors Research Lab",
+        unit: "Department of Biotechnology",
+        icon: "🧬",
+        category: "Biomedical",
+        summary: "Biosafety Level 2 (BSL-2) certified wet lab facility for mammalian cell culture, biochemical assays, optical biosensor development, microfluidics, and biomaterials mechanical testing.",
+        equipment: ["Biosafety Cell Culture Hoods", "High-Speed Refrigerated Centrifuges", "Real-Time PCR Thermal Cycler", "Microplate ELISA Reader", "Confocal Laser Scanning Microscope"],
+        eligibility: "Faculty, PG researchers, and biotechnology innovation project teams",
+        eligibilityBadge: "BSL-2 Certified",
+        charges: "Consumable reagents billed to project grant; equipment usage subsidized",
+        availability: "Mon–Sat, 9 AM – 6 PM with biohazard induction"
+      },
+      {
+        id: "FAC006",
+        name: "Renewable Energy & Battery Test Bed",
+        unit: "Centre for Energy and Environment",
+        icon: "⚡",
+        category: "Energy",
+        summary: "Indoor and outdoor specialized test facility for solar photovoltaic characterisation, wind micro-turbine validation, lithium-ion battery cycling, and grid-tied inverter analysis.",
+        equipment: ["Class AAA Solar Simulator", "Arbin Battery Cycler & Electrochemical Impedance Analyser", "Programmable AC/DC Grid Simulator", "High-Frequency Data Acquisition (DAQ)"],
+        eligibility: "Faculty, PG students, and energy domain startup teams",
+        eligibilityBadge: "Energy Projects",
+        charges: "Free for registered student projects; industrial testing billed per hour",
+        availability: "Mon–Fri, 9 AM – 5 PM"
+      },
+      {
+        id: "FAC007",
+        name: "Robotics & Autonomous Systems Arena",
+        unit: "Department of Mechanical Engineering / SCIEnT",
+        icon: "🤖",
+        category: "Robotics",
+        summary: "Indoor testing arena equipped with sub-millimeter infrared motion capture, obstacle navigation mazes, drone flight cage, and ground robotics kinematics development platforms.",
+        equipment: ["Vicon Infrared Motion Capture (×12 Cameras)", "Safety Enclosed Drone Flight Cage", "ROS 2 Workstations with RTX GPUs", "TurtleBot4 Mobile Platforms", "Velodyne 3D LiDAR Scanners"],
+        eligibility: "Robotics club projects, autonomous vehicle teams, and faculty researchers",
+        eligibilityBadge: "Technical Teams",
+        charges: "Free for approved student clubs and course innovation projects",
+        availability: "Mon–Sat, 8 AM – 8 PM"
+      },
+      {
+        id: "FAC008",
+        name: "IoT & RF Electronics Testing Bay",
+        unit: "Department of Electronics & Communication Engineering",
+        icon: "📡",
+        category: "Electronics",
+        summary: "Electromagnetic compatibility (EMC) pre-compliance and high-frequency RF test suite designed for wireless sensor nodes, antenna characterisation, and embedded firmware debugging.",
+        equipment: ["Rohde & Schwarz Spectrum Analyser (6 GHz)", "RF Anechoic Pre-Compliance Shielded Box", "Automated SMD Hot-Air Rework Station", "Keysight 34-Channel Logic Analyser", "FLIR Thermal Imaging Camera"],
+        eligibility: "Hardware startups, ECE/EEE students, and IoT project teams",
+        eligibilityBadge: "Hardware Access",
+        charges: "Free for enrolled student innovations; nominal fee for commercial spin-offs",
+        availability: "Mon–Fri, 9 AM – 6 PM"
+      }
+    ];
+
+    const grid = document.getElementById('facilitiesGrid');
+    const counter = document.getElementById('facilityCounter');
+    const searchInput = document.getElementById('facilitySearchInput');
+    const noResults = document.getElementById('noFacilityResults');
+
+    function renderFacilities(list) {
+      if (!list.length) {
+        grid.style.display = 'none';
+        noResults.style.display = 'flex';
+        counter.textContent = 'Showing 0 matching facilities';
+        return;
+      }
+      grid.style.display = 'grid';
+      noResults.style.display = 'none';
+      counter.textContent = `Showing ${list.length} of ${ALL_FACILITIES.length} research & prototyping facilities`;
+
+      grid.innerHTML = list.map(item => `
+        <div class="facility-card-modern" data-category="${item.category}" data-searchable>
+          <div>
+            <div class="facility-head-wrap">
+              <div class="facility-icon-circle">${item.icon}</div>
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-bottom: 4px;">
+                  <span class="badge badge-active" style="font-size: 10px;">${item.eligibilityBadge}</span>
+                  <span style="font-size: 11px; color: var(--c-text-muted); display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--c-success); display: inline-block;"></span>
+                    Active
+                  </span>
+                </div>
+                <h3 class="heading-4" style="color: var(--c-text-primary); font-size: 1.15rem; line-height: var(--lh-snug);">
+                  ${item.name}
+                </h3>
+                <div style="font-size: var(--fs-xs); color: var(--c-accent); margin-top: 2px;">
+                  🏛️ ${item.unit}
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: var(--sp-5);">
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed);">
+                ${item.summary}
+              </p>
+
+              <div style="margin-top: var(--sp-4);">
+                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-text-muted); margin-bottom: 4px;">
+                  Key Equipment & Machinery
+                </div>
+                <div class="equipment-chips-list">
+                  ${item.equipment.map(eq => `<span class="equipment-chip">${eq}</span>`).join('')}
+                </div>
+              </div>
+
+              <div style="background: var(--c-bg-elevated); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); border: 1px solid var(--c-border-light); margin-top: var(--sp-3);">
+                <div class="facility-info-row" style="margin-top: 0;">
+                  <strong style="color: var(--c-text-primary); min-width: 80px;">Eligibility:</strong>
+                  <span>${item.eligibility}</span>
+                </div>
+                <div class="facility-info-row">
+                  <strong style="color: var(--c-text-primary); min-width: 80px;">Tariff:</strong>
+                  <span style="color: var(--c-accent);">${item.charges}</span>
+                </div>
+                <div class="facility-info-row">
+                  <strong style="color: var(--c-text-primary); min-width: 80px;">Hours:</strong>
+                  <span>${item.availability}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--c-border); background: rgba(7, 13, 27, 0.4); display: flex; align-items: center; justify-content: space-between;">
+            <a href="processes.html?id=PR002" style="font-size: var(--fs-xs); color: var(--c-text-muted); text-decoration: underline;">
+              View Access SOP
+            </a>
+            <button class="btn btn-primary btn-sm" onclick="openFacilityModal('${item.name}', '${item.icon}')">
+              Start Access Request →
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Modal Interaction
+    function openFacilityModal(facilityName, facilityIcon) {
+      document.getElementById('modalFacilityIcon').textContent = facilityIcon || '🔧';
+      document.getElementById('reqFacilityName').value = facilityName;
+      document.getElementById('facilityRequestModal').classList.add('open');
+    }
+
+    function handleFacilitySubmit(e) {
+      e.preventDefault();
+      const facName = document.getElementById('reqFacilityName').value;
+      const userName = document.getElementById('reqUserName').value;
+      const roll = document.getElementById('reqUserRoll').value;
+
+      document.getElementById('facilityRequestModal').classList.remove('open');
+      document.getElementById('facilityRequestForm').reset();
+
+      // Show toast
+      showToast(`Access request for ${facName} submitted successfully! Ref ID: REQ-${Math.floor(1000 + Math.random() * 9000)}.`, 'success');
+    }
+
+    // Filter Logic
+    let currentCategory = 'all';
+    let currentQuery = '';
+
+    function filterFacilities() {
+      let filtered = ALL_FACILITIES;
+
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(f => f.category.toLowerCase() === currentCategory.toLowerCase());
+      }
+
+      if (currentQuery.trim()) {
+        const q = currentQuery.toLowerCase();
+        filtered = filtered.filter(f =>
+          f.name.toLowerCase().includes(q) ||
+          f.unit.toLowerCase().includes(q) ||
+          f.summary.toLowerCase().includes(q) ||
+          f.equipment.some(eq => eq.toLowerCase().includes(q))
+        );
+      }
+
+      renderFacilities(filtered);
+    }
+
+    document.querySelectorAll('#facilityPillList .filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#facilityPillList .filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentCategory = pill.dataset.filter;
+        filterFacilities();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentQuery = e.target.value;
+      filterFacilities();
+    });
+
+    function resetAllFacilityFilters() {
+      currentCategory = 'all';
+      currentQuery = '';
+      searchInput.value = '';
+      document.querySelectorAll('#facilityPillList .filter-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.filter === 'all');
+      });
+      filterFacilities();
+    }
+
+    document.getElementById('resetFacilityFilters').addEventListener('click', resetAllFacilityFilters);
+
+    renderFacilities(ALL_FACILITIES);
+    Components.init(2);
+  </script>
+</body>
+</html>

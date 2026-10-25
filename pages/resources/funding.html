@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funding Finder — FIRE | NIT Trichy</title>
+  <meta name="description" content="Discover institutional seed grants, DST-NIDHI Prayas, DPIIT SISFS, and government startup innovation schemes available to NIT Trichy innovators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    .funding-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--sp-8);
+      margin-top: var(--sp-6);
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .funding-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .filter-panel {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+    }
+    .filter-section {
+      margin-bottom: var(--sp-5);
+      padding-bottom: var(--sp-5);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .filter-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .filter-section-title {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--c-text-muted);
+      margin-bottom: var(--sp-3);
+    }
+    .funding-card-custom {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-normal);
+      position: relative;
+    }
+    .funding-card-custom:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(0, 198, 162, 0.08);
+    }
+    .funding-amount-callout {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      letter-spacing: -0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="container" style="padding-top: var(--sp-12); padding-bottom: var(--sp-20);">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: var(--sp-4);">
+        <a href="../../index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="index.html">Resources</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="current">Funding Finder</span>
+      </nav>
+
+      <!-- Hero Section -->
+      <header style="margin-bottom: var(--sp-6);">
+        <div class="section-label">Grant Discovery & Seed Financing</div>
+        <h1 class="heading-1">Find Funding for Your <span class="text-gradient">Idea or Venture</span></h1>
+        <p class="text-muted" style="max-width: 720px; margin-top: var(--sp-2);">
+          Filter and apply for government grants, proof-of-concept seed funds, central & state innovation subsidies, and internal NIT Trichy innovation allocations.
+        </p>
+      </header>
+
+      <!-- Required Disclaimer Alert -->
+      <div class="alert alert-warning" style="margin-bottom: var(--sp-6);">
+        <span style="font-size: 1.25rem;">⚠️</span>
+        <div>
+          <strong style="color: #FCD34D;">Important Advisory:</strong>
+          <span style="font-size: var(--fs-sm);">
+            Results show potentially relevant schemes — always verify eligibility criteria, active application call windows, and compliance terms with the official source or the Office of Dean (R&C) before applying.
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Layout: Filter Sidebar + Scheme Grid -->
+      <div class="funding-layout">
+        <!-- Sidebar Filters -->
+        <aside class="filter-panel" aria-label="Scheme Filters">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-4);">
+            <div style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-text-primary);">Filter Schemes</div>
+            <button id="resetAllBtn" class="btn btn-ghost btn-sm" style="font-size: 11px; padding: 2px 6px;">Reset</button>
+          </div>
+
+          <!-- Keyword Search -->
+          <div class="filter-section">
+            <div class="filter-section-title">Search</div>
+            <div class="search-bar" style="width: 100%; max-width: 100%;">
+              <input type="text" id="schemeKeyword" placeholder="Search schemes, orgs, domains…" autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Stage Filter -->
+          <div class="filter-section">
+            <div class="filter-section-title">Venture Stage</div>
+            <select id="filterStage" class="form-select">
+              <option value="all">All Stages</option>
+              <option value="Idea">Idea</option>
+              <option value="Validation">Validation</option>
+              <option value="Prototype">Prototype</option>
+              <option value="Pilot">Pilot</option>
+              <option value="Early Venture">Early Venture</option>
+            </select>
+          </div>
+
+          <!-- Applicant Type Filter -->
+          <div class="filter-section">
+            <div class="filter-section-title">Applicant Type</div>
+            <select id="filterApplicant" class="form-select">
+              <option value="all">All Applicants</option>
+              <option value="Student">Student (UG/PG)</option>
+              <option value="Faculty">Faculty Member</option>
+              <option value="PG Researcher">PG / Ph.D. Researcher</option>
+              <option value="Startup">Registered Startup</option>
+            </select>
+          </div>
+
+          <!-- Funding Type Filter -->
+          <div class="filter-section">
+            <div class="filter-section-title">Funding Type</div>
+            <select id="filterType" class="form-select">
+              <option value="all">All Funding Types</option>
+              <option value="Grant">Grant (Non-dilutive)</option>
+              <option value="Seed">Seed Capital</option>
+              <option value="Institutional">Institutional (NITT)</option>
+              <option value="State">State Govt (Tamil Nadu)</option>
+              <option value="Central Govt">Central Govt</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div class="filter-section">
+            <div class="filter-section-title">Application Status</div>
+            <div style="display: flex; gap: var(--sp-2);">
+              <button class="filter-pill active" data-status="all" style="flex: 1; text-align: center;">All</button>
+              <button class="filter-pill" data-status="Open" style="flex: 1; text-align: center;">Open</button>
+              <button class="filter-pill" data-status="Closed" style="flex: 1; text-align: center;">Closed</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Schemes Grid Area -->
+        <main>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-4);">
+            <div id="schemesCounter" style="font-size: var(--fs-xs); color: var(--c-text-muted);">
+              Showing all verified funding schemes
+            </div>
+            <a href="processes.html?id=PR009" class="btn btn-outline btn-sm" style="font-size: 11px;">
+              Endorsement SOP →
+            </a>
+          </div>
+
+          <div class="grid-2" id="fundingGrid">
+            <!-- Funding Cards rendered by JS -->
+          </div>
+
+          <div id="noFundingState" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">💰</div>
+            <div class="empty-state-title">No matching funding schemes found</div>
+            <div class="empty-state-desc">Try clearing filters or broadening your search criteria.</div>
+            <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Reset All Filters</button>
+          </div>
+        </main>
+      </div>
+
+      <!-- Not Finding What You Need CTA Section -->
+      <section class="section-sm" style="margin-top: var(--sp-12);">
+        <div class="card card-glass" style="padding: var(--sp-8); position: relative; overflow: hidden;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6);">
+            <div style="max-width: 680px;">
+              <div class="section-label" style="margin-bottom: var(--sp-2);">Advisory Services</div>
+              <h3 class="heading-3" style="color: var(--c-text-primary);">Not finding what you need?</h3>
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed); margin-top: var(--sp-2);">
+                Looking for bespoke project funding, international research travel grants, CSR funding linkages, or corporate innovation challenges? The FIRE Grant Advisory Desk conducts one-on-one proposal clinics and assists with host endorsements from the Office of Dean (R&C).
+              </p>
+            </div>
+            <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+              <button class="btn btn-primary" onclick="openGrantClinicModal()">Book Grant Advisory Clinic →</button>
+              <a href="../explore/challenges.html" class="btn btn-outline">Explore Industry Challenges</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Detail Modal for Scheme Info -->
+  <div class="modal-overlay" id="schemeDetailModal">
+    <div class="modal" style="max-width: 640px;">
+      <div class="modal-header">
+        <div>
+          <span id="modalSchemeTypeBadge" class="badge badge-active">Grant Type</span>
+          <h3 class="heading-4" id="modalSchemeName" style="color: var(--c-text-primary); margin-top: 4px;">Scheme Name</h3>
+          <div id="modalSchemeOrg" style="font-size: var(--fs-xs); color: var(--c-accent); margin-top: 2px;">Awarding Organization</div>
+        </div>
+        <button class="btn btn-ghost btn-icon" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: var(--sp-4);">
+        <!-- Quantum Highlight -->
+        <div style="background: var(--c-bg-card); padding: var(--sp-4); border-radius: var(--radius-md); border-left: 3px solid var(--c-accent); display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--c-text-muted); font-weight: 600;">Grant Quantum</div>
+            <div id="modalSchemeAmount" class="funding-amount-callout" style="font-size: 1.35rem; margin-top: 2px;">Amount</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--c-text-muted); font-weight: 600;">Deadline</div>
+            <div id="modalSchemeDeadline" style="font-size: var(--fs-sm); color: var(--c-text-primary); font-weight: 500;">Deadline</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">Scheme Objectives</div>
+          <p id="modalSchemePurpose" class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed);">Purpose</p>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">Detailed Eligibility Criteria</div>
+          <div id="modalSchemeEligibility" style="padding: var(--sp-3); background: var(--c-bg-elevated); border-radius: var(--radius-md); border: 1px solid var(--c-border); font-size: var(--fs-sm); color: var(--c-text-primary); line-height: var(--lh-relaxed);">Eligibility</div>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">Eligible Venture Stages</div>
+          <div id="modalSchemeStages" style="display: flex; gap: var(--sp-2); flex-wrap: wrap;"></div>
+        </div>
+
+        <div style="padding: var(--sp-3); background: rgba(0, 198, 162, 0.08); border: 1px solid var(--c-border-accent); border-radius: var(--radius-md); font-size: var(--fs-xs); color: var(--c-text-secondary);">
+          🏛️ <strong>Institutional Host Requirement:</strong> Applications from NIT Trichy require a formal endorsement letter signed by the Office of Dean (R&C). Allow at least 10 working days for internal scrub and approvals.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="processes.html?id=PR009" class="btn btn-outline btn-sm">Read Endorsement SOP</a>
+        <a href="#" class="btn btn-primary btn-sm" onclick="handleSchemeApply(event)">Proceed to Official Portal ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Grant Advisory Clinic Booking -->
+  <div class="modal-overlay" id="clinicModal">
+    <div class="modal" style="max-width: 560px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4" style="color: var(--c-text-primary);">Book Grant Advisory Clinic</h3>
+          <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">One-on-one proposal review with FIRE and Dean (R&C) team</div>
+        </div>
+        <button class="btn btn-ghost btn-icon" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <form onsubmit="handleClinicSubmit(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: var(--sp-4);">
+          <div class="form-group">
+            <label class="form-label">Full Name <span style="color: var(--c-accent);">*</span></label>
+            <input type="text" class="form-input" id="clinicName" placeholder="e.g. Dr. Rajesh Kumar / Sneha Patel" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email ID <span style="color: var(--c-accent);">*</span></label>
+              <input type="email" class="form-input" id="clinicEmail" placeholder="yourname@nitt.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Applicant Category <span style="color: var(--c-accent);">*</span></label>
+              <select class="form-select" id="clinicCategory" required>
+                <option value="Student">Student (UG/PG)</option>
+                <option value="Faculty">Faculty Member</option>
+                <option value="Ph.D.">Research Scholar</option>
+                <option value="Startup">Incubated Venture</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target Funding Scheme / Domain</label>
+            <input type="text" class="form-input" id="clinicScheme" placeholder="e.g. DST-NIDHI Prayas / BIRAC BIG / Green Tech">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brief Project Summary & Assistance Needed <span style="color: var(--c-accent);">*</span></label>
+            <textarea class="form-textarea" id="clinicSummary" placeholder="Tell us about your project, current TRL, and whether you need budget justification help or proposal peer-review..." required style="min-height: 85px;"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Schedule Advisory Session →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Comprehensive schemes dataset
+    const ALL_SCHEMES = [
+      {
+        id: "FS001",
+        name: "NIDHI Prayas",
+        org: "DST / National Science & Technology Entrepreneurship Development Board",
+        purpose: "Proof-of-concept and prototype grant support for early-stage deep-tech, hardware, and physical innovation ideas.",
+        stage: ["Idea", "Validation"],
+        applicantTypes: ["Student", "Faculty", "PG Researcher"],
+        type: "Grant",
+        amount: "Up to ₹10 Lakhs",
+        eligibility: "Students, faculty, and individual researchers at NSTEDB partner institutions with an innovative physical/hardware prototype concept.",
+        status: "Open",
+        deadline: "Rolling Submissions"
+      },
+      {
+        id: "FS002",
+        name: "Startup India Seed Fund Scheme (SISFS)",
+        org: "DPIIT, Government of India",
+        purpose: "Financial assistance for proof of concept, prototype development, product trials, market-entry and commercialization.",
+        stage: ["Prototype", "Pilot"],
+        applicantTypes: ["Startup"],
+        type: "Seed",
+        amount: "Up to ₹20L (Grant) + ₹50L (Debt)",
+        eligibility: "DPIIT-recognised startups incorporated not more than 2 years ago, with viable business model and commercial prototype.",
+        status: "Open",
+        deadline: "Quarterly Evaluation Batches"
+      },
+      {
+        id: "FS003",
+        name: "TIDE 2.0 (Tech Incubation & Development of Entrepreneurs)",
+        org: "Ministry of Electronics and Information Technology (MeitY)",
+        purpose: "Support for ICT and digital deep-tech startups across Artificial Intelligence, IoT, cybersecurity, blockchain, and healthtech.",
+        stage: ["Prototype", "Pilot", "Early Venture"],
+        applicantTypes: ["Student", "Startup", "Faculty"],
+        type: "Central Govt",
+        amount: "Up to ₹75 Lakhs",
+        eligibility: "Tech ventures incubated at approved MeitY TBI centres demonstrating innovative software or cyber-physical products.",
+        status: "Open",
+        deadline: "Rolling via Incubator Call"
+      },
+      {
+        id: "FS004",
+        name: "NITT Director's Discretionary Innovation Fund",
+        org: "National Institute of Technology, Tiruchirappalli (Internal)",
+        purpose: "Immediate internal seed grant designed to fast-track high-potential student, club, and faculty proof-of-concept projects.",
+        stage: ["Idea", "Prototype"],
+        applicantTypes: ["Student", "Faculty"],
+        type: "Institutional",
+        amount: "Up to ₹2 Lakhs",
+        eligibility: "Current NITT students and faculty guides with an endorsed project proposal and clear milestone plan.",
+        status: "Open",
+        deadline: "Semester-wise Call (Nov 2026 Batch)"
+      },
+      {
+        id: "FS005",
+        name: "iCreate — Technology & Hardware Grant",
+        org: "International Centre for Entrepreneurship and Technology (iCreate)",
+        purpose: "Seed support and acceleration grants for hardware, robotics, electric vehicles, and renewable energy technologies.",
+        stage: ["Prototype", "Pilot"],
+        applicantTypes: ["Student", "PG Researcher", "Startup"],
+        type: "Grant",
+        amount: "Up to ₹25 Lakhs",
+        eligibility: "Pan-India tech startups and collegiate innovators with working lab prototype in focus hardware domains.",
+        status: "Closed",
+        deadline: "Call Closed — Next Cohort Jan 2027"
+      },
+      {
+        id: "FS006",
+        name: "TN Startup & Innovation Policy — Edupreneurship Fund",
+        org: "StartupTN / Government of Tamil Nadu",
+        purpose: "Seed grant and voucher assistance for Tamil Nadu student and academic startups solving regional and grassroots challenges.",
+        stage: ["Validation", "Pilot", "Early Venture"],
+        applicantTypes: ["Student", "Faculty", "Startup"],
+        type: "State",
+        amount: "Up to ₹15 Lakhs",
+        eligibility: "Startups registered with StartupTN with majority equity held by residents of Tamil Nadu or alumni/students of TN institutions.",
+        status: "Open",
+        deadline: "January 15, 2027"
+      },
+      {
+        id: "FS007",
+        name: "BIRAC Biotechnology Ignition Grant (BIG)",
+        org: "Biotechnology Industry Research Assistance Council (BIRAC)",
+        purpose: "Ignition grant supporting high-risk biotechnology ideas transitioning from lab validation to commercially viable healthcare or agritech devices.",
+        stage: ["Validation", "Prototype"],
+        applicantTypes: ["Faculty", "PG Researcher", "Startup"],
+        type: "Central Govt",
+        amount: "Up to ₹50 Lakhs",
+        eligibility: "Biotech entrepreneurs, research scholars, and early startups incorporated less than 5 years ago with independent IP.",
+        status: "Open",
+        deadline: "November 30, 2026"
+      },
+      {
+        id: "FS008",
+        name: "MeitY GENESIS (Gen-Next Support)",
+        org: "Ministry of Electronics & IT (MeitY)",
+        purpose: "Targeted seed support to discover, support, and scale innovative tech startups from Tier-2 and Tier-3 cities in India.",
+        stage: ["Pilot", "Early Venture"],
+        applicantTypes: ["Student", "Startup"],
+        type: "Seed",
+        amount: "Up to ₹30 Lakhs",
+        eligibility: "Early venture teams founded in non-metro ecosystems with cloud, AI, or semiconductor innovations.",
+        status: "Open",
+        deadline: "December 15, 2026"
+      }
+    ];
+
+    const grid = document.getElementById('fundingGrid');
+    const counter = document.getElementById('schemesCounter');
+    const noResults = document.getElementById('noFundingState');
+
+    // Filter Elements
+    const keywordInput = document.getElementById('schemeKeyword');
+    const stageSelect = document.getElementById('filterStage');
+    const applicantSelect = document.getElementById('filterApplicant');
+    const typeSelect = document.getElementById('filterType');
+    let currentStatus = 'all';
+
+    function renderSchemes(list) {
+      if (!list.length) {
+        grid.style.display = 'none';
+        noResults.style.display = 'flex';
+        counter.textContent = 'Showing 0 matching schemes';
+        return;
+      }
+      grid.style.display = 'grid';
+      noResults.style.display = 'none';
+      counter.textContent = `Showing ${list.length} of ${ALL_SCHEMES.length} funding schemes matching criteria`;
+
+      grid.innerHTML = list.map(item => `
+        <div class="funding-card-custom" data-searchable>
+          <div>
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-2); margin-bottom: var(--sp-3);">
+              <span class="badge ${item.status === 'Open' ? 'badge-active' : 'badge-closed'}">
+                ${item.status === 'Open' ? '● Open for Applications' : 'Closed'}
+              </span>
+              <span class="badge badge-prototype">${item.type}</span>
+            </div>
+
+            <h3 class="heading-4" style="color: var(--c-text-primary); font-size: 1.15rem; line-height: var(--lh-snug);">
+              ${item.name}
+            </h3>
+            <div style="font-size: var(--fs-xs); color: var(--c-accent); margin-top: 3px; font-weight: 500;">
+              🏛️ ${item.org}
+            </div>
+
+            <div style="margin: var(--sp-4) 0 var(--sp-3);">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--c-text-muted); font-weight: 600;">Grant Amount</div>
+              <div class="funding-amount-callout">${item.amount}</div>
+            </div>
+
+            <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              ${item.purpose}
+            </p>
+
+            <div style="margin-top: var(--sp-4);">
+              <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">
+                Eligible Stages
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                ${item.stage.map(st => `<span class="tag" style="font-size: 10px; padding: 2px 8px;">${st}</span>`).join('')}
+              </div>
+            </div>
+
+            <div style="margin-top: var(--sp-3); font-size: var(--fs-xs); color: var(--c-text-secondary); background: var(--c-bg-elevated); padding: var(--sp-3); border-radius: var(--radius-sm); border: 1px solid var(--c-border-light);">
+              <strong style="color: var(--c-text-primary);">Eligibility:</strong> ${item.eligibility}
+            </div>
+          </div>
+
+          <div style="margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2);">
+            <div style="font-size: 11px; color: var(--c-text-muted);">
+              ⏱️ <strong>Deadline:</strong> ${item.deadline}
+            </div>
+
+            <div style="display: flex; gap: var(--sp-2);">
+              <button class="btn btn-outline btn-sm" onclick="openSchemeModal('${item.id}')">
+                View Scheme
+              </button>
+              <a href="#" class="btn btn-primary btn-sm" onclick="handleSchemeApply(event, '${item.name}')">
+                Apply →
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openSchemeModal(schemeId) {
+      const s = ALL_SCHEMES.find(item => item.id === schemeId);
+      if (!s) return;
+
+      document.getElementById('modalSchemeName').textContent = s.name;
+      document.getElementById('modalSchemeOrg').textContent = s.org;
+      document.getElementById('modalSchemeTypeBadge').textContent = s.type;
+      document.getElementById('modalSchemeAmount').textContent = s.amount;
+      document.getElementById('modalSchemeDeadline').textContent = s.deadline;
+      document.getElementById('modalSchemePurpose').textContent = s.purpose;
+      document.getElementById('modalSchemeEligibility').textContent = s.eligibility;
+
+      const stagesEl = document.getElementById('modalSchemeStages');
+      stagesEl.innerHTML = s.stage.map(st => `<span class="badge badge-active">${st}</span>`).join('');
+
+      document.getElementById('schemeDetailModal').classList.add('open');
+    }
+
+    function handleSchemeApply(e, name) {
+      e.preventDefault();
+      showToast(`Redirecting to official grant portal for ${name || 'selected scheme'}... Ensure institutional endorsement is ready.`, 'info');
+    }
+
+    function openGrantClinicModal() {
+      document.getElementById('clinicModal').classList.add('open');
+    }
+
+    function handleClinicSubmit(e) {
+      e.preventDefault();
+      document.getElementById('clinicModal').classList.remove('open');
+      showToast('Advisory Clinic Request booked! The FIRE Grants Desk will contact you within 24 hours.', 'success');
+    }
+
+    // Dynamic Filtering Logic
+    function applyFilters() {
+      const q = keywordInput.value.toLowerCase().trim();
+      const stage = stageSelect.value;
+      const applicant = applicantSelect.value;
+      const type = typeSelect.value;
+
+      const filtered = ALL_SCHEMES.filter(s => {
+        // Keyword
+        const matchesQ = !q ||
+          s.name.toLowerCase().includes(q) ||
+          s.org.toLowerCase().includes(q) ||
+          s.purpose.toLowerCase().includes(q) ||
+          s.eligibility.toLowerCase().includes(q);
+
+        // Stage
+        const matchesStage = stage === 'all' || s.stage.includes(stage);
+
+        // Applicant
+        const matchesApplicant = applicant === 'all' || s.applicantTypes.includes(applicant);
+
+        // Type
+        const matchesType = type === 'all' || s.type.toLowerCase() === type.toLowerCase();
+
+        // Status
+        const matchesStatus = currentStatus === 'all' || s.status.toLowerCase() === currentStatus.toLowerCase();
+
+        return matchesQ && matchesStage && matchesApplicant && matchesType && matchesStatus;
+      });
+
+      renderSchemes(filtered);
+    }
+
+    keywordInput.addEventListener('input', applyFilters);
+    stageSelect.addEventListener('change', applyFilters);
+    applicantSelect.addEventListener('change', applyFilters);
+    typeSelect.addEventListener('change', applyFilters);
+
+    document.querySelectorAll('[data-status]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-status]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentStatus = btn.dataset.status;
+        applyFilters();
+      });
+    });
+
+    function resetFilters() {
+      keywordInput.value = '';
+      stageSelect.value = 'all';
+      applicantSelect.value = 'all';
+      typeSelect.value = 'all';
+      currentStatus = 'all';
+      document.querySelectorAll('[data-status]').forEach(b => {
+        b.classList.toggle('active', b.dataset.status === 'all');
+      });
+      applyFilters();
+    }
+
+    document.getElementById('resetAllBtn').addEventListener('click', resetFilters);
+
+    renderSchemes(ALL_SCHEMES);
+    Components.init(2);
+  </script>
+</body>
+</html>

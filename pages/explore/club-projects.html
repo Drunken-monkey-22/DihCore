@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Projects Directory — FIRE | NIT Trichy</title>
+  <meta name="description" content="Discover technical club innovations and student-led engineering initiatives at NIT Trichy. Connect, contribute skills, and collaborate on active projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb & Header -->
+    <section class="section-sm" style="padding-top: var(--sp-12); padding-bottom: var(--sp-8); background: linear-gradient(180deg, rgba(12,21,38,0.9) 0%, var(--c-bg) 100%); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Explore</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Club Projects</span>
+        </nav>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <div class="section-label">Student-Led Engineering & Innovation</div>
+            <h1 class="heading-1" style="margin-top:var(--sp-2);">Student Club Projects</h1>
+            <p class="text-muted" style="max-width: 680px; margin-top:var(--sp-2);">
+              Cross-club technical builds solving campus, community, and open-source challenges. Discover ongoing club projects, see what roles they are recruiting for, and submit your collaboration interest.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3); align-items:center;">
+            <a href="../resources/processes.html#PR006" class="btn btn-outline btn-sm">
+              📋 Club Publication Guidelines
+            </a>
+            <a href="../start-here/idea.html" class="btn btn-primary btn-sm">
+              Register Club Project +
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Directory Section -->
+    <section class="section-sm" style="padding-top: var(--sp-8);">
+      <div class="container">
+        
+        <!-- Multi-facet Filter Bar -->
+        <div class="card card-glass" style="padding: var(--sp-5); margin-bottom: var(--sp-8);">
+          <div class="filter-bar" style="margin-bottom:0; gap:var(--sp-4);">
+            
+            <!-- Search Input -->
+            <div class="search-bar" style="flex: 2; max-width: none;">
+              <span>🔍</span>
+              <input type="text" id="clubSearch" placeholder="Search by club name, project title, lead, or required skills…">
+            </div>
+
+            <!-- Club Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Club:</span>
+              <select class="filter-select" id="clubSelectFilter">
+                <option value="all">All Clubs</option>
+                <option value="SPIDER">SPIDER (Web Dev)</option>
+                <option value="SAAS">SAAS (Astronomy)</option>
+                <option value="EFlames">EFlames (Electronics)</option>
+                <option value="E-Cell">Entrepreneurship Cell</option>
+                <option value="AARUUSH">AARUUSH Tech Team</option>
+                <option value="Code Chefs">Code Chefs</option>
+              </select>
+            </div>
+
+            <!-- Status Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Status:</span>
+              <select class="filter-select" id="statusFilter">
+                <option value="all">All Statuses</option>
+                <option value="Active">Active Builds</option>
+                <option value="Prototype">Prototype Stage</option>
+                <option value="Testing">Testing / Validation</option>
+              </select>
+            </div>
+
+            <!-- Reset Button -->
+            <button class="btn btn-ghost btn-sm" id="resetClubFiltersBtn" style="color:var(--c-text-muted);">
+              Reset ↺
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status Summary -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--sp-6);">
+          <div id="clubResultsCount" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-secondary);">
+            Showing 6 of 6 club projects
+          </div>
+          <div style="display:flex; gap:var(--sp-2); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <span>🚀 Open to all departments</span>
+            <span>·</span>
+            <span>🤝 Verified student-led teams</span>
+          </div>
+        </div>
+
+        <!-- Grid of Club Cards -->
+        <div class="grid-3" id="clubProjectsGrid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="clubEmptyState" style="display:none; padding:var(--sp-20) 0;">
+          <div class="empty-state-icon">🏆</div>
+          <h3 class="empty-state-title">No matching club projects found</h3>
+          <p class="empty-state-desc">Try clearing your filters or searching with terms like 'Flutter', 'Robotics', or 'Python'.</p>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllClubFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- ================= COLLABORATION REQUEST MODAL ================= -->
+  <div class="modal-overlay" id="collabModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-5" id="collabModalTitle">Join Club Project</h3>
+          <p class="text-muted text-xs" id="collabModalSubtitle" style="margin-top:2px;">
+            Send a collaboration request directly to the student project lead
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      
+      <form id="collabForm" data-validate>
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <input type="hidden" id="collabProjectId" name="projectId">
+          <input type="hidden" id="collabProjectTitle" name="projectTitle">
+          
+          <div class="alert alert-info" style="font-size:var(--fs-xs);">
+            <span>🤝</span>
+            <div>
+              Club leads review collaboration applications on rolling weekly syncs. Make sure to specify your core technical strengths!
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" id="collabName" required placeholder="e.g. Ananya Sundaram">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Roll Number & Webmail *</label>
+              <input type="text" class="form-input" id="collabRoll" required placeholder="e.g. 108122012 / @nitt.edu">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Year of Study *</label>
+              <select class="form-select" id="collabYear" required>
+                <option value="">Select Year</option>
+                <option value="1">1st Year B.Tech</option>
+                <option value="2">2nd Year B.Tech</option>
+                <option value="3">3rd Year B.Tech</option>
+                <option value="4">4th Year B.Tech</option>
+                <option value="PG">Postgraduate (M.Tech/MBA/MCA)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department *</label>
+              <input type="text" class="form-input" id="collabDept" required placeholder="e.g. ECE / Instrumentation">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Core Skills & Tools *</label>
+            <input type="text" class="form-input" id="collabSkills" required placeholder="e.g. React, Node.js, ROS2, PCB Design, Blender, Figma">
+            <div class="form-hint">Comma separated list of languages, frameworks, or design software you use confidently.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What Can You Contribute to This Project? *</label>
+            <textarea class="form-textarea" id="collabContribution" required placeholder="Explain how you can solve the seeking requirement, past projects you built, or specific feature ideas." style="min-height:90px;"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Available Commitment *</label>
+              <select class="form-select" id="collabHours" required>
+                <option value="4-6">4 – 6 hours/week (Sprint tasks)</option>
+                <option value="6-10" selected>6 – 10 hours/week (Active contributor)</option>
+                <option value="10-15">10 – 15 hours/week (Core module lead)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Portfolio / GitHub / Demo Link</label>
+              <input type="url" class="form-input" id="collabLink" placeholder="https://github.com/your-username">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Send Collaboration Request 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CLUB PROJECT DETAILS MODAL ================= -->
+  <div class="modal-overlay" id="clubDetailsModal">
+    <div class="modal" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2); margin-bottom:4px;">
+            <span class="badge badge-pilot" id="modalClubBadge">SPIDER</span>
+            <span class="badge badge-active" id="modalClubStatus">Active</span>
+            <span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-text-muted);" id="modalClubId">CP001</span>
+          </div>
+          <h3 class="heading-4" id="modalClubTitle">Project Title</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-5);">
+        
+        <!-- Club & Lead Info Banner -->
+        <div style="display:flex; gap:var(--sp-4); align-items:center; padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div class="avatar avatar-lg" id="modalClubAvatar">SP</div>
+          <div>
+            <div style="font-size:var(--fs-base); font-weight:var(--fw-semibold); color:var(--c-text-primary);" id="modalClubFullName">SPIDER — The Web Dev Club</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-accent);" id="modalClubLead">Student Lead: Aravind Selvam (4th Year, CSE)</div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); margin-top:2px;">Last updated: <span id="modalClubUpdated">Oct 2026</span> · Verified Technical Club</div>
+          </div>
+        </div>
+
+        <!-- Problem Statement -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Problem Statement & Context</h4>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed);" id="modalClubProblem">
+            Problem description.
+          </p>
+        </div>
+
+        <!-- Seeking Callout -->
+        <div style="padding:var(--sp-4); background:var(--c-accent-dim); border:1px solid var(--c-border-accent); border-radius:var(--radius-md);">
+          <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-accent); text-transform:uppercase; letter-spacing:0.06em;">
+            LOOKING FOR COLLABORATORS
+          </div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-primary); font-weight:var(--fw-medium); margin-top:var(--sp-1);" id="modalClubSeeking">
+            Seeking details.
+          </p>
+        </div>
+
+        <!-- Target Tech Stack -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Required Skills & Stack</h4>
+          <div class="project-card-tags" id="modalClubSkills">
+            <!-- Render tags -->
+          </div>
+        </div>
+
+        <!-- Governance Info -->
+        <div class="grid-2" style="background:var(--c-bg-card); padding:var(--sp-4); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Club Category</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">NITT Technical Council Recognized</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Prototyping Facility</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">SCIEnT Lab & FIRE Support</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer" style="justify-content:space-between;">
+        <span class="text-xs text-muted" style="align-self:center;">Collaborations count towards FIRE innovation credits</span>
+        <div style="display:flex; gap:var(--sp-3);">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Close</button>
+          <button type="button" class="btn btn-primary btn-sm" id="modalCollabBtn">
+            Apply to Join Project 🤝
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    function getStageBadgeClass(stage) {
+      const s = (stage || '').toLowerCase();
+      if (s.includes('prototype')) return 'badge-prototype';
+      if (s.includes('active')) return 'badge-active';
+      if (s.includes('testing')) return 'badge-pending';
+      return 'badge-pilot';
+    }
+
+    function getInitials(name) {
+      if (!name) return 'CP';
+      return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function openClubModal(projectId) {
+      const p = FIRE_DATA.clubProjects.find(item => item.id === projectId);
+      if (!p) return;
+
+      document.getElementById('modalClubId').textContent = p.id;
+      document.getElementById('modalClubTitle').textContent = p.title;
+      document.getElementById('modalClubFullName').textContent = p.club;
+      document.getElementById('modalClubLead').textContent = `Project Lead: ${p.lead}`;
+      document.getElementById('modalClubProblem').textContent = p.problem;
+      document.getElementById('modalClubSeeking').textContent = p.seeking;
+      document.getElementById('modalClubUpdated').textContent = p.lastUpdated;
+      document.getElementById('modalClubBadge').textContent = p.club.split('—')[0].trim();
+      document.getElementById('modalClubAvatar').textContent = getInitials(p.club);
+
+      const statusBadge = document.getElementById('modalClubStatus');
+      statusBadge.className = `badge ${getStageBadgeClass(p.status)}`;
+      statusBadge.textContent = p.status;
+
+      const skillsContainer = document.getElementById('modalClubSkills');
+      skillsContainer.innerHTML = p.skills.map(s => `<span class="tag tag-active">${s}</span>`).join('');
+
+      const collabBtn = document.getElementById('modalCollabBtn');
+      collabBtn.onclick = () => {
+        document.getElementById('clubDetailsModal').classList.remove('open');
+        openCollabModal(p.id, p.title, p.club);
+      };
+
+      document.getElementById('clubDetailsModal').classList.add('open');
+    }
+
+    function openCollabModal(id, title, club) {
+      const modal = document.getElementById('collabModal');
+      document.getElementById('collabProjectId').value = id;
+      document.getElementById('collabProjectTitle').value = title;
+      document.getElementById('collabModalTitle').textContent = `Collaborate: ${title}`;
+      document.getElementById('collabModalSubtitle').textContent = `Hosted by ${club} · Ref: ${id}`;
+      modal.classList.add('open');
+    }
+
+    function resetAllClubFilters() {
+      document.getElementById('clubSearch').value = '';
+      document.getElementById('clubSelectFilter').value = 'all';
+      document.getElementById('statusFilter').value = 'all';
+      filterClubProjects();
+    }
+
+    function filterClubProjects() {
+      const search = (document.getElementById('clubSearch')?.value || '').toLowerCase();
+      const clubFilter = document.getElementById('clubSelectFilter')?.value || 'all';
+      const statusFilter = document.getElementById('statusFilter')?.value || 'all';
+
+      const filtered = FIRE_DATA.clubProjects.filter(p => {
+        const matchSearch = !search ||
+          p.title.toLowerCase().includes(search) ||
+          p.club.toLowerCase().includes(search) ||
+          p.lead.toLowerCase().includes(search) ||
+          p.problem.toLowerCase().includes(search) ||
+          p.skills.some(s => s.toLowerCase().includes(search));
+        
+        const matchClub = clubFilter === 'all' || p.club.toLowerCase().includes(clubFilter.toLowerCase());
+        const matchStatus = statusFilter === 'all' || p.status.toLowerCase() === statusFilter.toLowerCase();
+
+        return matchSearch && matchClub && matchStatus;
+      });
+
+      renderClubProjects(filtered);
+    }
+
+    function renderClubProjects(projects) {
+      const container = document.getElementById('clubProjectsGrid');
+      const emptyState = document.getElementById('clubEmptyState');
+      const counter = document.getElementById('clubResultsCount');
+
+      counter.textContent = `Showing ${projects.length} of ${FIRE_DATA.clubProjects.length} club projects`;
+
+      if (projects.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'flex';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      container.innerHTML = projects.map(p => `
+        <div class="card project-card anim-on-scroll">
+          <div class="project-card-head">
+            <span class="badge badge-pilot">
+              🏆 ${p.club.split('—')[0].trim()}
+            </span>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span class="badge ${getStageBadgeClass(p.status)}">${p.status}</span>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--c-text-muted);">${p.id}</span>
+            </div>
+          </div>
+          
+          <div class="project-card-body">
+            <div class="text-xs text-muted" style="margin-bottom:var(--sp-1);">${p.club}</div>
+            <h3 class="project-card-title">${p.title}</h3>
+            
+            <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:var(--sp-2); font-size:var(--fs-xs); color:var(--c-accent);">
+              <span>👤 Lead: <strong>${p.lead}</strong></span>
+            </div>
+
+            <p class="project-card-desc" style="margin-top:var(--sp-3);">${p.problem}</p>
+
+            <div style="margin-top:var(--sp-3); font-size:var(--fs-xs); color:var(--c-text-secondary); background:var(--c-bg-elevated); padding:var(--sp-2) var(--sp-3); border-radius:var(--radius-sm); border:1px solid var(--c-border);">
+              <span style="color:var(--c-accent); font-weight:var(--fw-semibold);">Seeking:</span> ${p.seeking}
+            </div>
+
+            <div class="project-card-tags">
+              ${p.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <button type="button" class="btn btn-outline btn-sm" onclick="openClubModal('${p.id}')">
+              View Details 👁️
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openCollabModal('${p.id}', '${p.title.replace(/'/g, "\\'")}', '${p.club.replace(/'/g, "\\'")}')">
+              Collaborate 🤝
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('clubSearch')?.addEventListener('input', debounce(filterClubProjects, 200));
+      document.getElementById('clubSelectFilter')?.addEventListener('change', filterClubProjects);
+      document.getElementById('statusFilter')?.addEventListener('change', filterClubProjects);
+      document.getElementById('resetClubFiltersBtn')?.addEventListener('click', resetAllClubFilters);
+
+      // Render initial
+      filterClubProjects();
+
+      // Check URL query parameters (e.g. ?id=CP001)
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedId = urlParams.get('id');
+      if (requestedId) {
+        setTimeout(() => openClubModal(requestedId), 300);
+      }
+
+      // Handle Collaboration Request Form Submission
+      const collabForm = document.getElementById('collabForm');
+      collabForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pTitle = document.getElementById('collabProjectTitle').value || 'Club Project';
+        const modal = document.getElementById('collabModal');
+        modal.classList.remove('open');
+        showToast(`Collaboration request sent for "${pTitle}". The club lead has been notified.`, 'success');
+        collabForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Here — Find Your Path | FIRE — NIT Trichy</title>
+  <meta name="description" content="Find your path in the NIT Trichy innovation ecosystem. Access labs, mentorship, funding, and venture support through NITT FIRE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    /* Page-specific styling for Start Here Landing */
+    .path-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      transition: all var(--t-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    .path-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--grad-mesh);
+      opacity: 0;
+      transition: opacity var(--t-normal);
+      pointer-events: none;
+    }
+    .path-card:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-accent);
+    }
+    .path-card:hover::before {
+      opacity: 0.35;
+    }
+    .path-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      position: relative;
+      z-index: 1;
+    }
+    .path-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-lg);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+    }
+    .path-card-badge {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-muted);
+    }
+    .path-card-body {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+    .path-card-title {
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-primary);
+      margin-bottom: var(--sp-1);
+    }
+    .path-card-subtitle {
+      font-size: var(--fs-xs);
+      color: var(--c-accent);
+      font-weight: var(--fw-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--sp-4);
+    }
+    .path-card-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-5);
+    }
+    .path-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-2);
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-snug);
+    }
+    .path-bullet-dot {
+      color: var(--c-accent);
+      font-weight: var(--fw-bold);
+      line-height: 1;
+      margin-top: 3px;
+    }
+    .path-card-footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-3);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--c-border);
+    }
+    .path-meta-tag {
+      font-size: var(--fs-xs);
+      color: var(--c-text-muted);
+    }
+
+    /* Support pillars */
+    .support-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      transition: all var(--t-normal);
+    }
+    .support-card:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+    .support-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--c-accent-dim);
+      border: 1px solid var(--c-border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+    .support-card-title {
+      font-size: var(--fs-md);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-primary);
+    }
+    .support-card-desc {
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    /* Accordion styles */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--t-fast);
+    }
+    .faq-item.open {
+      border-color: var(--c-border-accent);
+      background: var(--c-bg-elevated);
+    }
+    .faq-question {
+      padding: var(--sp-5) var(--sp-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      cursor: pointer;
+      user-select: none;
+      font-family: var(--font-heading);
+      font-size: var(--fs-base);
+      font-weight: var(--fw-semibold);
+      color: var(--c-text-primary);
+    }
+    .faq-toggle-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-xs);
+      color: var(--c-text-muted);
+      transition: all var(--t-fast);
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-toggle-icon {
+      transform: rotate(45deg);
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+      background: var(--c-accent-dim);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 var(--sp-6);
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+    .faq-item.open .faq-answer {
+      max-height: 260px;
+      padding: 0 var(--sp-6) var(--sp-6) var(--sp-6);
+    }
+
+    /* Teaser banner */
+    .teaser-banner {
+      background: linear-gradient(135deg, rgba(15,25,46,0.9), rgba(12,21,38,0.95));
+      border: 1px solid var(--c-border-accent);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-accent);
+    }
+    .teaser-banner::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,198,162,0.15), transparent 70%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <header class="hero" style="min-height: 70vh;">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-grid"></div>
+      </div>
+
+      <div class="container hero-content">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Start Here</span>
+        </nav>
+
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          NIT Trichy Innovation Ecosystem
+        </div>
+
+        <h1 class="hero-title" style="max-width: 900px;">
+          Find Your Path in the <span class="text-gradient">NITT Innovation</span> Ecosystem
+        </h1>
+
+        <p class="hero-desc" style="max-width: 720px;">
+          Whether you are a student with a dorm-room concept, a club team building autonomous robotics, a faculty researcher translating breakthrough IP, or an established startup scaling operations — FIRE coordinates the exact mentors, prototyping labs, and funding schemes you need.
+        </p>
+
+        <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-8);">
+          <a href="idea.html" class="btn btn-primary btn-lg">
+            <span>💡</span> Submit Your Idea
+          </a>
+          <a href="founder-journey.html" class="btn btn-secondary btn-lg">
+            <span>🗺️</span> Explore Founder Journey
+          </a>
+          <a href="which-path.html" class="btn btn-outline btn-lg">
+            <span>🔀</span> Compare All Paths
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="8" data-suffix="">8</span>
+            <span class="hero-stat-label">Tailored Pathways</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="40" data-suffix="+">40+</span>
+            <span class="hero-stat-label">Labs & Prototyping Units</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="150" data-suffix="+">150+</span>
+            <span class="hero-stat-label">Mentors & Alumni Guides</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="15" data-suffix=" Cr+">₹15 Cr+</span>
+            <span class="hero-stat-label">Accessible Grant Pipeline</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Pathways Grid -->
+    <main class="section">
+      <div class="container">
+        <div class="section-header" style="text-align: left; align-items: flex-end;">
+          <div class="section-title-group">
+            <div class="section-label">Tailored Support Routes</div>
+            <h2 class="heading-2">Choose How You Enter the <span class="text-gradient">Platform</span></h2>
+            <p class="text-muted" style="max-width: 600px;">
+              Select the card that best matches your current role or project stage. Each route connects you to designated NITT offices, policies, and timelines.
+            </p>
+          </div>
+          <a href="which-path.html" class="btn btn-outline btn-sm">Full Path Matrix →</a>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: var(--sp-12);">
+          
+          <!-- Path 1: Student with an Idea -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">💡</div>
+              <span class="path-card-badge">Intake Active</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Student with an Idea</h3>
+              <div class="path-card-subtitle">UG Innovator / Dorm-Room Creator</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Submit your idea safely through our 5-step intake without losing ownership of your core IP.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Get matched with seasoned alumni entrepreneurs and attend dedicated weekend Idea Clinics.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Obtain immediate student credentials for SCIEnT design spaces and rapid prototyping machines.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Review: 3–5 working days</span>
+              <a href="idea.html" class="btn btn-primary btn-sm">Submit Your Idea →</a>
+            </div>
+          </article>
+
+          <!-- Path 2: Club Team with a Project -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">🏆</div>
+              <span class="path-card-badge">Open Directory</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Club Team with a Project</h3>
+              <div class="path-card-subtitle">SPIDER, EFlames, AARUUSH, E-Cell & Clubs</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Publish your team initiative in the central registry to gain institutional visibility across campus.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Post open technical requisitions to recruit designers, ML engineers, or firmware developers.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Reserve dedicated workbench space, fabrication equipment, and university showcase slots.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Lead: Club Technical Coordinator</span>
+              <a href="../../pages/explore/club-projects.html" class="btn btn-secondary btn-sm">Explore Club Projects →</a>
+            </div>
+          </article>
+
+          <!-- Path 3: Faculty Researcher -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">👩‍🏫</div>
+              <span class="path-card-badge">R&C Aligned</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Faculty Researcher</h3>
+              <div class="path-card-subtitle">Translational Research & Faculty Spin-Offs</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>List high-impact laboratory research projects looking for student researchers and fellows.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Connect with national translational funding like DST-NIDHI, MeitY TIDE 2.0, and BIRAC.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Coordinate with the NITT IPR Cell for patent evaluations, commercial licensing, and enterprise spin-offs.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Office: Dean R&C / FIRE Research</span>
+              <a href="../../pages/explore/faculty-projects.html" class="btn btn-secondary btn-sm">Browse Faculty Projects →</a>
+            </div>
+          </article>
+
+          <!-- Path 4: PG Researcher -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">🎓</div>
+              <span class="path-card-badge">Deep Tech</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">PG Researcher (M.Tech / Ph.D)</h3>
+              <div class="path-card-subtitle">Thesis Commercialisation & PoC Development</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Convert post-graduate research papers and thesis findings into viable industrial prototypes.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Schedule compute priorities on the GPU HPC cluster and Nanotechnology Clean Room facilities.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Receive specialized guidance for deep-tech grant filings and pre-incubation reviews.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Focus: High TRL Translation</span>
+              <a href="idea.html" class="btn btn-outline btn-sm">Register PG Project →</a>
+            </div>
+          </article>
+
+          <!-- Path 5: Post-SIH Team -->
+          <article class="path-card" style="border-color: rgba(255,107,53,0.3);">
+            <div class="path-card-top">
+              <div class="path-card-icon" style="background: var(--c-accent-warm-dim); border-color: rgba(255,107,53,0.3);">🔁</div>
+              <span class="path-card-badge" style="color: var(--c-accent-warm); border-color: rgba(255,107,53,0.3);">Dedicated Track</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Post-SIH Team</h3>
+              <div class="path-card-subtitle" style="color: var(--c-accent-warm);">Smart India Hackathon Continuation</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">›</span>
+                  <span>Transform your 36-hour hackathon prototype into a validated, field-deployable product.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">›</span>
+                  <span>Liaise directly with ministry stakeholders, receive cloud credits, and secure dedicated faculty mentorship.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">›</span>
+                  <span>Join the 6-week milestone cohort with guaranteed incubation committee review at completion.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Next Cohort: Dec 2026</span>
+              <a href="post-sih.html" class="btn btn-warm btn-sm">Continue Post-SIH →</a>
+            </div>
+          </article>
+
+          <!-- Path 6: Already Incorporated Startup -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">🚀</div>
+              <span class="path-card-badge">Venture Stage</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Incorporated Startup</h3>
+              <div class="path-card-subtitle">Registered Pvt Ltd / LLP / OPC</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Join the public NITT Startup Showcase directory for alumni investors, VCs, and press coverage.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Apply for Startup India Seed Fund Scheme (SISFS) grants and debt-equity co-investments up to ₹50 Lakhs.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Access on-campus incubation co-working desks, recruit student interns, and book specialized test beds.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Portfolio: 24+ Active Startups</span>
+              <a href="../../pages/explore/startups.html" class="btn btn-secondary btn-sm">View Startup Directory →</a>
+            </div>
+          </article>
+
+          <!-- Path 7: Alumni / External Founder -->
+          <article class="path-card">
+            <div class="path-card-top">
+              <div class="path-card-icon">🌐</div>
+              <span class="path-card-badge">Ecosystem Partners</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Alumni / External Founder</h3>
+              <div class="path-card-subtitle">Mentors, Angel Investors & Industry Collaborators</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Give back by conducting 1-on-1 office hours or mentoring budding NITT founders in your domain.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Explore sponsored R&D with NITT academic departments and license patented institutional technologies.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Submit corporate industry challenges to engage top student engineers on solving live problem statements.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Engagement: Voluntary & Sponsored</span>
+              <a href="../../pages/connect/partnerships.html" class="btn btn-outline btn-sm">Connect with FIRE →</a>
+            </div>
+          </article>
+
+          <!-- Path 8: Not Sure Where to Start? -->
+          <article class="path-card" style="background: linear-gradient(145deg, rgba(17,30,51,0.9), rgba(15,25,46,0.9));">
+            <div class="path-card-top">
+              <div class="path-card-icon">❓</div>
+              <span class="path-card-badge">Pathfinder Tool</span>
+            </div>
+            <div class="path-card-body">
+              <h3 class="path-card-title">Not Sure Where to Start?</h3>
+              <div class="path-card-subtitle">Ecosystem Navigator & Decision Matrix</div>
+              <ul class="path-card-bullets">
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Compare all 7 entry routes side-by-side with clear eligibility criteria and expected deliverables.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Take our 30-second pathfinder quiz to uncover the exact office and programme matched to your stage.</span>
+                </li>
+                <li class="path-bullet-item">
+                  <span class="path-bullet-dot">›</span>
+                  <span>Schedule an informal drop-in advisory session with the FIRE student operations team at SCIEnT.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="path-card-footer">
+              <span class="path-meta-tag">Guidance: Free & Open to All</span>
+              <a href="which-path.html" class="btn btn-primary btn-sm">Compare All Paths →</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Teaser Journey Banner -->
+        <div class="teaser-banner">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6); flex-wrap: wrap;">
+            <div style="max-width: 640px;">
+              <div class="section-label" style="margin-bottom: var(--sp-2);">End-to-End Venture Framework</div>
+              <h3 class="heading-3" style="color: var(--c-text-primary); margin-bottom: var(--sp-2);">
+                Curious About the Whole <span class="text-gradient">Founder Journey?</span>
+              </h3>
+              <p class="text-muted">
+                Explore our 9-stage progression framework — from the earliest dorm-room concept discovery through validation, prototyping, IP filing, piloting, and formal incubation.
+              </p>
+            </div>
+            <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+              <a href="founder-journey.html" class="btn btn-primary">
+                View 9-Stage Founder Journey →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Section: What FIRE Can Help You Do -->
+    <section class="section" style="background: var(--c-bg-surface);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Core Capabilities</div>
+            <h2 class="heading-2">What <span class="text-gradient">FIRE</span> Can Help You Do</h2>
+            <p class="text-muted" style="max-width: 640px;">
+              FIRE operates as the unified coordination nervous system for innovation across NIT Trichy — bridging labs, departments, mentors, and external grants.
+            </p>
+          </div>
+          <a href="../../pages/resources/facilities.html" class="btn btn-outline btn-sm">Explore All Facilities →</a>
+        </div>
+
+        <div class="grid-4">
+          <!-- Pillar 1 -->
+          <div class="support-card">
+            <div class="support-card-icon">🤝</div>
+            <h3 class="support-card-title">1:1 Mentorship</h3>
+            <p class="support-card-desc">
+              Connect directly with verified NITT alumni founders, venture partners, and corporate engineering leaders for pitch practice, architecture reviews, and strategy sessions.
+            </p>
+            <a href="../../pages/explore/mentors.html" class="text-accent text-small" style="font-weight: 600; margin-top: auto;">Browse Mentors →</a>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="support-card">
+            <div class="support-card-icon">🔬</div>
+            <h3 class="support-card-title">Lab & Tool Access</h3>
+            <p class="support-card-desc">
+              Reserve machine hours at SCIEnT 3D printing labs, clean-room lithography units, electronics diagnostic benches, and NVIDIA A100 GPU compute clusters without red tape.
+            </p>
+            <a href="../../pages/resources/facilities.html" class="text-accent text-small" style="font-weight: 600; margin-top: auto;">View Directory →</a>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="support-card">
+            <div class="support-card-icon">💰</div>
+            <h3 class="support-card-title">Seed Grants & Funds</h3>
+            <p class="support-card-desc">
+              Tap into institutional funds like the NITT Director’s Discretionary Fund, or apply for central schemes including NIDHI Prayas (₹10L) and Startup India Seed Fund (₹20-50L).
+            </p>
+            <a href="../../pages/resources/funding.html" class="text-accent text-small" style="font-weight: 600; margin-top: auto;">Find Grants →</a>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="support-card">
+            <div class="support-card-icon">⚖️</div>
+            <h3 class="support-card-title">IP & Legal Advisory</h3>
+            <p class="support-card-desc">
+              Collaborate directly with the NITT IPR Cell for prior-art analysis, provisional patent filings, NDA templates, and transparent institutional equity guidelines.
+            </p>
+            <a href="../../pages/resources/ip-legal.html" class="text-accent text-small" style="font-weight: 600; margin-top: auto;">IP Guidelines →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--sp-12);">
+          <div class="section-label" style="justify-content: center; margin-bottom: var(--sp-2);">Common Queries</div>
+          <h2 class="heading-2">Frequently Asked <span class="text-gradient">Questions</span></h2>
+          <p class="text-muted" style="max-width: 580px; margin: 0 auto;">
+            Get immediate clarity on how FIRE works, eligibility requirements, intellectual property safeguards, and next steps.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          
+          <!-- Q1 -->
+          <div class="faq-item open">
+            <div class="faq-question">
+              <span>What is FIRE and how does it differ from a student club?</span>
+              <div class="faq-toggle-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>
+                FIRE (Foundation for Innovation & Research Entrepreneurship) is NIT Trichy’s official institutional coordination platform. Unlike a student club that focuses on extra-curricular workshops or hackathons, FIRE acts as the central administrative and physical conduit uniting academic departments, prototyping facilities (SCIEnT, HPC, Nanotech), the NITT IPR Cell, alumni venture networks, and government funding bodies under one roof.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Who is eligible to submit an idea or request facility access?</span>
+              <div class="faq-toggle-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>
+                All bona fide NIT Trichy undergraduate students, post-graduate scholars, doctoral researchers, faculty members, and verified alumni are eligible to submit ideas, register research projects, or apply for prototyping facilities. External founders can engage through industry challenge submissions, mentor registrations, or joint corporate R&D partnerships.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Does submitting an idea to FIRE compromise my intellectual property?</span>
+              <div class="faq-toggle-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>
+                No. Submitting an intake form does not grant NIT Trichy or any reviewer ownership of your intellectual property. Our intake form explicitly advises you not to disclose unreleased proprietary trade secrets or sensitive algorithms. Once your submission is processed, the NITT IPR Cell provides confidential guidance on filing provisional patents before any public showcase or external investor pitching.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What kind of financial assistance or grants does FIRE provide?</span>
+              <div class="faq-toggle-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>
+                FIRE coordinates access to multiple non-dilutive grant mechanisms. For early-stage validation, the NITT Director's Discretionary Fund provides micro-grants up to ₹2 Lakhs. For prototype development, students and faculty can be routed into DST-NIDHI Prayas (up to ₹10 Lakhs). Incorporated ventures can be considered for Startup India Seed Fund Scheme (SISFS) grants and convertible debt up to ₹50 Lakhs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How long does the review process take once I submit my idea?</span>
+              <div class="faq-toggle-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Initial intake screening takes between 3 to 5 working days. You will receive an automated Request ID immediately upon submission. Within 5 working days, a domain coordinator will contact you via your NITT institutional email to schedule an initial 15-minute diagnostic call or invite your team to an upcoming Idea Clinic session.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: var(--sp-10);">
+          <p class="text-muted text-small" style="margin-bottom: var(--sp-4);">
+            Have a question that is not answered here? Reach out directly to the operations desk.
+          </p>
+          <a href="../../pages/about/index.html#contact" class="btn btn-outline btn-sm">Contact Support Desk →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Card -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="card card-glass" style="padding: var(--sp-10); text-align: center; position: relative; overflow: hidden; border-color: var(--c-border-accent);">
+          <div style="position: relative; z-index: 1; max-width: 640px; margin: 0 auto;">
+            <div class="hero-badge" style="margin-bottom: var(--sp-3);">Take the First Step Today</div>
+            <h2 class="heading-2" style="margin-bottom: var(--sp-3);">
+              Ready to Turn Your Innovation Into Reality?
+            </h2>
+            <p class="text-muted" style="margin-bottom: var(--sp-6);">
+              Join hundreds of NITT innovators building deep-tech prototypes, sustainable solutions, and high-impact ventures.
+            </p>
+            <div style="display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap;">
+              <a href="idea.html" class="btn btn-primary btn-lg">Submit Your Idea Form →</a>
+              <a href="which-path.html" class="btn btn-secondary btn-lg">Find Your Route</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize components with depth 2
+    Components.init(2);
+
+    // Accordion interaction
+    document.querySelectorAll('.faq-question').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        
+        // Close others for clean accordion behavior
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

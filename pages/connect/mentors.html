@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Mentor — FIRE | NIT Trichy</title>
+  <meta name="description" content="Connect with vetted NITT alumni founders, domain leaders, venture capitalists, and intellectual property strategists for 1:1 guidance and pitch reviews.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <section class="hero" style="min-height:55vh;padding:var(--sp-20) 0 var(--sp-10);">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-1" style="opacity:0.12;"></div>
+        <div class="hero-orb hero-orb-2" style="opacity:0.1;"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container hero-content">
+        <div class="breadcrumb" style="margin-bottom:var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Connect</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Find a Mentor</span>
+        </div>
+
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Expert Mentorship & Advisory</span>
+        </div>
+
+        <h1 class="hero-title" style="max-width:850px;font-size:clamp(2.2rem, 5vw, 3.8rem);">
+          Learn from Founders Who Have <span class="text-gradient">Been There</span>
+        </h1>
+        <p class="hero-desc" style="max-width:680px;font-size:var(--fs-md);">
+          Connect 1:1 with vetted NIT Trichy alumni founders, angel investors, IP counsels, and corporate technology leaders. Get structured feedback on your business model, pitch deck, or engineering architecture.
+        </p>
+
+        <!-- Quick Info Badges -->
+        <div style="display:flex;gap:var(--sp-6);flex-wrap:wrap;margin-top:var(--sp-2);color:var(--c-text-secondary);font-size:var(--fs-sm);">
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">✓</span> 100% Free for NITT Students & Faculty
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">✓</span> Verified Alumni & Industry Credentials
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">✓</span> Guaranteed 5-Day SLA on Requests
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentors Directory Section -->
+    <section class="section" style="background:var(--c-bg-surface);padding-top:var(--sp-12);">
+      <div class="container">
+        <!-- Search and Filters Bar -->
+        <div class="filter-bar" style="justify-content:space-between;gap:var(--sp-4);background:var(--c-bg-card);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-xl);border:1px solid var(--c-border);margin-bottom:var(--sp-8);">
+          <!-- Search input -->
+          <div class="search-bar" style="max-width:380px;">
+            <span style="color:var(--c-text-muted);">🔍</span>
+            <input type="text" id="mentorSearchInput" placeholder="Search by name, company, skill, domain…" autocomplete="off">
+          </div>
+
+          <!-- Controls: Pills + Availability Toggle -->
+          <div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;">
+            <div class="filter-pills" id="mentorFilterPills">
+              <button class="filter-pill active" data-mentor-domain="all">All Domains</button>
+              <button class="filter-pill" data-mentor-domain="AgriTech">AgriTech</button>
+              <button class="filter-pill" data-mentor-domain="Deep Tech">Deep Tech</button>
+              <button class="filter-pill" data-mentor-domain="SaaS">SaaS</button>
+              <button class="filter-pill" data-mentor-domain="Manufacturing">Manufacturing</button>
+              <button class="filter-pill" data-mentor-domain="HealthTech">HealthTech</button>
+              <button class="filter-pill" data-mentor-domain="IP Law">IP Law</button>
+            </div>
+
+            <!-- Availability Toggle -->
+            <label style="display:inline-flex;align-items:center;gap:var(--sp-2);cursor:pointer;font-size:var(--fs-xs);color:var(--c-text-secondary);background:var(--c-bg-elevated);padding:6px 14px;border-radius:var(--radius-full);border:1px solid var(--c-border);user-select:none;">
+              <input type="checkbox" id="availabilityToggle" style="accent-color:var(--c-accent);cursor:pointer;">
+              <span>Available Now Only</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mentors Count and Status Note -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-6);">
+          <span id="mentorCountLabel" style="font-size:var(--fs-sm);color:var(--c-text-muted);">Showing 6 verified mentors</span>
+          <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-success);"></span>
+            Green badge indicates active slots this month
+          </span>
+        </div>
+
+        <!-- Mentors Grid -->
+        <div class="grid-3" id="mentorsGrid" style="gap:var(--sp-6);">
+          <!-- Cards populated dynamically via JavaScript from FIRE_DATA.mentors -->
+        </div>
+
+        <!-- Empty State (hidden by default) -->
+        <div id="mentorEmptyState" class="empty-state" style="display:none;padding:var(--sp-16) 0;">
+          <div class="empty-state-icon">🧑‍🏫</div>
+          <h3 class="empty-state-title">No matching mentors found</h3>
+          <p class="empty-state-desc">Try clearing filters or adjusting your search keywords to find other mentors in our network.</p>
+          <button class="btn btn-secondary btn-sm" id="resetMentorFiltersBtn">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- "Are You an Alumnus?" CTA Banner -->
+    <section class="section" style="background:var(--c-bg);">
+      <div class="container">
+        <div class="card card-glass" style="padding:var(--sp-12);border-radius:var(--radius-xl);background:linear-gradient(135deg, rgba(15,25,46,0.95), rgba(17,30,51,0.9));border:1px solid var(--c-border-accent);position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-50px;top:-50px;width:300px;height:300px;background:radial-gradient(circle, rgba(0,198,162,0.15), transparent 70%);border-radius:50%;pointer-events:none;"></div>
+          
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--sp-8);flex-wrap:wrap;position:relative;z-index:1;">
+            <div style="max-width:680px;">
+              <div class="hero-badge" style="margin-bottom:var(--sp-3);">
+                <span>Alumni & Expert Community</span>
+              </div>
+              <h2 class="heading-2" style="margin-bottom:var(--sp-3);">
+                Are You an <span class="text-gradient">Alumnus</span> or Industry Leader?
+              </h2>
+              <p style="color:var(--c-text-secondary);font-size:var(--fs-base);line-height:var(--lh-relaxed);">
+                Give back to the next generation of NIT Trichy entrepreneurs. Join the FIRE Mentor Network to host 1:1 advisory office hours, evaluate pitch days, or help patent breakthrough student innovations.
+              </p>
+              <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-4);flex-wrap:wrap;font-size:var(--fs-sm);color:var(--c-text-muted);">
+                <span>🕒 Flexible commitment (1–2 hrs/month)</span>
+                <span>•</span>
+                <span>🌐 100% Remote sessions</span>
+                <span>•</span>
+                <span>🤝 Official NITT Recognition</span>
+              </div>
+            </div>
+
+            <div style="flex-shrink:0;">
+              <button class="btn btn-primary btn-lg" data-modal-open="registerMentorModal">
+                Register as a Mentor →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Mentorship Request Modal -->
+  <div class="modal-overlay" id="requestMentorModal">
+    <div class="modal" style="max-width:620px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4" id="modalMentorTitle">Request Mentorship Session</h3>
+          <p style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">Your request will be routed directly to the mentor via FIRE Operations.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="mentorRequestForm" data-validate>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-4);">
+          <!-- Selected Mentor Badge Box -->
+          <div style="background:var(--c-bg-card);padding:var(--sp-4);border-radius:var(--radius-md);border:1px solid var(--c-border);display:flex;align-items:center;gap:var(--sp-3);">
+            <div class="avatar" id="modalMentorAvatar" style="background:var(--grad-accent);">VN</div>
+            <div>
+              <div style="font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--c-text-primary);" id="modalMentorName">Vikram Nair</div>
+              <div style="font-size:var(--fs-xs);color:var(--c-accent);" id="modalMentorRole">Founder & CEO · AgriSense Technologies</div>
+            </div>
+            <input type="hidden" id="modalMentorIdInput" name="mentorId" value="M001">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqStudentName">Your Full Name <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="reqStudentName" class="form-input" placeholder="e.g. Aravind Selvam" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqStudentRoll">Roll Number / Dept <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="reqStudentRoll" class="form-input" placeholder="e.g. 106121025 / CSE" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqStudentEmail">NITT / Official Email <span style="color:var(--c-error)">*</span></label>
+              <input type="email" id="reqStudentEmail" class="form-input" placeholder="student@nitt.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqStudentPhone">Phone Number <span style="color:var(--c-error)">*</span></label>
+              <input type="tel" id="reqStudentPhone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reqProjectTitle">Project / Venture Name <span style="color:var(--c-error)">*</span></label>
+            <input type="text" id="reqProjectTitle" class="form-input" placeholder="e.g. Smart AgriSense IoT" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reqProjectStage">Project Stage <span style="color:var(--c-error)">*</span></label>
+              <select id="reqProjectStage" class="form-select" required>
+                <option value="Idea">Early Idea / Problem Framing</option>
+                <option value="Prototype" selected>Working Prototype / Lab Model</option>
+                <option value="Validation">Field Testing & Validation</option>
+                <option value="Pilot">Pilot Deployment / Early Venture</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reqEngagementMode">Desired Session Type <span style="color:var(--c-error)">*</span></label>
+              <select id="reqEngagementMode" class="form-select" required>
+                <option value="1:1 Mentoring">1:1 Mentoring (45 Mins)</option>
+                <option value="Pitch Review">Pitch Deck & Business Model Review</option>
+                <option value="Technical Review">Technical Architecture Audit</option>
+                <option value="IP Guidance">IP & Patent Strategy Guidance</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reqGuidanceNotes">Specific Questions or Problem Statement <span style="color:var(--c-error)">*</span></label>
+            <textarea id="reqGuidanceNotes" class="form-textarea" placeholder="Describe the specific roadblock you need advice on (e.g. sensor calibration in wet soil, pricing model for B2B farmers)..." style="min-height:90px;" required></textarea>
+            <span class="form-hint">Be specific so the mentor can prepare targeted feedback.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reqPitchDeckLink">Pitch Deck / Project Doc Link (Optional)</label>
+            <input type="url" id="reqPitchDeckLink" class="form-input" placeholder="Google Drive, Notion or GitHub URL">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Mentorship Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Register as a Mentor Modal -->
+  <div class="modal-overlay" id="registerMentorModal">
+    <div class="modal" style="max-width:620px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4">Join the FIRE Mentor Network</h3>
+          <p style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">Share your wisdom with aspiring NIT Trichy founders and student researchers.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="mentorRegistrationForm" data-validate>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-4);">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="regMentorName">Full Name <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="regMentorName" class="form-input" placeholder="e.g. Deepa Shanmugam" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="regMentorEmail">Work / Primary Email <span style="color:var(--c-error)">*</span></label>
+              <input type="email" id="regMentorEmail" class="form-input" placeholder="deepa@stellarisvp.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="regMentorBatch">NITT Batch & Dept (or 'External') <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="regMentorBatch" class="form-input" placeholder="e.g. 2012 B.Tech CSE" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="regMentorPhone">Phone / WhatsApp <span style="color:var(--c-error)">*</span></label>
+              <input type="tel" id="regMentorPhone" class="form-input" placeholder="+91 98400 12345" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="regMentorDesignation">Current Role / Designation <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="regMentorDesignation" class="form-input" placeholder="Partner / Co-founder / VP Engg" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="regMentorOrg">Company / Organisation <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="regMentorOrg" class="form-input" placeholder="e.g. Stellaris Venture Partners" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regMentorLinkedIn">LinkedIn Profile URL <span style="color:var(--c-error)">*</span></label>
+            <input type="url" id="regMentorLinkedIn" class="form-input" placeholder="https://linkedin.com/in/username" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regMentorDomains">Primary Domains & Expertise <span style="color:var(--c-error)">*</span></label>
+            <input type="text" id="regMentorDomains" class="form-input" placeholder="e.g. Deep Tech, SaaS, EV, Seed Investment, IP Law" required>
+            <span class="form-hint">Separate multiple keywords with commas.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Willingness to Engage in</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);margin-top:var(--sp-1);">
+              <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                <input type="checkbox" checked style="accent-color:var(--c-accent);"> 1:1 Online Mentoring
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                <input type="checkbox" checked style="accent-color:var(--c-accent);"> Pitch Deck Review
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                <input type="checkbox" style="accent-color:var(--c-accent);"> Campus Masterclasses
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                <input type="checkbox" style="accent-color:var(--c-accent);"> Angel Co-Investment
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    // Mentor Directory Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const mentors = window.FIRE_DATA?.mentors || [];
+      const grid = document.getElementById('mentorsGrid');
+      const countLabel = document.getElementById('mentorCountLabel');
+      const searchInput = document.getElementById('mentorSearchInput');
+      const domainPills = document.querySelectorAll('[data-mentor-domain]');
+      const availToggle = document.getElementById('availabilityToggle');
+      const emptyState = document.getElementById('mentorEmptyState');
+      const resetBtn = document.getElementById('resetMentorFiltersBtn');
+
+      let currentDomain = 'all';
+      let availableOnly = false;
+      let searchQuery = '';
+
+      function getInitials(name) {
+        return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      }
+
+      function renderMentors() {
+        const filtered = mentors.filter(m => {
+          // Domain filter
+          if (currentDomain !== 'all') {
+            const hasDomain = m.domains.some(d => d.toLowerCase().includes(currentDomain.toLowerCase()));
+            if (!hasDomain) return false;
+          }
+          // Availability toggle
+          if (availableOnly && !m.available) return false;
+
+          // Search query
+          if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            const matchName = m.name.toLowerCase().includes(q);
+            const matchRole = m.role.toLowerCase().includes(q);
+            const matchComp = m.company.toLowerCase().includes(q);
+            const matchBatch = m.batch.toLowerCase().includes(q);
+            const matchDomain = m.domains.some(d => d.toLowerCase().includes(q));
+            const matchExpertise = m.expertise.some(e => e.toLowerCase().includes(q));
+            if (!matchName && !matchRole && !matchComp && !matchBatch && !matchDomain && !matchExpertise) {
+              return false;
+            }
+          }
+          return true;
+        });
+
+        countLabel.textContent = `Showing ${filtered.length} verified mentor${filtered.length === 1 ? '' : 's'}`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '';
+          emptyState.style.display = 'flex';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        grid.innerHTML = filtered.map(m => `
+          <div class="card mentor-card" data-mentor-id="${m.id}" data-searchable style="display:flex;flex-direction:column;gap:var(--sp-4);">
+            <div class="mentor-card-head">
+              <div class="avatar avatar-lg" style="background:var(--grad-accent);">${getInitials(m.name)}</div>
+              <div class="mentor-card-info">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--sp-2);">
+                  <div class="mentor-card-name">${m.name}</div>
+                  ${m.available ? '<span class="badge badge-active">Available</span>' : '<span class="badge badge-closed">Waitlist</span>'}
+                </div>
+                <div class="mentor-card-role" style="font-weight:var(--fw-medium);">${m.role}</div>
+                <div class="mentor-card-company">${m.company}</div>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">🎓 ${m.batch}</div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);color:var(--c-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--sp-2);">
+                Focus Domains
+              </div>
+              <div class="mentor-card-tags">
+                ${m.domains.map(d => `<span class="tag tag-active" style="font-size:11px;padding:2px 8px;">${d}</span>`).join('')}
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);color:var(--c-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--sp-2);">
+                Core Expertise
+              </div>
+              <div class="mentor-card-tags">
+                ${m.expertise.map(e => `<span class="tag" style="font-size:11px;padding:2px 8px;">${e}</span>`).join('')}
+              </div>
+            </div>
+
+            <div style="margin-top:auto;padding-top:var(--sp-3);border-top:1px solid var(--c-border);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);">
+              <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                ${m.engagement.join(' · ')}
+              </div>
+              <button class="btn ${m.available ? 'btn-primary' : 'btn-outline'} btn-sm" onclick="openMentorshipModal('${m.id}')">
+                ${m.available ? 'Request Mentorship' : 'Join Waitlist'}
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Initial render
+      renderMentors();
+
+      // Search Handler
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        renderMentors();
+      });
+
+      // Domain Filter Pills
+      domainPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          domainPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentDomain = pill.dataset.mentorDomain;
+          renderMentors();
+        });
+      });
+
+      // Availability Toggle
+      availToggle.addEventListener('change', (e) => {
+        availableOnly = e.target.checked;
+        renderMentors();
+      });
+
+      // Reset Button
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        currentDomain = 'all';
+        domainPills.forEach(p => p.classList.toggle('active', p.dataset.mentorDomain === 'all'));
+        availToggle.checked = false;
+        availableOnly = false;
+        renderMentors();
+      });
+
+      // Handle Request Form Submission
+      const reqForm = document.getElementById('mentorRequestForm');
+      reqForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const student = document.getElementById('reqStudentName').value;
+        const mentorName = document.getElementById('modalMentorName').textContent;
+        const modal = document.getElementById('requestMentorModal');
+        modal.classList.remove('open');
+        reqForm.reset();
+        showToast(`Mentorship request submitted to ${mentorName} for ${student}. Ref: #MR-${Math.floor(1000 + Math.random() * 9000)}.`, 'success');
+      });
+
+      // Handle Registration Form Submission
+      const regForm = document.getElementById('mentorRegistrationForm');
+      regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('regMentorName').value;
+        const modal = document.getElementById('registerMentorModal');
+        modal.classList.remove('open');
+        regForm.reset();
+        showToast(`Thank you, ${name}! Your mentor registration has been submitted for FIRE verification.`, 'success');
+      });
+    });
+
+    // Modal Opener Helper
+    function openMentorshipModal(mentorId) {
+      const mentors = window.FIRE_DATA?.mentors || [];
+      const m = mentors.find(item => item.id === mentorId);
+      if (!m) return;
+
+      document.getElementById('modalMentorAvatar').textContent = m.name.split(' ').map(n=>n[0]).join('').substring(0,2);
+      document.getElementById('modalMentorName').textContent = m.name;
+      document.getElementById('modalMentorRole').textContent = `${m.role} · ${m.company}`;
+      document.getElementById('modalMentorIdInput').value = m.id;
+      document.getElementById('modalMentorTitle').textContent = m.available ? `Request Mentorship with ${m.name}` : `Join Mentorship Waitlist for ${m.name}`;
+
+      const modal = document.getElementById('requestMentorModal');
+      if (modal) modal.classList.add('open');
+    }
+  </script>
+</body>
+</html>

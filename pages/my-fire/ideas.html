@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Submitted Ideas — FIRE | NIT Trichy</title>
+  <meta name="description" content="Manage and track your submitted innovations, concept drafts, evaluation committee reviews, and next venture steps at NIT Trichy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="sidebar-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <!-- User Mini Profile -->
+        <div style="padding: 0 var(--sp-4) var(--sp-6);">
+          <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg);">
+            <div class="avatar" style="background:var(--grad-accent); color:#070D1B; font-weight:700; font-size:var(--fs-sm); width:38px; height:38px;">AS</div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Aravind Selvam</div>
+              <div style="font-size:var(--fs-xs); color:var(--c-accent); font-weight:500;">B.Tech CSE (Year IV)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label">My Workspace</div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="sidebar-link">
+            <span>📊</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="ideas.html" class="sidebar-link active">
+            <span>💡</span>
+            <span>My Ideas</span>
+            <span class="badge badge-idea" style="margin-left:auto; font-size:10px; padding:1px 7px;">2</span>
+          </a>
+          <a href="applications.html" class="sidebar-link">
+            <span>📋</span>
+            <span>My Applications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;">3</span>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <span>🚀</span>
+            <span>My Projects</span>
+            <span class="badge badge-active" style="margin-left:auto; font-size:10px; padding:1px 7px;">1</span>
+          </a>
+          <a href="connections.html" class="sidebar-link">
+            <span>🤝</span>
+            <span>My Connections</span>
+            <span class="badge badge-pilot" style="margin-left:auto; font-size:10px; padding:1px 7px;">4</span>
+          </a>
+          <a href="index.html#tasks-section" class="sidebar-link">
+            <span>✅</span>
+            <span>My Tasks</span>
+            <span class="badge badge-closed" style="margin-left:auto; font-size:10px; padding:1px 7px;">4</span>
+          </a>
+          <a href="notifications.html" class="sidebar-link">
+            <span>🔔</span>
+            <span>Notifications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;">3</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-section-label" style="margin-top:var(--sp-6);">Resources & Tools</div>
+        <nav class="sidebar-nav">
+          <a href="../../pages/start-here/idea.html" class="sidebar-link">
+            <span>✨</span>
+            <span>Submit New Idea</span>
+          </a>
+          <a href="../../pages/resources/facilities.html" class="sidebar-link">
+            <span>🔧</span>
+            <span>Facility Booking</span>
+          </a>
+          <a href="../../pages/resources/funding.html" class="sidebar-link">
+            <span>💰</span>
+            <span>Funding Finder</span>
+          </a>
+          <a href="../../pages/about/index.html#contact" class="sidebar-link">
+            <span>❓</span>
+            <span>Help & Support</span>
+          </a>
+        </nav>
+
+        <!-- Process Guide Tip -->
+        <div style="padding:var(--sp-6) var(--sp-4) var(--sp-2); margin-top:auto;">
+          <div style="padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+            <div style="display:flex; align-items:center; gap:var(--sp-2); color:var(--c-accent); font-weight:600; font-size:var(--fs-xs); margin-bottom:var(--sp-2);">
+              <span>💡</span> Idea Evaluation Process
+            </div>
+            <p style="font-size:11px; color:var(--c-text-muted); line-height:1.5; margin:0;">
+              Ideas take 3–5 working days for initial review before routing to domain faculty or SCIEnT lab incubation.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="sidebar-main">
+        <!-- Page Header -->
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-4); margin-bottom:var(--sp-8);">
+          <div>
+            <div class="section-label" style="margin-bottom:var(--sp-2);">Venture Pipeline</div>
+            <h1 class="heading-2" style="margin:0;">My Submitted <span class="text-gradient">Ideas</span></h1>
+            <p style="color:var(--c-text-secondary); font-size:var(--fs-sm); max-width:640px; margin-top:var(--sp-2); line-height:var(--lh-relaxed);">
+              Track the assessment status of your proposals, view committee remarks, connect required campus facilities, or convert concepts into active projects.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3); align-items:center;">
+            <button class="btn btn-primary" data-modal-open="submitIdeaModal">
+              <span>+</span>
+              <span>Submit New Idea</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Bar & Search -->
+        <div class="card card-body-sm" style="margin-bottom:var(--sp-6); background:var(--c-bg-surface);">
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-4);">
+            <div class="filter-pills" id="ideaFilterPills">
+              <button class="filter-pill active" data-filter="all">All Ideas (2)</button>
+              <button class="filter-pill" data-filter="active">Under Review (1)</button>
+              <button class="filter-pill" data-filter="draft">Drafts (1)</button>
+              <button class="filter-pill" data-filter="archived">Archived (0)</button>
+            </div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">
+              Showing 2 of 2 proposals
+            </div>
+          </div>
+        </div>
+
+        <!-- Ideas List Grid -->
+        <div id="ideasContainer" style="display:flex; flex-direction:column; gap:var(--sp-6);">
+          <!-- Idea 1: Active Under Review -->
+          <div class="card" data-category="active" style="border-left:4px solid var(--c-accent); position:relative; overflow:hidden;">
+            <div class="card-body">
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3); margin-bottom:var(--sp-4);">
+                <div>
+                  <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-2); flex-wrap:wrap;">
+                    <span style="font-family:var(--font-mono); font-size:var(--fs-xs); font-weight:700; color:var(--c-accent); background:var(--c-accent-dim); padding:2px 8px; border-radius:var(--radius-sm); border:1px solid var(--c-border-accent);">
+                      FIRE-2024
+                    </span>
+                    <span class="badge badge-prototype">Prototype Stage</span>
+                    <span class="badge badge-pending"><span class="badge-dot"></span> Under Review</span>
+                  </div>
+                  <h2 class="heading-4" style="margin:0; color:var(--c-text-primary);">IoT Water Quality Analyzer for Campus Tanks</h2>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Submitted: <strong style="color:var(--c-text-secondary);">Oct 12, 2026</strong></div>
+                  <div style="font-size:11px; color:var(--c-accent); margin-top:2px;">Last updated 2 days ago</div>
+                </div>
+              </div>
+
+              <p style="color:var(--c-text-secondary); font-size:var(--fs-sm); line-height:var(--lh-relaxed); margin-bottom:var(--sp-4);">
+                Automated continuous measurement station measuring Turbidity, pH, Electrical Conductivity, and Total Dissolved Solids in hostel overhead water distribution tanks. Features low-power cellular telemetry and automated cloud alerts when safety thresholds are breached.
+              </p>
+
+              <!-- Meta Info Grid -->
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:var(--sp-4); padding:var(--sp-4); background:var(--c-bg-elevated); border-radius:var(--radius-md); border:1px solid var(--c-border); margin-bottom:var(--sp-5);">
+                <div>
+                  <div style="font-size:11px; text-transform:uppercase; color:var(--c-text-muted); font-weight:600; letter-spacing:0.05em;">Domain</div>
+                  <div style="font-size:var(--fs-sm); color:var(--c-text-primary); font-weight:500; margin-top:2px;">CleanTech / Water / IoT</div>
+                </div>
+                <div>
+                  <div style="font-size:11px; text-transform:uppercase; color:var(--c-text-muted); font-weight:600; letter-spacing:0.05em;">Faculty Reviewer</div>
+                  <div style="font-size:var(--fs-sm); color:var(--c-text-primary); font-weight:500; margin-top:2px;">Dr. Rajesh Kumar (Civil Engg)</div>
+                </div>
+                <div>
+                  <div style="font-size:11px; text-transform:uppercase; color:var(--c-text-muted); font-weight:600; letter-spacing:0.05em;">Recommended Path</div>
+                  <div style="font-size:var(--fs-sm); color:var(--c-accent); font-weight:600; margin-top:2px;">SCIEnT Lab Prototyping</div>
+                </div>
+                <div>
+                  <div style="font-size:11px; text-transform:uppercase; color:var(--c-text-muted); font-weight:600; letter-spacing:0.05em;">Target Grant</div>
+                  <div style="font-size:var(--fs-sm); color:var(--c-text-primary); font-weight:500; margin-top:2px;">NIDHI Prayas (₹10 Lakhs)</div>
+                </div>
+              </div>
+
+              <!-- Idea Tags & Actions -->
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3);">
+                <div style="display:flex; gap:var(--sp-2); flex-wrap:wrap;">
+                  <span class="tag">Embedded C++</span>
+                  <span class="tag">ESP32</span>
+                  <span class="tag">Electrochemical Sensors</span>
+                  <span class="tag">MQTT Protocol</span>
+                </div>
+                <div style="display:flex; gap:var(--sp-2);">
+                  <button class="btn btn-secondary btn-sm" data-modal-open="modalIdea1">
+                    <span>🔍</span>
+                    <span>View Full Details</span>
+                  </button>
+                  <a href="../../pages/resources/facilities.html" class="btn btn-outline btn-sm">
+                    <span>🔧</span>
+                    <span>Request Lab Access</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Idea 2: Draft -->
+          <div class="card" data-category="draft" style="border-left:4px solid var(--c-border); position:relative; overflow:hidden;">
+            <div class="card-body">
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3); margin-bottom:var(--sp-4);">
+                <div>
+                  <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-2); flex-wrap:wrap;">
+                    <span style="font-family:var(--font-mono); font-size:var(--fs-xs); font-weight:700; color:var(--c-text-muted); background:var(--c-bg-elevated); padding:2px 8px; border-radius:var(--radius-sm); border:1px solid var(--c-border);">
+                      FIRE-2038
+                    </span>
+                    <span class="badge badge-idea">Concept / Draft</span>
+                    <span class="badge badge-closed">Draft Saved</span>
+                  </div>
+                  <h2 class="heading-4" style="margin:0; color:var(--c-text-primary);">Autonomous Solar-Powered Grass Trimmer for Campus Lawns</h2>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Last Edited: <strong style="color:var(--c-text-secondary);">Oct 21, 2026</strong></div>
+                  <div style="font-size:11px; color:var(--c-warning); margin-top:2px;">60% completed</div>
+                </div>
+              </div>
+
+              <p style="color:var(--c-text-secondary); font-size:var(--fs-sm); line-height:var(--lh-relaxed); margin-bottom:var(--sp-4);">
+                Robotic perimeter-guided lawn trimmer featuring rooftop monocrystalline solar charging dock, obstacle collision avoidance with ultrasonic sensors, and automated docking for maintenance of NITT administrative lawns and sports fields.
+              </p>
+
+              <!-- Progress bar -->
+              <div style="margin-bottom:var(--sp-5);">
+                <div style="display:flex; justify-content:space-between; font-size:var(--fs-xs); margin-bottom:6px;">
+                  <span style="color:var(--c-text-muted);">Submission Completeness</span>
+                  <span style="color:var(--c-accent); font-weight:600;">60% Completed</span>
+                </div>
+                <div class="progress-bar" style="height:6px;">
+                  <div class="progress-fill" style="width:60%;"></div>
+                </div>
+                <div style="font-size:11px; color:var(--c-text-muted); margin-top:6px;">
+                  Missing: Team member endorsements, Bill of materials estimate, and IP declaration.
+                </div>
+              </div>
+
+              <!-- Idea Tags & Actions -->
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3);">
+                <div style="display:flex; gap:var(--sp-2); flex-wrap:wrap;">
+                  <span class="tag">Robotics</span>
+                  <span class="tag">Solar Energy</span>
+                  <span class="tag">Arduino / ROS</span>
+                  <span class="tag">Obstacle Avoidance</span>
+                </div>
+                <div style="display:flex; gap:var(--sp-2);">
+                  <button class="btn btn-secondary btn-sm" data-modal-open="modalIdea2">
+                    <span>📄</span>
+                    <span>View Summary</span>
+                  </button>
+                  <button class="btn btn-outline btn-sm" onclick="showToast('Draft opened for editing', 'info')">
+                    <span>✏️</span>
+                    <span>Continue Editing</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty State (Hidden by default, shown when filtering to 'archived' or when no ideas match) -->
+          <div id="emptyIdeasState" class="card empty-state" style="display:none;">
+            <div class="empty-state-icon">💡</div>
+            <div class="empty-state-title">No archived ideas found</div>
+            <div class="empty-state-desc">You do not have any archived or withdrawn idea proposals. All your submissions are currently active or draft.</div>
+            <button class="btn btn-secondary btn-sm" onclick="document.querySelector('[data-filter=\'all\']').click()">
+              Reset Filter
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Modal 1: Full Details for FIRE-2024 -->
+  <div class="modal-overlay" id="modalIdea1">
+    <div class="modal" style="max-width:680px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2);">
+            <span style="font-family:var(--font-mono); font-weight:700; color:var(--c-accent); font-size:var(--fs-xs);">FIRE-2024</span>
+            <span class="badge badge-prototype">Prototype</span>
+            <span class="badge badge-pending">Under Review</span>
+          </div>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">IoT Water Quality Analyzer for Campus Tanks</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-5);">
+        <!-- Status summary callout -->
+        <div class="alert alert-info" style="font-size:var(--fs-xs);">
+          <span>ℹ️</span>
+          <div>
+            <strong>Evaluation in Progress:</strong> Your submission was reviewed by the initial FIRE screening panel on Oct 14. Currently assigned to Dr. Rajesh Kumar (Civil Engg) for lab feasibility review. Expected remarks by Nov 02, 2026.
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Problem Statement</div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed); margin:0;">
+            Hostels and academic complexes at NIT Trichy store treated water in over 45 overhead tanks. Routine physical sampling happens bi-weekly, meaning contamination or filtration failures often go undetected for multiple days.
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Proposed Solution & Technical Architecture</div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed); margin:0;">
+            A solar-backed, non-invasive probe unit installed at tank access ports. Measures pH (±0.1), Turbidity (0-1000 NTU), and TDS in real time. Sends encrypted telemetry over NB-IoT to a campus dashboard; triggers automated SMS alerts to Estate Maintenance if WHO drinking water parameters are exceeded.
+          </p>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Target Users</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-text-primary);">NITT Estate Office, Student Residents, Municipal Water Authorities</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Lead Applicant & Team</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-text-primary);">Aravind Selvam (CSE), Karthick Raja (ECE)</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Requested Facilities</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-text-primary);">SCIEnT Prototyping Lab (PCB Bench, 3D Printer), Environmental Engg Wet Lab</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Recommended Funding Track</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-accent); font-weight:600;">NIDHI Prayas PoC Grant / NITT Director's Fund</div>
+          </div>
+        </div>
+
+        <!-- Evaluation Timeline -->
+        <div>
+          <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:var(--sp-3);">Review History & Next Milestones</div>
+          <div class="steps" style="font-size:var(--fs-xs);">
+            <div class="step completed">
+              <div class="step-circle" style="width:28px; height:28px; font-size:11px;">✓</div>
+              <div class="step-line" style="left:13px; top:28px;"></div>
+              <div class="step-content" style="padding-bottom:var(--sp-3);">
+                <div style="font-weight:600; color:var(--c-text-primary);">Intake Form Submitted</div>
+                <div style="color:var(--c-text-muted);">Oct 12, 2026 · Received unique tracking code FIRE-2024</div>
+              </div>
+            </div>
+            <div class="step completed">
+              <div class="step-circle" style="width:28px; height:28px; font-size:11px;">✓</div>
+              <div class="step-line" style="left:13px; top:28px;"></div>
+              <div class="step-content" style="padding-bottom:var(--sp-3);">
+                <div style="font-weight:600; color:var(--c-text-primary);">Initial Screening & Completeness Check</div>
+                <div style="color:var(--c-text-muted);">Oct 14, 2026 · Passed by FIRE Operational Moderation</div>
+              </div>
+            </div>
+            <div class="step active">
+              <div class="step-circle" style="width:28px; height:28px; font-size:11px;">3</div>
+              <div class="step-line" style="left:13px; top:28px;"></div>
+              <div class="step-content" style="padding-bottom:var(--sp-3);">
+                <div style="font-weight:600; color:var(--c-accent);">Faculty Technical Evaluation</div>
+                <div style="color:var(--c-text-muted);">Assigned to Dr. Rajesh Kumar (Civil Engg) · Under Review</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-circle" style="width:28px; height:28px; font-size:11px;">4</div>
+              <div class="step-content">
+                <div style="font-weight:600; color:var(--c-text-muted);">SCIEnT Lab Allocation & Mentor Match</div>
+                <div style="color:var(--c-text-muted);">Pending committee approval</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <a href="../../pages/resources/facilities.html" class="btn btn-primary btn-sm">Facility Booking Form →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Draft Summary for FIRE-2038 -->
+  <div class="modal-overlay" id="modalIdea2">
+    <div class="modal" style="max-width:620px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2);">
+            <span style="font-family:var(--font-mono); font-weight:700; color:var(--c-text-muted); font-size:var(--fs-xs);">FIRE-2038</span>
+            <span class="badge badge-idea">Draft (60%)</span>
+          </div>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">Autonomous Solar-Powered Grass Trimmer</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div class="alert alert-warning" style="font-size:var(--fs-xs);">
+          <span>⚠️</span>
+          <div>
+            <strong>Draft Pending Completion:</strong> This idea proposal has not been submitted to the review board yet. Please complete the remaining 3 required sections before November 15, 2026.
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:4px;">Concept Summary</div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed); margin:0;">
+            A solar-powered robotic groundskeeper equipped with boundary wire sensors, blade height adjustment mechanism, and solar docking base. Designed to operate silently during early morning hours to maintain campus turf.
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-xs); font-weight:600; text-transform:uppercase; color:var(--c-text-muted); margin-bottom:var(--sp-2);">Checklist for Submission</div>
+          <ul style="font-size:var(--fs-sm); color:var(--c-text-secondary); display:flex; flex-direction:column; gap:var(--sp-2);">
+            <li style="color:var(--c-success);">✓ Problem description & objective defined</li>
+            <li style="color:var(--c-success);">✓ Domain and faculty advisor preference selected (Mechanical / Energy)</li>
+            <li style="color:var(--c-warning);">⏳ Co-applicant student details (Rohan Srinivasan pending confirmation)</li>
+            <li style="color:var(--c-warning);">⏳ Estimated bill of materials (estimated budget ~₹32,000)</li>
+            <li style="color:var(--c-error);">✗ Institutional IP and safety policy declaration unchecked</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Loading proposal editor...', 'info'); setTimeout(()=>document.getElementById('modalIdea2').classList.remove('open'), 500);">
+          Continue Editing Proposal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Submit New Idea Quick Modal -->
+  <div class="modal-overlay" id="submitIdeaModal">
+    <div class="modal" style="max-width:600px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4" style="margin:0;">Submit New Innovation Idea</h3>
+          <p style="font-size:var(--fs-xs); color:var(--c-text-muted); margin-top:2px;">Submit your concept directly to the FIRE coordination cell</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+
+      <form id="quickIdeaForm" style="display:flex; flex-direction:column; gap:var(--sp-4);" class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Idea Title *</label>
+          <input type="text" class="form-input" required placeholder="e.g. AI-Assisted Low Cost Prosthetic Grip" id="newIdeaTitle">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Primary Domain *</label>
+            <select class="form-select" required id="newIdeaDomain">
+              <option value="">Select Domain...</option>
+              <option value="AI / Machine Learning">AI / Machine Learning</option>
+              <option value="CleanTech & Energy">CleanTech & Energy</option>
+              <option value="Robotics & Hardware">Robotics & Hardware</option>
+              <option value="HealthTech & Biomedical">HealthTech & Biomedical</option>
+              <option value="AgriTech">AgriTech</option>
+              <option value="SaaS & Web Dev">SaaS & Web Dev</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Stage *</label>
+            <select class="form-select" required id="newIdeaStage">
+              <option value="Concept / Idea">Concept / Idea</option>
+              <option value="Prototype">Prototype</option>
+              <option value="Lab Testing">Lab Testing</option>
+              <option value="Pilot Ready">Pilot Ready</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Problem Statement *</label>
+          <textarea class="form-textarea" required placeholder="What specific problem does this solve? Who is affected and why is current solution inadequate?" rows="3" id="newIdeaProblem"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Proposed Technical Approach</label>
+          <textarea class="form-textarea" placeholder="Key technologies, hardware/software stack, or methodologies you plan to deploy." rows="2"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Support Needed from FIRE</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-2); font-size:var(--fs-xs);">
+            <label style="display:flex; align-items:center; gap:6px;"><input type="checkbox" checked style="accent-color:var(--c-accent);"> SCIEnT Lab Access</label>
+            <label style="display:flex; align-items:center; gap:6px;"><input type="checkbox" checked style="accent-color:var(--c-accent);"> Faculty Research Mentor</label>
+            <label style="display:flex; align-items:center; gap:6px;"><input type="checkbox" style="accent-color:var(--c-accent);"> Seed Funding / Grants</label>
+            <label style="display:flex; align-items:center; gap:6px;"><input type="checkbox" style="accent-color:var(--c-accent);"> IP & Patent Guidance</label>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="padding:var(--sp-4) 0 0; border-top:1px solid var(--c-border); margin-top:var(--sp-2);">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit to Committee 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize standard template components
+    Components.init(2);
+
+    // Filter pills functionality for Ideas
+    const filterPills = document.querySelectorAll('#ideaFilterPills .filter-pill');
+    const ideaCards = document.querySelectorAll('#ideasContainer [data-category]');
+    const emptyState = document.getElementById('emptyIdeasState');
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+
+        let visibleCount = 0;
+        ideaCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = '';
+            visibleCount++;
+          } else if (card.dataset.category === filter) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.style.display = 'flex';
+        } else {
+          emptyState.style.display = 'none';
+        }
+      });
+    });
+
+    // Quick Idea Form Handler
+    const quickIdeaForm = document.getElementById('quickIdeaForm');
+    if (quickIdeaForm) {
+      quickIdeaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('newIdeaTitle').value;
+        document.getElementById('submitIdeaModal').classList.remove('open');
+        showToast(`Idea "${title}" successfully submitted! Request ID generated: FIRE-2041`, 'success');
+        quickIdeaForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder Journey — From Idea to Venture | FIRE — NIT Trichy</title>
+  <meta name="description" content="Explore the 9-stage innovation framework from initial problem discovery to venture formation and follow-on funding at NIT Trichy FIRE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    /* Specific styles for Founder Journey */
+    .journey-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .journey-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .journey-step {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--sp-3);
+      padding: var(--sp-4) var(--sp-5);
+      transition: all var(--t-normal);
+      cursor: pointer;
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+      position: relative;
+    }
+    .journey-step:hover {
+      border-color: var(--c-border-accent);
+      background: var(--c-bg-elevated);
+      transform: translateX(4px);
+    }
+    .journey-step.active {
+      border-color: var(--c-accent);
+      background: linear-gradient(135deg, rgba(15,25,46,0.95), rgba(12,21,38,0.98));
+      box-shadow: 0 0 24px rgba(0,198,162,0.18);
+    }
+
+    .journey-step-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--c-bg-elevated);
+      border: 2px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: var(--fw-bold);
+      font-size: var(--fs-sm);
+      color: var(--c-text-muted);
+      flex-shrink: 0;
+      transition: all var(--t-fast);
+    }
+    .journey-step.active .journey-step-badge {
+      border-color: var(--c-accent);
+      background: var(--c-accent);
+      color: #070D1B;
+      box-shadow: 0 0 16px var(--c-accent-glow);
+    }
+
+    .journey-step-summary {
+      flex: 1;
+    }
+    .journey-step-name {
+      font-size: var(--fs-base);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-primary);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .journey-step-phase {
+      font-size: var(--fs-xs);
+      color: var(--c-accent);
+      font-weight: var(--fw-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--sp-2);
+    }
+    .journey-step-short {
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-snug);
+    }
+    .journey-step-pill {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-muted);
+      white-space: nowrap;
+    }
+    .journey-step.active .journey-step-pill {
+      border-color: var(--c-border-accent);
+      color: var(--c-accent);
+      background: var(--c-accent-dim);
+    }
+
+    /* Detail Panel Sticky Card */
+    .detail-panel {
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border-accent);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-lg);
+      transition: all var(--t-normal);
+    }
+    .detail-panel-head {
+      border-bottom: 1px solid var(--c-border);
+      padding-bottom: var(--sp-5);
+      margin-bottom: var(--sp-5);
+    }
+    .detail-stage-num {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .detail-stage-title {
+      font-size: var(--fs-2xl);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-primary);
+      margin-bottom: var(--sp-2);
+    }
+    .detail-stage-subtitle {
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+    .detail-section {
+      margin-bottom: var(--sp-4);
+    }
+    .detail-section-title {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .detail-section-body {
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+    .detail-output-box {
+      background: var(--c-accent-dim);
+      border: 1px solid var(--c-border-accent);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4);
+      margin-top: var(--sp-4);
+      margin-bottom: var(--sp-6);
+    }
+    .detail-output-title {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+    .detail-output-desc {
+      font-size: var(--fs-sm);
+      color: var(--c-text-primary);
+      font-weight: var(--fw-medium);
+    }
+
+    /* Key partners tags */
+    .partner-pill-row {
+      display: flex;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+      margin-top: var(--sp-2);
+    }
+    .partner-pill {
+      font-size: var(--fs-xs);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <header class="hero" style="min-height: 55vh; padding-top: var(--sp-20);">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-grid"></div>
+      </div>
+
+      <div class="container hero-content">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Start Here</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Founder Journey</span>
+        </nav>
+
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Institutional Venture Framework
+        </div>
+
+        <h1 class="hero-title" style="max-width: 860px;">
+          Your Journey from <span class="text-gradient">Idea to Venture</span>
+        </h1>
+
+        <p class="hero-desc" style="max-width: 700px;">
+          Building a scalable, defensible venture at NIT Trichy is a structured, milestone-driven journey. Explore all 9 progression stages below to understand what happens at every step, which campus offices coordinate your progress, and the exact deliverables required to advance.
+        </p>
+
+        <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+          <a href="#journeySection" class="btn btn-primary">
+            Explore 9 Stages ↓
+          </a>
+          <a href="idea.html" class="btn btn-secondary">
+            Submit Your Idea (Stage 1) →
+          </a>
+          <a href="which-path.html" class="btn btn-outline">
+            Which Path Is For Me?
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Two-Column Interactive Journey Section -->
+    <main class="section" id="journeySection">
+      <div class="container">
+        
+        <div class="section-header" style="align-items: flex-end;">
+          <div class="section-title-group">
+            <div class="section-label">Interactive Stage Explorer</div>
+            <h2 class="heading-2">The 9 Venture Development <span class="text-gradient">Stages</span></h2>
+            <p class="text-muted" style="max-width: 620px;">
+              Click on any stage on the left to inspect responsible offices, support mechanisms, and milestone exit criteria in the right detail panel.
+            </p>
+          </div>
+          <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">
+            Click a stage to update details
+          </div>
+        </div>
+
+        <div class="journey-layout">
+          
+          <!-- LEFT COLUMN: The 9 Journey Steps -->
+          <div class="journey-steps-list">
+
+            <!-- Step 1 -->
+            <div class="journey-step active" data-step-id="1">
+              <div class="journey-step-badge">01</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Idea Discovery</span>
+                  <span class="journey-step-pill">Phase: Intake</span>
+                </div>
+                <div class="journey-step-phase">Workshops · Hackathons · Faculty Projects</div>
+                <div class="journey-step-short">
+                  Ideation through hackathons, domain workshops, faculty lab research, and published corporate challenges.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-step" data-step-id="2">
+              <div class="journey-step-badge">02</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Initial Assessment</span>
+                  <span class="journey-step-pill">Phase: Triage</span>
+                </div>
+                <div class="journey-step-phase">Intake Screening · Needs Identification</div>
+                <div class="journey-step-short">
+                  Structured 5-step intake review by FIRE operations to identify technical domain, IP risks, and required facilities.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-step" data-step-id="3">
+              <div class="journey-step-badge">03</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Validation</span>
+                  <span class="journey-step-pill">Phase: Research</span>
+                </div>
+                <div class="journey-step-phase">User Research · Customer Interviews · Mentor Sync</div>
+                <div class="journey-step-short">
+                  Rigorous hypothesis testing, stakeholder interviews, and 1:1 mentor advisory to establish problem-market relevance.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-step" data-step-id="4">
+              <div class="journey-step-badge">04</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Team Formation</span>
+                  <span class="journey-step-pill">Phase: Team</span>
+                </div>
+                <div class="journey-step-phase">Talent Matching · Role Delegation · Advisor Onboarding</div>
+                <div class="journey-step-short">
+                  Assembling complementary skill sets across hardware, software, design, and domain expertise.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="journey-step" data-step-id="5">
+              <div class="journey-step-badge">05</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Prototyping & PoC</span>
+                  <span class="journey-step-pill">Phase: Build</span>
+                </div>
+                <div class="journey-step-phase">SCIEnT Labs · Clean Room · HPC Clusters</div>
+                <div class="journey-step-short">
+                  Hands-on engineering, 3D fabrication, electronics assembly, and initial bench testing of working hardware or software.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="journey-step" data-step-id="6">
+              <div class="journey-step-badge">06</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>IP Assessment</span>
+                  <span class="journey-step-pill">Phase: Legal</span>
+                </div>
+                <div class="journey-step-phase">NITT IPR Cell · Prior Art · Provisional Filing</div>
+                <div class="journey-step-short">
+                  Formal referral to the NITT IPR Cell for patentability assessment, freedom-to-operate checks, and non-disclosure strategy.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="journey-step" data-step-id="7">
+              <div class="journey-step-badge">07</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Pilot Deployment</span>
+                  <span class="journey-step-pill">Phase: Test</span>
+                </div>
+                <div class="journey-step-phase">Campus Test Beds · Industry Partners · Municipalities</div>
+                <div class="journey-step-short">
+                  Deploying prototypes in realistic operating environments (campus water systems, factories, partner hospitals).
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="journey-step" data-step-id="8">
+              <div class="journey-step-badge">08</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Incorporation</span>
+                  <span class="journey-step-pill">Phase: Venture</span>
+                </div>
+                <div class="journey-step-phase">Pvt Ltd Formation · Legal Advisory · Bank Onboarding</div>
+                <div class="journey-step-short">
+                  Formal legal company registration, founding equity split agreements, and compliance setups with professional guidance.
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 9 -->
+            <div class="journey-step" data-step-id="9">
+              <div class="journey-step-badge">09</div>
+              <div class="journey-step-summary">
+                <div class="journey-step-name">
+                  <span>Follow-On Support</span>
+                  <span class="journey-step-pill">Phase: Growth</span>
+                </div>
+                <div class="journey-step-phase">Seed Grants · Investor Pitch Days · Scale Strategy</div>
+                <div class="journey-step-short">
+                  Unlocking government grant pipelines (NIDHI, SISFS, TIDE 2.0), corporate pilots, and alumni angel syndicates.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Sticky Detail Panel -->
+          <div class="detail-panel-wrap">
+            <div class="detail-panel" id="detailPanel">
+              <div class="detail-panel-head">
+                <div class="detail-stage-num" id="panelStageNum">
+                  <span>●</span> Stage 01 of 09 · Discovery Phase
+                </div>
+                <h3 class="detail-stage-title" id="panelStageTitle">Idea Discovery</h3>
+                <p class="detail-stage-subtitle" id="panelStageSubtitle">
+                  The initial spark where problems are observed, defined, and structured into workable technical hypotheses.
+                </p>
+              </div>
+
+              <!-- What happens -->
+              <div class="detail-section">
+                <div class="detail-section-title">
+                  <span>🔍</span> What Happens in this Stage
+                </div>
+                <div class="detail-section-body" id="panelWhatHappens">
+                  Innovators discover problems through coursework, faculty lab research, hackathons like SIH, or real-world corporate challenges published on FIRE. Teams attend ideation clinics to transform vague concepts into actionable problem statements.
+                </div>
+              </div>
+
+              <!-- Who helps -->
+              <div class="detail-section">
+                <div class="detail-section-title">
+                  <span>👥</span> Who Helps & Key Partners
+                </div>
+                <div class="detail-section-body" id="panelWhoHelps">
+                  Academic faculty supervisors, student technical clubs (SPIDER, E-Flames), and industry challenge sponsors.
+                </div>
+                <div class="partner-pill-row" id="panelPartnerPills">
+                  <span class="partner-pill">Department Faculty</span>
+                  <span class="partner-pill">Technical Clubs</span>
+                  <span class="partner-pill">Corporate Challenge Sponsors</span>
+                </div>
+              </div>
+
+              <!-- Responsible Office -->
+              <div class="detail-section">
+                <div class="detail-section-title">
+                  <span>🏛️</span> Coordinating Office
+                </div>
+                <div class="detail-section-body" style="font-weight: 600; color: var(--c-text-primary);" id="panelOffice">
+                  FIRE Operations & Academic Departments
+                </div>
+              </div>
+
+              <!-- Output Deliverable Box -->
+              <div class="detail-output-box">
+                <div class="detail-output-title">Expected Deliverable / Exit Milestone</div>
+                <div class="detail-output-desc" id="panelOutputDesc">
+                  Defined Problem Statement Document with market observation and target user persona.
+                </div>
+              </div>
+
+              <!-- Action button -->
+              <div id="panelActionWrap">
+                <a href="idea.html" id="panelActionBtn" class="btn btn-primary" style="width: 100%;">
+                  Submit Your Idea Form →
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Bottom 'Ready to Start?' CTA -->
+    <section class="section" style="background: var(--c-bg-surface);">
+      <div class="container">
+        <div class="card card-glass" style="padding: var(--sp-10); border-color: var(--c-border-accent); position: relative; overflow: hidden;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--sp-8); flex-wrap: wrap;">
+            <div style="max-width: 600px;">
+              <div class="hero-badge" style="margin-bottom: var(--sp-3);">Take Action</div>
+              <h2 class="heading-2" style="margin-bottom: var(--sp-3);">
+                Ready to Start Your <span class="text-gradient">Journey?</span>
+              </h2>
+              <p class="text-muted" style="line-height: var(--lh-relaxed);">
+                You don't need a finished product to begin. Whether you just have a conceptual sketch or an advanced prototype, the FIRE intake connects you directly into the ecosystem.
+              </p>
+            </div>
+            <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+              <a href="idea.html" class="btn btn-primary btn-lg">
+                Submit Your Idea Now →
+              </a>
+              <a href="which-path.html" class="btn btn-secondary btn-lg">
+                Find Your Specific Path 🔀
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize components with depth 2
+    Components.init(2);
+
+    // Rich dataset for all 9 Journey Stages
+    const JOURNEY_STAGES = {
+      1: {
+        num: "Stage 01 of 09 · Discovery Phase",
+        title: "Idea Discovery",
+        subtitle: "The initial spark where problems are observed, defined, and structured into workable technical hypotheses.",
+        whatHappens: "Innovators discover problems through coursework, faculty lab research, hackathons like SIH, or real-world corporate challenges published on FIRE. Teams attend ideation clinics to transform vague concepts into actionable problem statements.",
+        whoHelps: "Academic faculty supervisors, student technical clubs (SPIDER, E-Flames), and industry challenge sponsors.",
+        pills: ["Department Faculty", "Technical Clubs", "Challenge Sponsors"],
+        office: "FIRE Operations & Academic Departments",
+        output: "Defined Problem Statement Document with market observation and target user persona.",
+        actionText: "Submit Your Idea Form →",
+        actionLink: "idea.html",
+        actionClass: "btn-primary"
+      },
+      2: {
+        num: "Stage 02 of 09 · Triage Phase",
+        title: "Initial Assessment",
+        subtitle: "Structured screening to understand domain requirements, safety parameters, and institutional resources.",
+        whatHappens: "FIRE operations team conducts an initial 3-day triage of your intake submission. We evaluate feasibility, verify whether research lab clearance is needed, evaluate preliminary prior art, and invite your team to an intake diagnostic session.",
+        whoHelps: "FIRE domain coordinators, senior faculty advisors, and student technical directors.",
+        pills: ["FIRE Domain Coordinators", "SCIEnT Coordinators", "IPR Associates"],
+        office: "FIRE Operations Desk (PR003)",
+        output: "Recommended Support Route & Custom Innovation Roadmap.",
+        actionText: "Review Intake Process PR003 →",
+        actionLink: "../../pages/resources/processes.html",
+        actionClass: "btn-primary"
+      },
+      3: {
+        num: "Stage 03 of 09 · Research Phase",
+        title: "Validation",
+        subtitle: "Testing core hypotheses through real stakeholder interviews, market sizing, and user research.",
+        whatHappens: "Before writing extensive code or cutting metal, founders test whether the problem is genuine and urgent. Teams use the NITT Design Thinking Studio, conduct surveys with target users (farmers, doctors, factory operators), and review findings with alumni mentors.",
+        whoHelps: "150+ Alumni founders, industry mentors, and domain specialists in MedTech, AgriTech, AI, and CleanTech.",
+        pills: ["Alumni Mentors", "Design Thinking Studio", "Industry Advisors"],
+        office: "FIRE Mentorship Network & SCIEnT",
+        output: "Evidence of Problem-Market Relevance & Customer Validation Dossier.",
+        actionText: "Find an Alumni Mentor →",
+        actionLink: "../../pages/explore/mentors.html",
+        actionClass: "btn-secondary"
+      },
+      4: {
+        num: "Stage 04 of 09 · Team Phase",
+        title: "Team Formation",
+        subtitle: "Building the multidisciplinary dream team necessary to execute hardware, software, and venture design.",
+        whatHappens: "Most breakthroughs require cross-departmental collaboration (e.g. Mechanical + CSE + ECE). FIRE facilitates team matching via club project listings, campus hackathon mixers, and collaborator board postings to fill technical and operational voids.",
+        whoHelps: "E-Cell, technical club presidents, student affairs, and departmental placement cells.",
+        pills: ["SPIDER", "E-Cell", "Technical Club Network"],
+        office: "FIRE Collaborator Matching Desk",
+        output: "Fully Staffed Team with Defined Role Allocations & Commitment Agreement.",
+        actionText: "Browse Collaborators Board →",
+        actionLink: "../../pages/connect/collaborators.html",
+        actionClass: "btn-secondary"
+      },
+      5: {
+        num: "Stage 05 of 09 · Build Phase",
+        title: "Prototyping & PoC",
+        subtitle: "Translating concepts into tangible functional hardware prototypes or deployed software proofs-of-concept.",
+        whatHappens: "Teams receive approved badge access to the SCIEnT Prototyping Lab (3D printers, laser cutters, CNCs, PCB diagnostic benches), the Nanotechnology Clean Room, or the 8x NVIDIA A100 GPU cluster. Material micro-grants help purchase discrete components.",
+        whoHelps: "SCIEnT facility managers, lab superintendents, and faculty principal investigators.",
+        pills: ["SCIEnT Prototyping Lab", "GPU HPC Cluster", "Department Labs"],
+        office: "SCIEnT Office & Dean R&C",
+        output: "Working Physical/Digital Prototype with Validated Technical PoC Data.",
+        actionText: "Explore Facility Directory →",
+        actionLink: "../../pages/resources/facilities.html",
+        actionClass: "btn-primary"
+      },
+      6: {
+        num: "Stage 06 of 09 · Legal Phase",
+        title: "IP Assessment",
+        subtitle: "Safeguarding inventions through formal prior-art searches and institutional patent filing routes.",
+        whatHappens: "Before publishing papers or demonstrating prototypes to external investors, teams consult the NITT IPR Cell. Professional patent analysts evaluate novelty, assess patentability under Indian Patent Law, and assist in drafting provisional patent specifications.",
+        whoHelps: "NITT IPR Cell attorneys, registered patent agents, and Dean R&C research committee.",
+        pills: ["NITT IPR Cell", "Patent Attorneys", "Dean R&C"],
+        office: "NITT Intellectual Property Rights (IPR) Cell",
+        output: "IP Assessment Report & Formal Provisional Patent Filing (where applicable).",
+        actionText: "Read IP & Legal Guidelines →",
+        actionLink: "../../pages/resources/ip-legal.html",
+        actionClass: "btn-secondary"
+      },
+      7: {
+        num: "Stage 07 of 09 · Test Phase",
+        title: "Pilot Deployment",
+        subtitle: "Field testing prototypes under real operational constraints with commercial and municipal partners.",
+        whatHappens: "Prototypes are deployed in controlled test beds — such as testing smart water meters on NITT campus networks, deploying drone surveillance with local authorities, or piloting industrial ML tool-wear models in partner CNC factories.",
+        whoHelps: "NIT Trichy Estate Maintenance, industrial partners (Bharat Forge, TVS, SolarSquare), and municipal boards.",
+        pills: ["Campus Test Bed", "Industry Partners", "Municipal Bodies"],
+        office: "FIRE Industry Relations & Campus Administration",
+        output: "Documented Pilot Performance Report with Field Test Case Studies.",
+        actionText: "Browse Industry Challenges →",
+        actionLink: "../../pages/explore/challenges.html",
+        actionClass: "btn-secondary"
+      },
+      8: {
+        num: "Stage 08 of 09 · Venture Phase",
+        title: "Incorporation",
+        subtitle: "Establishing a formal corporate entity with clear founders' agreements, bylaws, and bank accounts.",
+        whatHappens: "When teams are ready to sign contracts and receive external grants or investment, they incorporate as a Private Limited Company or LLP. FIRE connects founders with empanelled Chartered Accountants, company secretaries, and legal templates.",
+        whoHelps: "Empanelled legal counsel, Chartered Accountants, and startup advisory alumni.",
+        pills: ["Legal Counsel", "CA & Compliance", "Startup Mentors"],
+        office: "FIRE Venture Incorporation Desk",
+        output: "Certificate of Incorporation (MCA), Founder Shareholding Split, & DPIIT Recognition.",
+        actionText: "View Legal Templates →",
+        actionLink: "../../pages/resources/templates.html",
+        actionClass: "btn-outline"
+      },
+      9: {
+        num: "Stage 09 of 09 · Growth Phase",
+        title: "Follow-On Support",
+        subtitle: "Unlocking institutional grants, venture capital syndicates, customer growth, and full incubation.",
+        whatHappens: "Incorporated startups participate in NITT Pitch Days, secure non-dilutive seed grants (DST-NIDHI Prayas ₹10L, SISFS ₹20-50L, TIDE 2.0), recruit campus interns, and enter structured investor networks for angel and seed rounds.",
+        whoHelps: "DPIIT SISFS Committee, venture capital syndicates, angel networks, and serial entrepreneurs.",
+        pills: ["DST-NIDHI", "SISFS Committee", "Angel Syndicates"],
+        office: "Institutional Incubation Board & SISFS Committee",
+        output: "Venture Development Plan, Seed Capital Disbursal, & Co-Working Incubation Desk.",
+        actionText: "Explore Funding Finder →",
+        actionLink: "../../pages/resources/funding.html",
+        actionClass: "btn-primary"
+      }
+    };
+
+    // Stage switching logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const stepElements = document.querySelectorAll('.journey-step');
+      const panelStageNum = document.getElementById('panelStageNum');
+      const panelStageTitle = document.getElementById('panelStageTitle');
+      const panelStageSubtitle = document.getElementById('panelStageSubtitle');
+      const panelWhatHappens = document.getElementById('panelWhatHappens');
+      const panelWhoHelps = document.getElementById('panelWhoHelps');
+      const panelPartnerPills = document.getElementById('panelPartnerPills');
+      const panelOffice = document.getElementById('panelOffice');
+      const panelOutputDesc = document.getElementById('panelOutputDesc');
+      const panelActionBtn = document.getElementById('panelActionBtn');
+
+      function activateStage(stageId) {
+        const data = JOURNEY_STAGES[stageId];
+        if (!data) return;
+
+        // Update active class on steps
+        stepElements.forEach(step => {
+          step.classList.toggle('active', parseInt(step.dataset.stepId) === parseInt(stageId));
+        });
+
+        // Update panel content with animation
+        const panel = document.getElementById('detailPanel');
+        panel.style.opacity = '0.4';
+        panel.style.transform = 'translateY(6px)';
+
+        setTimeout(() => {
+          panelStageNum.innerHTML = `<span>●</span> ${data.num}`;
+          panelStageTitle.textContent = data.title;
+          panelStageSubtitle.textContent = data.subtitle;
+          panelWhatHappens.textContent = data.whatHappens;
+          panelWhoHelps.textContent = data.whoHelps;
+          panelOffice.textContent = data.office;
+          panelOutputDesc.textContent = data.output;
+
+          // Update partner pills
+          panelPartnerPills.innerHTML = data.pills.map(p => `<span class="partner-pill">${p}</span>`).join('');
+
+          // Update action button
+          panelActionBtn.textContent = data.actionText;
+          panelActionBtn.setAttribute('href', data.actionLink);
+          panelActionBtn.className = `btn ${data.actionClass}`;
+          panelActionBtn.style.width = '100%';
+
+          panel.style.opacity = '1';
+          panel.style.transform = 'translateY(0)';
+        }, 120);
+      }
+
+      stepElements.forEach(step => {
+        step.addEventListener('click', () => {
+          const stageId = step.dataset.stepId;
+          activateStage(stageId);
+        });
+      });
+
+      // Initialize with stage 1
+      activateStage(1);
+    });
+  </script>
+</body>
+</html>

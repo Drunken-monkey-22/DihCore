@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Collaborators — FIRE | NIT Trichy</title>
+  <meta name="description" content="Post what your team needs or discover high-impact student projects and labs seeking developers, designers, researchers, and co-founders across NIT Trichy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <section class="hero" style="min-height:55vh;padding:var(--sp-20) 0 var(--sp-10);">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-2" style="opacity:0.12;"></div>
+        <div class="hero-orb hero-orb-3" style="opacity:0.1;"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container hero-content">
+        <div class="breadcrumb" style="margin-bottom:var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Connect</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Find Collaborators</span>
+        </div>
+
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Interdisciplinary Talent Matchmaker</span>
+        </div>
+
+        <h1 class="hero-title" style="max-width:850px;font-size:clamp(2.2rem, 5vw, 3.8rem);">
+          Post What Your Team Needs — <span class="text-gradient">Find the Right Skills</span>
+        </h1>
+        <p class="hero-desc" style="max-width:680px;font-size:var(--fs-md);">
+          No single discipline builds a breakthrough startup alone. Connect engineers with designers, researchers with business strategists, and technical clubs with hungry contributors across all 17 NITT departments.
+        </p>
+
+        <!-- Stats / Metric Summary -->
+        <div style="display:flex;gap:var(--sp-6);flex-wrap:wrap;color:var(--c-text-secondary);font-size:var(--fs-sm);">
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">👥</span> <strong>8 Open Opportunities</strong> across Campus
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">⚡</span> Avg Response: <strong>Within 48 Hours</strong>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);">
+            <span style="color:var(--c-accent);">🛡️</span> Verified Roll Numbers & Department Checks
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Tabs Section -->
+    <section class="section" style="background:var(--c-bg-surface);padding-top:var(--sp-10);" data-tabs-container>
+      <div class="container">
+        <!-- Tab Navigation Bar -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-8);flex-wrap:wrap;gap:var(--sp-4);">
+          <div class="tabs" style="background:var(--c-bg-card);border:1px solid var(--c-border);padding:6px;border-radius:var(--radius-full);">
+            <button class="tab-btn active" data-tab="find-talent" style="padding:var(--sp-2) var(--sp-6);font-size:var(--fs-base);">
+              🔍 Browse Open Needs (Find Talent)
+            </button>
+            <button class="tab-btn" data-tab="post-need" style="padding:var(--sp-2) var(--sp-6);font-size:var(--fs-base);">
+              ➕ Post a Team Need
+            </button>
+          </div>
+
+          <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+            Updated weekly by Technical Clubs & Faculty Labs
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 1: FIND TALENT -->
+        <!-- ============================================== -->
+        <div class="tab-content active" data-tab-content="find-talent">
+          <!-- Filter and Search Bar -->
+          <div class="filter-bar" style="background:var(--c-bg-card);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-xl);border:1px solid var(--c-border);margin-bottom:var(--sp-8);justify-content:space-between;">
+            <!-- Live Search Input -->
+            <div class="search-bar" style="max-width:380px;">
+              <span style="color:var(--c-text-muted);">🔍</span>
+              <input type="text" id="collabSearchInput" placeholder="Search by role, club, skill, keyword…" autocomplete="off">
+            </div>
+
+            <!-- Skills Filter Pills -->
+            <div class="filter-pills" id="skillFilterPills">
+              <button class="filter-pill active" data-skill-filter="all">All Skills</button>
+              <button class="filter-pill" data-skill-filter="Software Dev">Software Dev</button>
+              <button class="filter-pill" data-skill-filter="Hardware/Embedded">Hardware/Embedded</button>
+              <button class="filter-pill" data-skill-filter="Business Dev">Business Dev</button>
+              <button class="filter-pill" data-skill-filter="Design">Design</button>
+              <button class="filter-pill" data-skill-filter="Research">Research</button>
+              <button class="filter-pill" data-skill-filter="Legal/IP">Legal/IP</button>
+              <button class="filter-pill" data-skill-filter="Marketing">Marketing</button>
+              <button class="filter-pill" data-skill-filter="Data Science">Data Science</button>
+            </div>
+          </div>
+
+          <!-- Counter and status -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-6);">
+            <span id="collabCountLabel" style="font-size:var(--fs-sm);color:var(--c-text-muted);">Showing 8 open project collaboration needs</span>
+            <span style="font-size:var(--fs-xs);color:var(--c-accent);">Click "Express Interest" to connect directly with the project lead</span>
+          </div>
+
+          <!-- Collaboration Cards Grid (8 Cards) -->
+          <div class="grid-2" id="collabCardsGrid" style="gap:var(--sp-6);">
+            <!-- Card 1 -->
+            <div class="card project-card" data-collab-id="CL001" data-skills="Software Dev,Design,Data Science" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-active">Active Need</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 6–8 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  SPIDER — Web Dev Club
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  AR Campus Navigation & Wayfinding
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Project Lead: Aravind Selvam (4th Year, CSE)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Building a spatial augmented-reality navigation app for first-year students and symposium visitors across NITT's 800+ acre campus. Seeking Flutter/ARCore developers and a UI/UX designer for 3D campus asset modeling and tactile route guides.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag tag-active">Design</span>
+                  <span class="tag tag-active">Data Science</span>
+                  <span class="tag">Flutter</span>
+                  <span class="tag">ARCore</span>
+                  <span class="tag">Figma</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 SCIEnT Prototyping Lab
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('AR Campus Navigation & Wayfinding', 'SPIDER — Web Dev Club', 'Aravind Selvam')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card project-card" data-collab-id="CL002" data-skills="Hardware/Embedded,Software Dev,Research" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-prototype">Prototype Phase</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 8–10 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  EFlames — Electronics & Robotics Club
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Hyperlocal Air Quality Sensory Mesh
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Project Lead: Karthick Raja (3rd Year, ECE)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Designing an ultra-low-cost particulate matter (PM2.5/PM10) and NO2 sensor cluster deploying across hostel zones. Seeking PCB designers experienced in KiCAD/Altium and embedded C firmware devs for ESP32 mesh networking.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Hardware/Embedded</span>
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag tag-active">Research</span>
+                  <span class="tag">ESP32</span>
+                  <span class="tag">KiCAD</span>
+                  <span class="tag">MQTT</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 ECE Hardware Systems Lab
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Hyperlocal Air Quality Sensory Mesh', 'EFlames — Electronics Club', 'Karthick Raja')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card project-card" data-collab-id="CL003" data-skills="Data Science,Research,Software Dev" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-research">Faculty R&D</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 5–7 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  Dept. of CSE — AI Research Group
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Tamil Legal NLP Document Summariser
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Faculty Lead: Dr. Meenakshi Rajan (Assoc. Prof, CSE)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Fine-tuning open-source LLMs on bilingual judicial filings and High Court judgments in Tamil Nadu. Seeking undergraduate research interns with PyTorch/Transformers familiarity and native Tamil reading ability for dataset curation.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Data Science</span>
+                  <span class="tag tag-active">Research</span>
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag">PyTorch</span>
+                  <span class="tag">LLMs</span>
+                  <span class="tag">Tamil NLP</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 CSE HPC Research Lab
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Tamil Legal NLP Document Summariser', 'Dept of CSE AI Group', 'Dr. Meenakshi Rajan')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card project-card" data-collab-id="CL004" data-skills="Hardware/Embedded,Design,Research" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-pilot">Active Clinical Pilot</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 6–8 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  Biomedical Innovation Lab (Mech + Biotech)
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Low-Cost Myoelectric Bionic Hand
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Faculty Lead: Dr. Suresh Velayutham (Dept. of Mechanical)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Creating an affordable 3D-printed prosthetic forearm powered by surface EMG bio-potential sensors. Seeking SolidWorks CAD designers for compliant underactuated finger mechanisms and DSP engineers for signal filtering.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Hardware/Embedded</span>
+                  <span class="tag tag-active">Design</span>
+                  <span class="tag tag-active">Research</span>
+                  <span class="tag">SolidWorks</span>
+                  <span class="tag">3D Printing</span>
+                  <span class="tag">EMG Signal</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 SCIEnT Prototyping Workshop
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Low-Cost Myoelectric Bionic Hand', 'Biomedical Innovation Lab', 'Dr. Suresh Velayutham')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card project-card" data-collab-id="CL005" data-skills="Hardware/Embedded,Software Dev,Data Science" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-active">AARUUSH Technical Team</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 10–12 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  AARUUSH Robotics Syndicate
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Autonomous Warehouse AGV Swarm
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Project Lead: Rohan Srinivasan (3rd Year, Mech)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Developing semi-autonomous multi-agent mobile robots capable of shelf lifting and collaborative route negotiation without physical line following. Looking for ROS2 engineers, SLAM specialists, and CV developers.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Hardware/Embedded</span>
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag tag-active">Data Science</span>
+                  <span class="tag">ROS2</span>
+                  <span class="tag">OpenCV</span>
+                  <span class="tag">SLAM</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 Production Engg Robotics Bay
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Autonomous Warehouse AGV Swarm', 'AARUUSH Technical Team', 'Rohan Srinivasan')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card project-card" data-collab-id="CL006" data-skills="Business Dev,Marketing,Design,Software Dev" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-idea">E-Cell Venture Lab</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 5–8 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  Entrepreneurship Cell (E-Cell)
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Rural Artisan D2C Marketplace Platform
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Venture Lead: Nithya Priya (4th Year, MBA)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Bridging traditional Tamil Nadu handloom weavers and terracotta craftsmen with corporate gifting and urban customers. Seeking a business development associate for buyer outreach and a Next.js/React fullstack developer.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Business Dev</span>
+                  <span class="tag tag-active">Marketing</span>
+                  <span class="tag tag-active">Design</span>
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">B2B Sales</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 Management Studies Hub
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Rural Artisan D2C Marketplace Platform', 'E-Cell Venture Lab', 'Nithya Priya')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="card project-card" data-collab-id="CL007" data-skills="Research,Hardware/Embedded,Data Science" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-research">DST Supported</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 6–8 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  GreenTech Student Lab · Chemical Engg
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Smart Irrigation Nitrate Sensor & Telemetry
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Project Lead: Divya Menon (3rd Year, Chemical)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Deploying optical spectrophotometric probes to track real-time nitrate percolation in Cauvery delta paddy soils. Looking for students in Chemical/Instrumentation for probe calibration and data analysts for moisture correlation.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Research</span>
+                  <span class="tag tag-active">Hardware/Embedded</span>
+                  <span class="tag tag-active">Data Science</span>
+                  <span class="tag">Electrochemistry</span>
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 Centre for Energy & Environment
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Smart Irrigation Nitrate Sensor & Telemetry', 'GreenTech Student Lab', 'Divya Menon')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="card project-card" data-collab-id="CL008" data-skills="Software Dev,Legal/IP,Business Dev" style="background:var(--c-bg-card);display:flex;flex-direction:column;">
+              <div class="project-card-head" style="align-items:center;">
+                <span class="badge badge-prototype">Research Prototype</span>
+                <span style="font-size:var(--fs-xs);color:var(--c-text-muted);display:flex;align-items:center;gap:4px;">
+                  ⏱️ 5–7 hrs / week
+                </span>
+              </div>
+              <div class="project-card-body" style="padding-top:var(--sp-3);">
+                <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
+                  Web3 & Security Syndicate
+                </div>
+                <h3 class="project-card-title" style="font-size:var(--fs-lg);">
+                  Decentralised IP Registry & Provenance
+                </h3>
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);margin:4px 0 var(--sp-3);">
+                  Lead: Preethi Kannan (3rd Year, CSE)
+                </div>
+                <p class="project-card-desc" style="-webkit-line-clamp:3;">
+                  Creating an immutable cryptographic proof-of-existence system for student research papers, CAD designs, and codebase snapshots prior to public disclosure. Seeking smart contract developers and student IP enthusiasts.
+                </p>
+                <div class="project-card-tags" style="margin-top:var(--sp-4);">
+                  <span class="tag tag-active">Software Dev</span>
+                  <span class="tag tag-active">Legal/IP</span>
+                  <span class="tag tag-active">Business Dev</span>
+                  <span class="tag">Solidity</span>
+                  <span class="tag">IPFS</span>
+                  <span class="tag">IP Strategy</span>
+                </div>
+              </div>
+              <div class="project-card-footer" style="margin-top:auto;">
+                <div style="font-size:var(--fs-xs);color:var(--c-text-muted);">
+                  📍 CSE Distributed Systems Lab
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openInterestModal('Decentralised IP Registry & Provenance', 'Web3 & Security Syndicate', 'Preethi Kannan')">
+                  Express Interest →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty Search State -->
+          <div id="collabEmptyState" class="empty-state" style="display:none;padding:var(--sp-16) 0;">
+            <div class="empty-state-icon">👥</div>
+            <h3 class="empty-state-title">No matching project needs found</h3>
+            <p class="empty-state-desc">Try clearing the skill filter or searching for a different keyword.</p>
+            <button class="btn btn-secondary btn-sm" id="resetCollabFiltersBtn">Reset Filters</button>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: POST A NEED -->
+        <!-- ============================================== -->
+        <div class="tab-content" data-tab-content="post-need">
+          <div class="card card-glass" style="max-width:820px;margin:0 auto;padding:var(--sp-8);border-radius:var(--radius-xl);">
+            <div style="margin-bottom:var(--sp-6);">
+              <h2 class="heading-3" style="color:var(--c-text-primary);">Post a Collaboration Opening</h2>
+              <p class="text-muted" style="margin-top:var(--sp-1);font-size:var(--fs-sm);">
+                Looking for a co-founder, frontend developer, PCB designer, or marketing lead? Submit your opening. Once verified by the FIRE moderation team, it will appear on the public board.
+              </p>
+            </div>
+
+            <form id="postNeedForm" data-validate>
+              <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+                <!-- Row 1: Project Name & Club/Org -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="needProjectName">Project / Venture Name <span style="color:var(--c-error)">*</span></label>
+                    <input type="text" id="needProjectName" class="form-input" placeholder="e.g. EcoBreeze Solar Dryer" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="needOrg">Club / Department / Lab <span style="color:var(--c-error)">*</span></label>
+                    <input type="text" id="needOrg" class="form-input" placeholder="e.g. E-Cell / Dept. of Chemical Engg" required>
+                  </div>
+                </div>
+
+                <!-- Row 2: Lead Name & Roll/Contact -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="needLeadName">Project Lead Full Name <span style="color:var(--c-error)">*</span></label>
+                    <input type="text" id="needLeadName" class="form-input" placeholder="e.g. Karthik Ramasamy" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="needRoll">Lead Roll Number & Year <span style="color:var(--c-error)">*</span></label>
+                    <input type="text" id="needRoll" class="form-input" placeholder="e.g. 108122045 (3rd Year, Mech)" required>
+                  </div>
+                </div>
+
+                <!-- Required Skills Checkboxes -->
+                <div class="form-group">
+                  <label class="form-label">Required Skills & Disciplines (Select all that apply) <span style="color:var(--c-error)">*</span></label>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:var(--sp-2);background:var(--c-bg-elevated);padding:var(--sp-4);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Software Dev" style="accent-color:var(--c-accent);"> Software Dev
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Hardware/Embedded" style="accent-color:var(--c-accent);"> Hardware/Embedded
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Business Dev" style="accent-color:var(--c-accent);"> Business Dev
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Design" style="accent-color:var(--c-accent);"> Design (UI/UX / CAD)
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Research" style="accent-color:var(--c-accent);"> Research / Lab Work
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Legal/IP" style="accent-color:var(--c-accent);"> Legal / IP Support
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Marketing" style="accent-color:var(--c-accent);"> Marketing & Growth
+                    </label>
+                    <label style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--c-text-secondary);cursor:pointer;">
+                      <input type="checkbox" name="skills" value="Data Science" style="accent-color:var(--c-accent);"> Data Science / AI
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Description of Contribution Needed -->
+                <div class="form-group">
+                  <label class="form-label" for="needDesc">Description of Contribution Needed <span style="color:var(--c-error)">*</span></label>
+                  <textarea id="needDesc" class="form-textarea" placeholder="Detail the specific tasks, tools, and technical deliverables expected from the collaborator (e.g. build an ESP32 telemetry board, design user flows in Figma, assist in wet lab soil sample digestion)..." required></textarea>
+                </div>
+
+                <!-- Row 3: Commitment & Contact Preference -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="needCommitment">Expected Commitment per Week <span style="color:var(--c-error)">*</span></label>
+                    <select id="needCommitment" class="form-select" required>
+                      <option value="3–5 hours / week">Light: 3–5 hours / week</option>
+                      <option value="6–8 hours / week" selected>Moderate: 6–8 hours / week</option>
+                      <option value="10–15 hours / week">Intensive: 10–15 hours / week</option>
+                      <option value="Full-time Sprint">Hackathon Sprint / Full-time</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="needContactPref">Preferred Contact Channel <span style="color:var(--c-error)">*</span></label>
+                    <input type="text" id="needContactPref" class="form-input" placeholder="e.g. Email: team@nitt.edu or Discord / WhatsApp" required>
+                  </div>
+                </div>
+
+                <!-- Department / Eligibility Restrictions (optional) -->
+                <div class="form-group">
+                  <label class="form-label" for="needPrereqs">Prerequisites / Target Cohort (Optional)</label>
+                  <input type="text" id="needPrereqs" class="form-input" placeholder="e.g. Open to 2nd & 3rd Year UG students, prior experience with React/C++ preferred">
+                </div>
+
+                <!-- Consent Checkbox -->
+                <div style="background:var(--c-bg-card);padding:var(--sp-4);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+                  <label style="display:flex;align-items:flex-start;gap:var(--sp-3);font-size:var(--fs-xs);color:var(--c-text-secondary);cursor:pointer;line-height:var(--lh-relaxed);">
+                    <input type="checkbox" required style="accent-color:var(--c-accent);margin-top:3px;">
+                    <span>I confirm that this project adheres to NIT Trichy campus safety and academic guidelines. Openings are reviewed by the FIRE student moderation committee before appearing on the public directory.</span>
+                  </label>
+                </div>
+
+                <!-- Form Submit Button -->
+                <div style="display:flex;justify-content:flex-end;gap:var(--sp-4);margin-top:var(--sp-2);">
+                  <button type="reset" class="btn btn-outline">Clear Form</button>
+                  <button type="submit" class="btn btn-primary btn-lg">Submit Collaboration Need →</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Expression of Interest Modal -->
+  <div class="modal-overlay" id="expressInterestModal">
+    <div class="modal" style="max-width:600px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-4">Express Interest in Project</h3>
+          <p style="font-size:var(--fs-xs);color:var(--c-text-muted);margin-top:2px;">Your application will be sent directly to the project team lead.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="interestForm" data-validate>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-4);">
+          <!-- Selected Project Cardlet -->
+          <div style="background:var(--c-bg-card);padding:var(--sp-4);border-radius:var(--radius-md);border:1px solid var(--c-border);display:flex;flex-direction:column;gap:2px;">
+            <div style="font-size:var(--fs-xs);color:var(--c-accent);font-weight:var(--fw-semibold);" id="interestModalClub">SPIDER — Web Dev Club</div>
+            <div style="font-size:var(--fs-base);font-weight:var(--fw-semibold);color:var(--c-text-primary);" id="interestModalProject">AR Campus Navigation & Wayfinding</div>
+            <div style="font-size:var(--fs-xs);color:var(--c-text-muted);" id="interestModalLead">Lead: Aravind Selvam</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="intStudentName">Your Full Name <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="intStudentName" class="form-input" placeholder="e.g. Preethi Kannan" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="intStudentRoll">Roll Number / Dept / Year <span style="color:var(--c-error)">*</span></label>
+              <input type="text" id="intStudentRoll" class="form-input" placeholder="e.g. 106122045 (2nd Year, CSE)" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="intStudentEmail">NITT Email Address <span style="color:var(--c-error)">*</span></label>
+              <input type="email" id="intStudentEmail" class="form-input" placeholder="rollno@nitt.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="intStudentPhone">Phone / WhatsApp <span style="color:var(--c-error)">*</span></label>
+              <input type="tel" id="intStudentPhone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="intRelevantSkills">Your Key Skills & Relevant Tools <span style="color:var(--c-error)">*</span></label>
+            <input type="text" id="intRelevantSkills" class="form-input" placeholder="e.g. Flutter, Dart, Three.js, Blender basics" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="intPortfolio">GitHub / Portfolio / LinkedIn Link</label>
+            <input type="url" id="intPortfolio" class="form-input" placeholder="https://github.com/username or portfolio link">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="intPitchStatement">Why are you interested in this project? <span style="color:var(--c-error)">*</span></label>
+            <textarea id="intPitchStatement" class="form-textarea" placeholder="Briefly describe what you would like to build or contribute to this team..." style="min-height:85px;" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="intWeeklyHours">Available Weekly Hours <span style="color:var(--c-error)">*</span></label>
+            <select id="intWeeklyHours" class="form-select" required>
+              <option value="4–6 hours">4–6 hours / week</option>
+              <option value="6–10 hours" selected>6–10 hours / week</option>
+              <option value="10+ hours">10+ hours / week</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Send Expression of Interest</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    // Dynamic Filter & Search Logic for Collaborators
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('collabSearchInput');
+      const skillPills = document.querySelectorAll('[data-skill-filter]');
+      const cards = document.querySelectorAll('#collabCardsGrid .project-card');
+      const countLabel = document.getElementById('collabCountLabel');
+      const emptyState = document.getElementById('collabEmptyState');
+      const resetBtn = document.getElementById('resetCollabFiltersBtn');
+
+      let currentSkill = 'all';
+      let searchQuery = '';
+
+      function filterCollaborators() {
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardSkills = card.dataset.skills || '';
+          const cardText = card.textContent.toLowerCase();
+
+          // Check skill
+          let matchesSkill = (currentSkill === 'all') || cardSkills.toLowerCase().includes(currentSkill.toLowerCase());
+
+          // Check search query
+          let matchesSearch = !searchQuery || cardText.includes(searchQuery);
+
+          if (matchesSkill && matchesSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        countLabel.textContent = `Showing ${visibleCount} open project collaboration need${visibleCount === 1 ? '' : 's'}`;
+        emptyState.style.display = visibleCount === 0 ? 'flex' : 'none';
+      }
+
+      // Live search input
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim().toLowerCase();
+          filterCollaborators();
+        });
+      }
+
+      // Skill pills
+      skillPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          skillPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentSkill = pill.dataset.skillFilter;
+          filterCollaborators();
+        });
+      });
+
+      // Reset button
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          searchQuery = '';
+          currentSkill = 'all';
+          skillPills.forEach(p => p.classList.toggle('active', p.dataset.skillFilter === 'all'));
+          filterCollaborators();
+        });
+      }
+
+      // Expression of Interest Submission
+      const interestForm = document.getElementById('interestForm');
+      if (interestForm) {
+        interestForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const student = document.getElementById('intStudentName').value;
+          const project = document.getElementById('interestModalProject').textContent;
+          const modal = document.getElementById('expressInterestModal');
+          modal.classList.remove('open');
+          interestForm.reset();
+          showToast(`Expression of interest for "${project}" submitted by ${student}. The lead will review shortly!`, 'success');
+        });
+      }
+
+      // Post a Need Form Submission
+      const postNeedForm = document.getElementById('postNeedForm');
+      if (postNeedForm) {
+        postNeedForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const proj = document.getElementById('needProjectName').value;
+          postNeedForm.reset();
+          showToast(`Need posted for "${proj}"! Submitted for FIRE student committee verification. Ref: #ND-${Math.floor(1000 + Math.random() * 9000)}.`, 'success');
+          // Switch back to find-talent tab after delay
+          setTimeout(() => {
+            const talentTabBtn = document.querySelector('[data-tab="find-talent"]');
+            if (talentTabBtn) talentTabBtn.click();
+          }, 1200);
+        });
+      }
+    });
+
+    // Helper to open interest modal with project details
+    function openInterestModal(projectName, clubName, leadName) {
+      document.getElementById('interestModalProject').textContent = projectName;
+      document.getElementById('interestModalClub').textContent = clubName;
+      document.getElementById('interestModalLead').textContent = `Project Lead: ${leadName}`;
+
+      const modal = document.getElementById('expressInterestModal');
+      if (modal) modal.classList.add('open');
+    }
+  </script>
+</body>
+</html>

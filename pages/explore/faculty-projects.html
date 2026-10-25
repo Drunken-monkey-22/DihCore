@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Projects Directory — FIRE | NIT Trichy</title>
+  <meta name="description" content="Explore research and innovation projects led by NIT Trichy faculty. Discover opportunities for undergraduate and postgraduate student collaboration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb & Header -->
+    <section class="section-sm" style="padding-top: var(--sp-12); padding-bottom: var(--sp-8); background: linear-gradient(180deg, rgba(12,21,38,0.9) 0%, var(--c-bg) 100%); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Explore</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Faculty Projects</span>
+        </nav>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <div class="section-label">Institutional Research & Grants</div>
+            <h1 class="heading-1" style="margin-top:var(--sp-2);">Faculty Projects Directory</h1>
+            <p class="text-muted" style="max-width: 680px; margin-top:var(--sp-2);">
+              Collaborate on funded research grants, sponsored lab initiatives, and deep-tech prototypes supervised by NIT Trichy professors. Open for undergraduate, postgraduate, and doctoral contributors.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3); align-items:center;">
+            <a href="../resources/processes.html#PR001" class="btn btn-outline btn-sm">
+              📋 Student Participation Process
+            </a>
+            <a href="../start-here/idea.html" class="btn btn-primary btn-sm">
+              Propose Faculty Project +
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Results Section -->
+    <section class="section-sm" style="padding-top: var(--sp-8);">
+      <div class="container">
+        
+        <!-- Multi-facet Filter Bar -->
+        <div class="card card-glass" style="padding: var(--sp-5); margin-bottom: var(--sp-8);">
+          <div class="filter-bar" style="margin-bottom:0; gap:var(--sp-4);">
+            
+            <!-- Search Input -->
+            <div class="search-bar" style="flex: 2; max-width: none;">
+              <span>🔍</span>
+              <input type="text" id="facultySearch" placeholder="Search by project name, professor, skill, or keywords…">
+            </div>
+
+            <!-- Domain Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Domain:</span>
+              <select class="filter-select" id="domainFilter">
+                <option value="all">All Domains</option>
+                <option value="AI / Water Management">AI / Water Management</option>
+                <option value="Sustainability / Materials Science">Sustainability / Materials Science</option>
+                <option value="Power Systems / Deep Learning">Power Systems / Deep Learning</option>
+                <option value="NLP / Legal Tech">NLP / Legal Tech</option>
+                <option value="Biomedical / Robotics">Biomedical / Robotics</option>
+                <option value="Remote Sensing / Climate">Remote Sensing / Climate</option>
+              </select>
+            </div>
+
+            <!-- Stage Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Stage:</span>
+              <select class="filter-select" id="stageFilter">
+                <option value="all">All Stages</option>
+                <option value="Research">Research</option>
+                <option value="Prototype">Prototype</option>
+                <option value="Testing">Testing</option>
+                <option value="Pilot">Pilot</option>
+                <option value="Concept">Concept</option>
+              </select>
+            </div>
+
+            <!-- Availability Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Availability:</span>
+              <select class="filter-select" id="availabilityFilter">
+                <option value="all">All Availability</option>
+                <option value="Open">Open Positions</option>
+                <option value="Waitlist">Waitlist / Closed</option>
+              </select>
+            </div>
+
+            <!-- Reset Button -->
+            <button class="btn btn-ghost btn-sm" id="resetFiltersBtn" style="color:var(--c-text-muted);">
+              Reset Filters ↺
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status Summary -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--sp-6);">
+          <div id="resultsCount" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-secondary);">
+            Showing 6 of 6 faculty projects
+          </div>
+          <div style="display:flex; gap:var(--sp-2); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <span>🟢 Open: Position active</span>
+            <span>·</span>
+            <span>🟡 Waitlist: High demand</span>
+          </div>
+        </div>
+
+        <!-- Grid of Project Cards -->
+        <div class="grid-3" id="facultyProjectsGrid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="facultyEmptyState" style="display:none; padding:var(--sp-20) 0;">
+          <div class="empty-state-icon">🔬</div>
+          <h3 class="empty-state-title">No matching faculty projects found</h3>
+          <p class="empty-state-desc">Try clearing your filters or using broader search terms like 'AI', 'Materials', or 'Python'.</p>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- ================= EXPRESSION OF INTEREST MODAL ================= -->
+  <div class="modal-overlay" id="eoiModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-5" id="eoiModalTitle">Expression of Interest</h3>
+          <p class="text-muted text-xs" id="eoiModalSubtitle" style="margin-top:2px;">
+            Apply to collaborate directly with the faculty research team
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      
+      <form id="eoiForm" data-validate>
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <input type="hidden" id="eoiProjectId" name="projectId">
+          <input type="hidden" id="eoiProjectTitle" name="projectTitle">
+          
+          <div class="alert alert-info" style="font-size:var(--fs-xs);">
+            <span>💡</span>
+            <div>
+              Expressions of interest are reviewed by the Faculty Lead within <strong>5–7 working days</strong>. Ensure your profile and skills accurately match the lab requirements.
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" id="eoiName" required placeholder="e.g. S. Harish Kumar">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Roll Number *</label>
+              <input type="text" class="form-input" id="eoiRollNo" required placeholder="e.g. 106121045">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Year of Study *</label>
+              <select class="form-select" id="eoiYear" required>
+                <option value="">Select Year</option>
+                <option value="1">1st Year B.Tech</option>
+                <option value="2">2nd Year B.Tech</option>
+                <option value="3">3rd Year B.Tech</option>
+                <option value="4">4th Year B.Tech</option>
+                <option value="MTech">M.Tech / MS (Research)</option>
+                <option value="PhD">Doctoral Scholar (PhD)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department / Branch *</label>
+              <input type="text" class="form-input" id="eoiBranch" required placeholder="e.g. Chemical Engineering">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Brief Self-Introduction & Statement of Purpose *</label>
+            <textarea class="form-textarea" id="eoiMotivation" required placeholder="Describe your interest in this research project, academic coursework or lab exposure, and why you wish to contribute to Dr. [Faculty]'s lab." style="min-height:90px;"></textarea>
+            <div class="form-hint">2-3 concise paragraphs highlighting your dedication and relevant knowledge.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Expected Availability (Hours/Week) *</label>
+            <select class="form-select" id="eoiAvailability" required>
+              <option value="6-8">6 – 8 hours/week (Weekday evenings + weekends)</option>
+              <option value="8-12" selected>8 – 12 hours/week (Standard project load)</option>
+              <option value="12-16">12 – 16 hours/week (Intensive research)</option>
+              <option value="20+">20+ hours/week (Full-time summer / winter intern)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Previous Relevant Experience & Links</label>
+            <textarea class="form-textarea" id="eoiExperience" placeholder="List past projects, GitHub repos, technical competitions, paper publications, or portfolio links." style="min-height:70px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Resume / GitHub / LinkedIn URL</label>
+            <input type="url" class="form-input" id="eoiLink" placeholder="https://drive.google.com/... or https://github.com/...">
+          </div>
+
+          <div style="display:flex; align-items:flex-start; gap:var(--sp-2); margin-top:var(--sp-2);">
+            <input type="checkbox" id="eoiConfirm" required style="margin-top:3px; accent-color:var(--c-accent);">
+            <label for="eoiConfirm" style="font-size:var(--fs-xs); color:var(--c-text-secondary); line-height:var(--lh-relaxed);">
+              I understand that research participation requires regular progress reviews and adherence to NIT Trichy institutional IPR and safety protocols.
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Expression of Interest 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= PROJECT DETAILS MODAL ================= -->
+  <div class="modal-overlay" id="projectDetailsModal">
+    <div class="modal" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2); margin-bottom:4px;">
+            <span class="badge badge-active" id="modalAvailabilityBadge">Open</span>
+            <span class="badge badge-prototype" id="modalStageBadge">Prototype</span>
+            <span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-text-muted);" id="modalProjectId">FP001</span>
+          </div>
+          <h3 class="heading-4" id="modalTitle">Project Title</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-5);">
+        
+        <!-- Faculty Information Banner -->
+        <div style="display:flex; gap:var(--sp-4); align-items:center; padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div class="avatar avatar-lg" id="modalFacultyAvatar">RK</div>
+          <div>
+            <div style="font-size:var(--fs-base); font-weight:var(--fw-semibold); color:var(--c-text-primary);" id="modalFacultyName">Dr. Rajesh Kumar</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-accent);" id="modalFacultyDept">Department of Civil Engineering</div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); margin-top:2px;">Domain: <span id="modalDomain">AI / Water Management</span> · Updated <span id="modalLastUpdated">Oct 2026</span></div>
+          </div>
+        </div>
+
+        <!-- Project Overview -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Research Overview</h4>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed);" id="modalSummary">
+            Detailed project synopsis.
+          </p>
+        </div>
+
+        <!-- Student Collaboration Need -->
+        <div style="padding:var(--sp-4); background:var(--c-accent-dim); border:1px solid var(--c-border-accent); border-radius:var(--radius-md);">
+          <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-accent); text-transform:uppercase; letter-spacing:0.06em;">
+            STUDENT COLLABORATION SCOPE
+          </div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-primary); margin-top:var(--sp-1);" id="modalCollaboration">
+            Tasks, roles, and open research assignments.
+          </p>
+        </div>
+
+        <!-- Key Skills Required -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Target Skills & Technologies</h4>
+          <div class="project-card-tags" id="modalSkills">
+            <!-- Render tags -->
+          </div>
+        </div>
+
+        <!-- Institutional & IP Details -->
+        <div class="grid-2" style="background:var(--c-bg-card); padding:var(--sp-4); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">IP & Publication Status</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;" id="modalIpStatus">Public Research / Patent Pending</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Institutional Partner</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">NIT Trichy FIRE Coordination</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer" style="justify-content:space-between;">
+        <span class="text-xs text-muted" style="align-self:center;">Governance: Ref PR001 Student Participation Policy</span>
+        <div style="display:flex; gap:var(--sp-3);">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Close</button>
+          <button type="button" class="btn btn-primary btn-sm" id="modalExpressInterestBtn">
+            Express Interest Now 🤝
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    function getStageBadgeClass(stage) {
+      const s = (stage || '').toLowerCase();
+      if (s.includes('prototype')) return 'badge-prototype';
+      if (s.includes('research')) return 'badge-research';
+      if (s.includes('pilot')) return 'badge-pilot';
+      if (s.includes('concept') || s.includes('idea')) return 'badge-idea';
+      if (s.includes('test') || s.includes('active')) return 'badge-active';
+      return 'badge-pending';
+    }
+
+    function getInitials(name) {
+      if (!name) return 'NI';
+      return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    let currentOpenProject = null;
+
+    function openProjectModal(projectId) {
+      const p = FIRE_DATA.facultyProjects.find(item => item.id === projectId);
+      if (!p) return;
+      currentOpenProject = p;
+
+      document.getElementById('modalProjectId').textContent = p.id;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalFacultyName').textContent = p.faculty;
+      document.getElementById('modalFacultyDept').textContent = p.department;
+      document.getElementById('modalDomain').textContent = p.domain;
+      document.getElementById('modalLastUpdated').textContent = p.lastUpdated;
+      document.getElementById('modalSummary').textContent = p.summary;
+      document.getElementById('modalCollaboration').textContent = p.collaboration;
+      document.getElementById('modalIpStatus').textContent = p.ipStatus === 'Public' ? 'Public Domain / Academic Publication' : 'Restricted / Patenting Review';
+      document.getElementById('modalFacultyAvatar').textContent = getInitials(p.faculty);
+
+      const availBadge = document.getElementById('modalAvailabilityBadge');
+      availBadge.className = `badge ${p.availability === 'Open' ? 'badge-active' : 'badge-pending'} badge-dot`;
+      availBadge.textContent = p.availability;
+
+      const stageBadge = document.getElementById('modalStageBadge');
+      stageBadge.className = `badge ${getStageBadgeClass(p.stage)}`;
+      stageBadge.textContent = p.stage;
+
+      const skillsContainer = document.getElementById('modalSkills');
+      skillsContainer.innerHTML = p.skills.map(s => `<span class="tag tag-active">${s}</span>`).join('');
+
+      const expressBtn = document.getElementById('modalExpressInterestBtn');
+      expressBtn.onclick = () => {
+        document.getElementById('projectDetailsModal').classList.remove('open');
+        openEoiModal(p.id, p.title, p.faculty);
+      };
+
+      document.getElementById('projectDetailsModal').classList.add('open');
+    }
+
+    function openEoiModal(id, title, faculty) {
+      const modal = document.getElementById('eoiModal');
+      document.getElementById('eoiProjectId').value = id;
+      document.getElementById('eoiProjectTitle').value = title;
+      document.getElementById('eoiModalTitle').textContent = `Expression of Interest: ${title}`;
+      document.getElementById('eoiModalSubtitle').textContent = `Faculty Lead: ${faculty} · Ref: ${id}`;
+      modal.classList.add('open');
+    }
+
+    function resetAllFilters() {
+      document.getElementById('facultySearch').value = '';
+      document.getElementById('domainFilter').value = 'all';
+      document.getElementById('stageFilter').value = 'all';
+      document.getElementById('availabilityFilter').value = 'all';
+      filterProjects();
+    }
+
+    function filterProjects() {
+      const search = (document.getElementById('facultySearch')?.value || '').toLowerCase();
+      const domain = document.getElementById('domainFilter')?.value || 'all';
+      const stage = document.getElementById('stageFilter')?.value || 'all';
+      const avail = document.getElementById('availabilityFilter')?.value || 'all';
+
+      const filtered = FIRE_DATA.facultyProjects.filter(p => {
+        const matchSearch = !search ||
+          p.title.toLowerCase().includes(search) ||
+          p.faculty.toLowerCase().includes(search) ||
+          p.department.toLowerCase().includes(search) ||
+          p.domain.toLowerCase().includes(search) ||
+          p.skills.some(s => s.toLowerCase().includes(search));
+        
+        const matchDomain = domain === 'all' || p.domain === domain;
+        const matchStage = stage === 'all' || p.stage.toLowerCase() === stage.toLowerCase();
+        const matchAvail = avail === 'all' || p.availability.toLowerCase() === avail.toLowerCase();
+
+        return matchSearch && matchDomain && matchStage && matchAvail;
+      });
+
+      renderProjects(filtered);
+    }
+
+    function renderProjects(projects) {
+      const container = document.getElementById('facultyProjectsGrid');
+      const emptyState = document.getElementById('facultyEmptyState');
+      const counter = document.getElementById('resultsCount');
+
+      counter.textContent = `Showing ${projects.length} of ${FIRE_DATA.facultyProjects.length} faculty projects`;
+
+      if (projects.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'flex';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      container.innerHTML = projects.map(p => `
+        <div class="card project-card anim-on-scroll">
+          <div class="project-card-head">
+            <span class="badge ${p.availability === 'Open' ? 'badge-active' : 'badge-pending'} badge-dot">
+              ${p.availability}
+            </span>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span class="badge ${getStageBadgeClass(p.stage)}">${p.stage}</span>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--c-text-muted);">${p.id}</span>
+            </div>
+          </div>
+          
+          <div class="project-card-body">
+            <div class="text-xs text-muted" style="margin-bottom:var(--sp-1);">${p.domain}</div>
+            <h3 class="project-card-title">${p.title}</h3>
+            <p class="project-card-desc">${p.summary}</p>
+            
+            <div class="project-card-avatar" style="margin-top:var(--sp-4);">
+              <div class="avatar">${getInitials(p.faculty)}</div>
+              <div>
+                <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary);">${p.faculty}</div>
+                <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">${p.department}</div>
+              </div>
+            </div>
+
+            <div style="margin-top:var(--sp-3); font-size:var(--fs-xs); color:var(--c-text-secondary); background:var(--c-bg-elevated); padding:var(--sp-2) var(--sp-3); border-radius:var(--radius-sm); border:1px solid var(--c-border);">
+              <span style="color:var(--c-accent); font-weight:var(--fw-semibold);">Role:</span> ${p.collaboration}
+            </div>
+
+            <div class="project-card-tags">
+              ${p.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <button type="button" class="btn btn-outline btn-sm" onclick="openProjectModal('${p.id}')">
+              View Details 👁️
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openEoiModal('${p.id}', '${p.title.replace(/'/g, "\\'")}', '${p.faculty.replace(/'/g, "\\'")}')">
+              Express Interest 🤝
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('facultySearch')?.addEventListener('input', debounce(filterProjects, 200));
+      document.getElementById('domainFilter')?.addEventListener('change', filterProjects);
+      document.getElementById('stageFilter')?.addEventListener('change', filterProjects);
+      document.getElementById('availabilityFilter')?.addEventListener('change', filterProjects);
+      document.getElementById('resetFiltersBtn')?.addEventListener('click', resetAllFilters);
+
+      // Render initial
+      filterProjects();
+
+      // Check URL query parameters (e.g. ?id=FP001)
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedId = urlParams.get('id');
+      if (requestedId) {
+        setTimeout(() => openProjectModal(requestedId), 300);
+      }
+
+      // Handle EOI Form Submission
+      const eoiForm = document.getElementById('eoiForm');
+      eoiForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pTitle = document.getElementById('eoiProjectTitle').value || 'Faculty Project';
+        const modal = document.getElementById('eoiModal');
+        modal.classList.remove('open');
+        showToast(`Expression of Interest submitted for "${pTitle}". Reference confirmation sent to your NITT student portal.`, 'success');
+        eoiForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>

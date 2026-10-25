@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Path Is Right For Me? — Decision Matrix | FIRE — NIT Trichy</title>
+  <meta name="description" content="Compare all 7 innovation pathways at NIT Trichy FIRE. Detailed entry criteria, process steps, responsible offices, and support types for students, faculty, clubs, and startups.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    /* Custom styling for Which Path page */
+    .filter-pills-bar {
+      display: flex;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-8);
+      padding: var(--sp-3);
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-full);
+      max-width: 960px;
+    }
+    .filter-btn-pill {
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--c-text-secondary);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      white-space: nowrap;
+    }
+    .filter-btn-pill:hover {
+      color: var(--c-text-primary);
+      background: var(--c-bg-elevated);
+    }
+    .filter-btn-pill.active {
+      background: var(--c-accent-dim);
+      border-color: var(--c-border-accent);
+      color: var(--c-accent);
+      box-shadow: 0 0 12px var(--c-accent-glow);
+    }
+
+    /* Detailed Path Card */
+    .detailed-path-card {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      transition: all var(--t-normal);
+      position: relative;
+    }
+    .detailed-path-card:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-accent);
+    }
+    .detailed-path-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding-bottom: var(--sp-4);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .path-icon-large {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.65rem;
+      flex-shrink: 0;
+    }
+    .path-badge-tag {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-accent);
+    }
+
+    .path-section-block {
+      margin-bottom: var(--sp-2);
+    }
+    .path-block-title {
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .path-bullets-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-1);
+      margin: 0;
+      padding: 0;
+    }
+    .path-bullet-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-2);
+      font-size: var(--fs-sm);
+      color: var(--c-text-secondary);
+      line-height: var(--lh-snug);
+    }
+    .path-bullet-dot {
+      color: var(--c-accent);
+      line-height: 1;
+      margin-top: 3px;
+    }
+
+    .responsible-box {
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-3) var(--sp-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-2);
+      font-size: var(--fs-xs);
+    }
+    .responsible-label {
+      color: var(--c-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: var(--fw-semibold);
+    }
+    .responsible-val {
+      color: var(--c-text-primary);
+      font-weight: var(--fw-bold);
+    }
+
+    .support-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-top: var(--sp-1);
+    }
+    .support-tag-pill {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-secondary);
+    }
+
+    /* Comparison matrix */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-sm);
+    }
+    .matrix-table th {
+      padding: var(--sp-3) var(--sp-4);
+      background: var(--c-bg-elevated);
+      color: var(--c-text-muted);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--c-border);
+    }
+    .matrix-table td {
+      padding: var(--sp-3) var(--sp-4);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-secondary);
+      vertical-align: top;
+    }
+    .matrix-table tr:hover td {
+      background: rgba(0,198,162,0.02);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Header -->
+    <header class="section-sm" style="background: var(--c-bg-surface); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Start Here</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Which Path Is Right For Me?</span>
+        </nav>
+
+        <div style="max-width: 820px;">
+          <div class="hero-badge" style="margin-bottom: var(--sp-3);">
+            <div class="hero-badge-dot"></div>
+            Ecosystem Decision Matrix
+          </div>
+          <h1 class="heading-1" style="margin-bottom: var(--sp-3);">
+            Which Path Is <span class="text-gradient">Right For Me?</span>
+          </h1>
+          <p class="text-muted" style="line-height: var(--lh-relaxed);">
+            NIT Trichy provides 7 distinct innovation tracks designed around your exact role, commitment level, and project stage. Compare entry prerequisites, sequential process steps, responsible campus offices, and available resources below.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Comparison Section -->
+    <main class="section">
+      <div class="container">
+
+        <!-- Role Filter Bar -->
+        <div style="display: flex; flex-direction: column; gap: var(--sp-2); margin-bottom: var(--sp-8);">
+          <div class="section-label">Quick Filter by Profile</div>
+          <div class="filter-pills-bar" id="pathFilterBar">
+            <button class="filter-btn-pill active" data-filter-role="all">All 7 Pathways</button>
+            <button class="filter-btn-pill" data-filter-role="student">Individual Student</button>
+            <button class="filter-btn-role filter-btn-pill" data-filter-role="club">Club Team</button>
+            <button class="filter-btn-pill" data-filter-role="faculty">Faculty Research</button>
+            <button class="filter-btn-pill" data-filter-role="pg">PG Researcher</button>
+            <button class="filter-btn-pill" data-filter-role="sih">Post-SIH Team</button>
+            <button class="filter-btn-pill" data-filter-role="startup">Incorporated Startup</button>
+            <button class="filter-btn-pill" data-filter-role="alumni">Alumni / External</button>
+          </div>
+        </div>
+
+        <!-- 7 Large Detailed Path Cards in grid-2 -->
+        <div class="grid-2" id="pathCardsGrid" style="margin-bottom: var(--sp-16);">
+
+          <!-- 1. Individual Student -->
+          <article class="detailed-path-card" data-role="student">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">💡</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Individual Student</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">B.Tech / B.Arch Undergraduates</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">Early Concept</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Registered undergraduate student at NIT Trichy in good academic standing.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>A clearly articulated problem statement (even without code or physical hardware).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Willingness to attend an initial 15-minute diagnostic call or Idea Clinic session.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Submit safe 5-step intake form via FIRE without disclosing secret IP.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Receive assigned domain coordinator review and triage within 3–5 days.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Attend weekend Idea Clinic for customer validation and pitch refinement.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Obtain SCIEnT prototyping badge credentials and mentor matching.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">FIRE Operations & SCIEnT</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">Idea Clinics</span>
+                <span class="support-tag-pill">Alumni Mentors</span>
+                <span class="support-tag-pill">SCIEnT 3D Printing</span>
+                <span class="support-tag-pill">Director's Seed Fund</span>
+                <span class="support-tag-pill">Teammate Matching</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="idea.html" class="btn btn-primary" style="width: 100%;">
+                Submit Student Idea Form →
+              </a>
+            </div>
+          </article>
+
+          <!-- 2. Club Team -->
+          <article class="detailed-path-card" data-role="club">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">🏆</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Club Team</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">SPIDER, EFlames, AARUUSH, E-Cell & Technical Teams</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">Team Initiative</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Official recognition as an active NITT technical club or student competition team.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Endorsement from designated faculty advisor or technical club coordinator.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Defined project scope with verifiable team leads and deliverables.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Submit Club Project Listing via authorized Club Admin portal.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Faculty coordinator reviews and endorses listing within 3 days.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Project published in public directory with recruitment callouts.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Reserve dedicated SCIEnT workbench spaces and annual showcase slots.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">Office of Student Affairs & FIRE Moderation</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">Public Directory Listing</span>
+                <span class="support-tag-pill">Campus Talent Sourcing</span>
+                <span class="support-tag-pill">Dedicated Workbenches</span>
+                <span class="support-tag-pill">Equipment Reservation</span>
+                <span class="support-tag-pill">Showcase Exhibition</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="../../pages/explore/club-projects.html" class="btn btn-secondary" style="width: 100%;">
+                Explore Club Projects Directory →
+              </a>
+            </div>
+          </article>
+
+          <!-- 3. Faculty Research -->
+          <article class="detailed-path-card" data-role="faculty">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">👩‍🏫</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Faculty Research</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Translational Lab Research & Faculty Spin-Offs</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">R&C Aligned</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Full-time NITT faculty member acting as Principal Investigator (PI).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Ongoing or completed sponsored research project with commercial translation potential.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Compliance with NITT R&C and Institutional IP Policy guidelines.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Register translational project on FIRE Faculty Research Portal.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Post student research assistant opportunities for UG/PG students.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Liaise with NITT IPR Cell for patentability analysis and provisional filing.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Apply for translational funding grants (NIDHI Prayas, MeitY TIDE 2.0).</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">Dean (Research & Consultancy) & IPR Cell</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">Student Fellow Recruitment</span>
+                <span class="support-tag-pill">Patent Drafting & Filing</span>
+                <span class="support-tag-pill">TIDE 2.0 Grants</span>
+                <span class="support-tag-pill">Industry Licensing</span>
+                <span class="support-tag-pill">Spin-off Entity Setup</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="../../pages/explore/faculty-projects.html" class="btn btn-secondary" style="width: 100%;">
+                Browse Faculty Projects Portal →
+              </a>
+            </div>
+          </article>
+
+          <!-- 4. PG Research Project -->
+          <article class="detailed-path-card" data-role="pg">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">🎓</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">PG Research Project</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">M.Tech, M.Sc, MS by Research & Ph.D Scholars</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">Deep Tech PoC</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Registered post-graduate or doctoral student at NIT Trichy.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Thesis research exhibiting Technology Readiness Level (TRL) 3 or above.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Faculty guide concurrence for commercialisation exploration.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Complete FIRE idea submission specifying PG/Ph.D thesis context.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Schedule GPU HPC cluster scheduling or Nanotech clean room hours.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Conduct prior-art check through IPR Cell before thesis defense publication.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Pitch to deep-tech seed committees for NIDHI EIR or Prayas grants.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">Dean (Academic) & Dean (R&C)</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">GPU HPC Credits</span>
+                <span class="support-tag-pill">Nanotech Clean Room</span>
+                <span class="support-tag-pill">Prior-Art Searches</span>
+                <span class="support-tag-pill">NIDHI EIR Fellowship</span>
+                <span class="support-tag-pill">Thesis Spin-off Advisory</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="idea.html?type=pg" class="btn btn-outline" style="width: 100%;">
+                Register PG Project →
+              </a>
+            </div>
+          </article>
+
+          <!-- 5. Post-SIH Team -->
+          <article class="detailed-path-card" data-role="sih" style="border-color: rgba(255,107,53,0.3);">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large" style="background: var(--c-accent-warm-dim); border-color: rgba(255,107,53,0.3);">🔁</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Post-SIH Team</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-accent-warm);">Smart India Hackathon Continuation Track</div>
+                </div>
+              </div>
+              <span class="path-badge-tag" style="color: var(--c-accent-warm); border-color: rgba(255,107,53,0.3);">Dedicated Track</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title" style="color: var(--c-accent-warm);">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">•</span>
+                  <span>Participation in Smart India Hackathon (Hardware or Software edition).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">•</span>
+                  <span>Minimum 50% NITT student composition in the core continuing team.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">•</span>
+                  <span>Functional codebase or prototype demonstrating original hackathon output.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title" style="color: var(--c-accent-warm);">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">1.</span>
+                  <span>Complete Post-SIH continuation application with ministry PS code.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">2.</span>
+                  <span>Verification of competition IP rules and ministry follow-up terms.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">3.</span>
+                  <span>Onboard to 6-week structured milestone sprint with lab access.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot" style="color: var(--c-accent-warm);">4.</span>
+                  <span>Present at Demo Day for formal pre-incubation and seed grant review.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">FIRE SIH Coordination Cell</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title" style="color: var(--c-accent-warm);">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">Ministry Liaison</span>
+                <span class="support-tag-pill">Cloud Server Credits</span>
+                <span class="support-tag-pill">Faculty Co-Guide</span>
+                <span class="support-tag-pill">SCIEnT Machine Hours</span>
+                <span class="support-tag-pill">Fast-Track Pitch Review</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="post-sih.html" class="btn btn-warm" style="width: 100%;">
+                Apply for Post-SIH Continuation →
+              </a>
+            </div>
+          </article>
+
+          <!-- 6. Incorporated Startup -->
+          <article class="detailed-path-card" data-role="startup">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">🚀</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Incorporated Startup</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Registered Private Limited / LLP / OPC</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">Venture Stage</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Legally incorporated entity (MCA CIN / LLPIN active).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>At least one founder must be a current NITT student, faculty, or verified alumnus.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>DPIIT Startup Recognition certificate (or in process).</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Register company profile in the official NITT Startup Directory.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Apply for on-campus incubation desks and laboratory testing space.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Submit application for Startup India Seed Fund Scheme (SISFS).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Pitch to quarterly Incubation Evaluation Committee for grant approval.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">NITT Institutional Incubation Board</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">SISFS Grant (up to ₹20L)</span>
+                <span class="support-tag-pill">SISFS Debt (up to ₹50L)</span>
+                <span class="support-tag-pill">Campus Co-working Desks</span>
+                <span class="support-tag-pill">Internship Hiring</span>
+                <span class="support-tag-pill">Investor Demo Days</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="../../pages/explore/startups.html" class="btn btn-secondary" style="width: 100%;">
+                View Venture Directory & Guidelines →
+              </a>
+            </div>
+          </article>
+
+          <!-- 7. Alumni / External Founder -->
+          <article class="detailed-path-card" data-role="alumni">
+            <div class="detailed-path-header">
+              <div style="display: flex; gap: var(--sp-3); align-items: center;">
+                <div class="path-icon-large">🌐</div>
+                <div>
+                  <h3 class="heading-4" style="color: var(--c-text-primary); margin-bottom: 2px;">Alumni / External Founder</h3>
+                  <div style="font-size: var(--fs-xs); color: var(--c-text-muted);">Alumni Mentors, Corporates & Ecosystem Partners</div>
+                </div>
+              </div>
+              <span class="path-badge-tag">Partner Track</span>
+            </div>
+
+            <!-- Entry Criteria -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🎯</span> Entry Criteria
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>NIT Trichy alumnus OR external corporate organisation / angel investor.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Interest in mentoring, hiring campus talent, sponsored R&D, or challenge funding.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">•</span>
+                  <span>Commitment to institutional code of conduct and student founder mentorship ethics.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>📋</span> Sequential Process
+              </div>
+              <ul class="path-bullets-list">
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">1.</span>
+                  <span>Submit Partnership or Mentor Expression of Interest (EOI).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">2.</span>
+                  <span>Verification by NITT Alumni Affairs or Dean (Industry Relations).</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">3.</span>
+                  <span>Profile listed in the verified FIRE Mentor / Partner Directory.</span>
+                </li>
+                <li class="path-bullet-row">
+                  <span class="path-bullet-dot">4.</span>
+                  <span>Publish industry challenge problem statements or host founder office hours.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Responsible Office -->
+            <div class="responsible-box">
+              <span class="responsible-label">Responsible Office</span>
+              <span class="responsible-val">Dean (Institutional & Alumni Relations)</span>
+            </div>
+
+            <!-- Support Types -->
+            <div class="path-section-block">
+              <div class="path-block-title">
+                <span>🛠️</span> Available Support Types
+              </div>
+              <div class="support-tags-wrap">
+                <span class="support-tag-pill">Mentor Directory Profile</span>
+                <span class="support-tag-pill">Sponsored R&D Projects</span>
+                <span class="support-tag-pill">Industry Challenges</span>
+                <span class="support-tag-pill">Angel Syndicate Access</span>
+                <span class="support-tag-pill">Campus Visit Hosting</span>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--c-border);">
+              <a href="../../pages/connect/partnerships.html" class="btn btn-outline" style="width: 100%;">
+                Connect via Partnerships Portal →
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Comparative Matrix Summary Table -->
+        <div class="card card-glass" style="padding: var(--sp-8); margin-bottom: var(--sp-12);">
+          <div class="section-label" style="margin-bottom: var(--sp-2);">At a Glance</div>
+          <h2 class="heading-3" style="margin-bottom: var(--sp-4);">
+            Pathways <span class="text-gradient">Comparison Matrix</span>
+          </h2>
+          <p class="text-muted" style="margin-bottom: var(--sp-6); max-width: 720px;">
+            A quick-reference guide comparing minimum entry prerequisites, typical turnaround review times, facility privileges, and funding channels.
+          </p>
+
+          <div class="table-wrap">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th>Path</th>
+                  <th>Target Group</th>
+                  <th>Prerequisite</th>
+                  <th>Review Time</th>
+                  <th>Lab Access</th>
+                  <th>Accessible Funding</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">Individual Student</td>
+                  <td>B.Tech / B.Arch</td>
+                  <td>Problem Statement</td>
+                  <td>3–5 working days</td>
+                  <td>SCIEnT Prototyping</td>
+                  <td>Director's Fund (₹2L)</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">Club Team</td>
+                  <td>Technical Clubs</td>
+                  <td>Faculty Endorsement</td>
+                  <td>3 working days</td>
+                  <td>Dedicated Workbenches</td>
+                  <td>Club Budget & Showcases</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">Faculty Research</td>
+                  <td>Professors & PIs</td>
+                  <td>Sponsored Lab IP</td>
+                  <td>1–2 weeks</td>
+                  <td>Department Labs & Clean Room</td>
+                  <td>TIDE 2.0 / BIRAC</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">PG Researcher</td>
+                  <td>M.Tech / Ph.D</td>
+                  <td>TRL 3+ Thesis PoC</td>
+                  <td>5 working days</td>
+                  <td>GPU HPC Cluster</td>
+                  <td>NIDHI EIR / Fellowship</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-accent-warm);">Post-SIH Team</td>
+                  <td>Hackathon Finalists</td>
+                  <td>Functional SIH PoC</td>
+                  <td>1 week cohort intake</td>
+                  <td>SCIEnT Rapid Prototyping</td>
+                  <td>Continuation Micro-Grants</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">Incorporated Startup</td>
+                  <td>Pvt Ltd / LLP</td>
+                  <td>MCA & DPIIT Active</td>
+                  <td>Quarterly committee</td>
+                  <td>Incubation Co-working</td>
+                  <td>SISFS (up to ₹50L)</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: var(--c-text-primary);">Alumni / External</td>
+                  <td>Mentors & Partners</td>
+                  <td>Verified EOI</td>
+                  <td>5 working days</td>
+                  <td>By Collaboration MoU</td>
+                  <td>Angel Syndicates / Corporate</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Still Unsure CTA -->
+        <div style="background: var(--c-bg-card); border: 1px solid var(--c-border-accent); border-radius: var(--radius-xl); padding: var(--sp-8); text-align: center;">
+          <h3 class="heading-3" style="margin-bottom: var(--sp-2);">Still Not Sure Which Path Fits?</h3>
+          <p class="text-muted" style="max-width: 600px; margin: 0 auto var(--sp-6);">
+            Don't worry — our operations desk at SCIEnT can help categorize your project. Fill out the general intake form, and we will route you to the best pipeline.
+          </p>
+          <div style="display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap;">
+            <a href="idea.html" class="btn btn-primary btn-lg">Submit General Intake Form →</a>
+            <a href="founder-journey.html" class="btn btn-secondary btn-lg">See the 9 Stages 🗺️</a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize components with depth 2
+    Components.init(2);
+
+    // Filter pills interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterPills = document.querySelectorAll('#pathFilterBar .filter-btn-pill');
+      const cards = document.querySelectorAll('#pathCardsGrid .detailed-path-card');
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+
+          const role = pill.dataset.filterRole;
+
+          cards.forEach(card => {
+            if (role === 'all' || card.dataset.role === role) {
+              card.style.display = 'flex';
+              // add a subtle highlight animation
+              card.style.animation = 'fadeIn 0.3s ease';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

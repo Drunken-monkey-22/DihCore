@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources Hub — FIRE | NIT Trichy</title>
+  <meta name="description" content="Access official operating processes, advanced fabrication facilities, government grant schemes, IP guidance, and approved templates at NIT Trichy FIRE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    /* Page-specific styling for Resources Landing */
+    .resources-hero {
+      position: relative;
+      padding: var(--sp-20) 0 var(--sp-12);
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 198, 162, 0.08) 0%, rgba(7, 13, 27, 0) 70%), var(--grad-hero);
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--sp-6);
+      margin-top: var(--sp-8);
+    }
+    .category-card-large {
+      grid-column: span 6;
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-normal);
+      text-decoration: none;
+    }
+    .category-card-large:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 198, 162, 0.12);
+    }
+    .category-card-medium {
+      grid-column: span 4;
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-6);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-normal);
+      text-decoration: none;
+    }
+    .category-card-medium:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 198, 162, 0.12);
+    }
+    @media (max-width: 1024px) {
+      .category-card-large, .category-card-medium {
+        grid-column: span 6;
+      }
+    }
+    @media (max-width: 768px) {
+      .category-card-large, .category-card-medium {
+        grid-column: span 12;
+      }
+    }
+    .cat-icon-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-lg);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.85rem;
+      margin-bottom: var(--sp-5);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+    .cat-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin: var(--sp-4) 0 var(--sp-6);
+    }
+    .cat-pill-list span {
+      font-size: var(--fs-xs);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-secondary);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+    }
+    .quick-track-container {
+      position: relative;
+      margin-top: var(--sp-6);
+    }
+    .quick-track {
+      display: flex;
+      gap: var(--sp-4);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: var(--sp-4);
+      -webkit-overflow-scrolling: touch;
+    }
+    .quick-track::-webkit-scrollbar {
+      height: 6px;
+    }
+    .quick-track::-webkit-scrollbar-track {
+      background: var(--c-bg-card);
+      border-radius: var(--radius-full);
+    }
+    .quick-track::-webkit-scrollbar-thumb {
+      background: var(--c-accent-dim);
+      border-radius: var(--radius-full);
+    }
+    .quick-item {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-fast);
+      text-decoration: none;
+    }
+    .quick-item:hover {
+      border-color: var(--c-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .disclaimer-card {
+      background: linear-gradient(135deg, rgba(12, 21, 38, 0.95), rgba(15, 25, 46, 0.85));
+      border: 1px solid rgba(0, 198, 162, 0.25);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      position: relative;
+      overflow: hidden;
+    }
+    .disclaimer-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--c-accent);
+    }
+    .trust-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-6);
+      align-items: center;
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--c-border);
+    }
+    .trust-stat {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+    .trust-stat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--c-accent-dim);
+      color: var(--c-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <section class="resources-hero">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+
+      <div class="container hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Resources</span>
+        </nav>
+
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          NIT Trichy Innovation Knowledge Base
+        </div>
+
+        <h1 class="hero-title" style="max-width: 900px;">
+          Everything You Need to <br><span class="text-gradient">Build, Launch and Grow</span>
+        </h1>
+
+        <p class="hero-desc" style="max-width: 700px;">
+          The single official portal for NIT Trichy founders, researchers, and student innovators. Access step-by-step institutional processes, world-class labs, non-dilutive government funding, patent guidance, and approved documentation.
+        </p>
+
+        <!-- Quick Stats Row -->
+        <div class="stats-row" style="margin-top: var(--sp-6); margin-bottom: 0;">
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background: rgba(0, 198, 162, 0.12); color: var(--c-accent);">📋</div>
+            <div class="stat-widget-num" data-count="12" data-suffix="+">12+</div>
+            <div class="stat-widget-label">Verified SOPs & Processes</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background: rgba(59, 130, 246, 0.12); color: #60A5FA;">🔧</div>
+            <div class="stat-widget-num" data-count="6" data-suffix=" Labs">6 Labs</div>
+            <div class="stat-widget-label">Central Research Facilities</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background: rgba(245, 158, 11, 0.12); color: #FBBF24;">💰</div>
+            <div class="stat-widget-num" data-count="2" data-suffix=".5 Cr+">₹2.5 Cr+</div>
+            <div class="stat-widget-label">Available Grant Pool</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">📄</div>
+            <div class="stat-widget-num" data-count="14" data-suffix=" Docs">14 Docs</div>
+            <div class="stat-widget-label">Approved Templates & Forms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Categories Section -->
+    <section class="section" style="padding-top: var(--sp-12);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Core Resource Pillars</div>
+            <h2 class="heading-2">Explore the Ecosystem Directory</h2>
+            <p class="text-muted" style="max-width: 600px;">
+              Choose from five specialized resource hubs designed to support your project at every milestone — from initial lab booking to multi-crore grant management.
+            </p>
+          </div>
+        </div>
+
+        <div class="category-grid">
+          <!-- Card 1: Process Repository (Large) -->
+          <a href="processes.html" class="category-card-large">
+            <div>
+              <div class="cat-icon-badge">📋</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2);">
+                <h3 class="heading-3" style="color: var(--c-text-primary);">Process Repository</h3>
+                <span class="badge badge-active">12 Standard SOPs</span>
+              </div>
+              <p class="text-muted" style="line-height: var(--lh-relaxed);">
+                Step-by-step operating guides for every institutional procedure at NIT Trichy. Clear workflows covering applicant eligibility, required paperwork, responsible offices, and approval timelines.
+              </p>
+              <div class="cat-pill-list">
+                <span>SCIEnT Lab Access</span>
+                <span>Faculty Research</span>
+                <span>Incubation Application</span>
+                <span>Post-SIH Pathway</span>
+                <span>Spin-Off Licensing</span>
+                <span>Grant Endorsement</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-4);">
+              <span style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-accent);">Browse All 12 Processes</span>
+              <span style="font-size: 1.25rem; color: var(--c-accent);">→</span>
+            </div>
+          </a>
+
+          <!-- Card 2: Facility Directory (Large) -->
+          <a href="facilities.html" class="category-card-large">
+            <div>
+              <div class="cat-icon-badge">🔧</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2);">
+                <h3 class="heading-3" style="color: var(--c-text-primary);">Facility Directory</h3>
+                <span class="badge badge-prototype">Equipment Booking</span>
+              </div>
+              <p class="text-muted" style="line-height: var(--lh-relaxed);">
+                Access specialized labs, modern rapid prototyping machinery, supercomputing clusters, and design studios across the NIT Trichy campus. Submit access requests with direct project integration.
+              </p>
+              <div class="cat-pill-list">
+                <span>3D Printing & CNC</span>
+                <span>NVIDIA A100 HPC</span>
+                <span>Nanotech Cleanroom</span>
+                <span>Design Thinking Studio</span>
+                <span>Biomedical Wet Lab</span>
+                <span>Energy Test Bed</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-4);">
+              <span style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-accent);">Explore Facilities & Bookings</span>
+              <span style="font-size: 1.25rem; color: var(--c-accent);">→</span>
+            </div>
+          </a>
+
+          <!-- Card 3: Funding & Schemes (Medium) -->
+          <a href="funding.html" class="category-card-medium">
+            <div>
+              <div class="cat-icon-badge">💰</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2);">
+                <h3 class="heading-4" style="color: var(--c-text-primary);">Funding & Schemes</h3>
+                <span class="badge badge-pilot">Grants & Seed</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed);">
+                Find grants, institutional seed funding, and national entrepreneurship support. Filter by venture stage, applicant type, and funding quantum.
+              </p>
+              <div class="cat-pill-list">
+                <span>DST-NIDHI Prayas</span>
+                <span>SISFS DPIIT</span>
+                <span>TIDE 2.0 MeitY</span>
+                <span>Director's Fund</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-4);">
+              <span style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-accent);">Launch Funding Finder</span>
+              <span style="font-size: 1.2rem; color: var(--c-accent);">→</span>
+            </div>
+          </a>
+
+          <!-- Card 4: IP & Legal Guidance (Medium) -->
+          <a href="ip-legal.html" class="category-card-medium">
+            <div>
+              <div class="cat-icon-badge">⚖️</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2);">
+                <h3 class="heading-4" style="color: var(--c-text-primary);">IP & Legal Guidance</h3>
+                <span class="badge badge-research">IPR Cell</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed);">
+                Protect your proprietary ideas. Understand Indian patent procedures, student vs faculty ownership policies, non-disclosure practices, and licensing terms.
+              </p>
+              <div class="cat-pill-list">
+                <span>Patent Prior Art</span>
+                <span>Student IP Rights</span>
+                <span>Standard NDA</span>
+                <span>IPR Cell Advisory</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-4);">
+              <span style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-accent);">Review Legal Protocols</span>
+              <span style="font-size: 1.2rem; color: var(--c-accent);">→</span>
+            </div>
+          </a>
+
+          <!-- Card 5: Templates & Documents (Medium) -->
+          <a href="templates.html" class="category-card-medium">
+            <div>
+              <div class="cat-icon-badge">📄</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2);">
+                <h3 class="heading-4" style="color: var(--c-text-primary);">Templates & Docs</h3>
+                <span class="badge badge-active">Ready Forms</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--fs-sm); line-height: var(--lh-relaxed);">
+                Download official, pre-approved documents, pitch decks, milestone reporting spreadsheets, and endorsement request forms formatted for NITT compliance.
+              </p>
+              <div class="cat-pill-list">
+                <span>Idea Submission</span>
+                <span>Pitch Deck PPT</span>
+                <span>Milestone Report</span>
+                <span>Lab Endorsement</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-4);">
+              <span style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--c-accent);">Download Documents</span>
+              <span style="font-size: 1.2rem; color: var(--c-accent);">→</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Access Section: Most Used Processes -->
+    <section class="section-sm" style="background: var(--c-bg-surface); border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-4);">
+          <div>
+            <div class="section-label">High-Frequency Procedures</div>
+            <h2 class="heading-3">Most Used Processes</h2>
+            <p class="text-muted" style="font-size: var(--fs-sm); margin-top: var(--sp-1);">
+              Direct fast-track shortcuts to the most frequently requested administrative and innovation workflows on campus.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--sp-2);">
+            <button class="btn btn-outline btn-sm" id="scrollTrackLeft" aria-label="Scroll left">‹</button>
+            <button class="btn btn-outline btn-sm" id="scrollTrackRight" aria-label="Scroll right">›</button>
+            <a href="processes.html" class="btn btn-secondary btn-sm">View All 12 →</a>
+          </div>
+        </div>
+
+        <div class="quick-track-container">
+          <div class="quick-track" id="processQuickTrack">
+            <!-- Quick Item 1 -->
+            <a href="processes.html?id=PR002" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">🔧</span>
+                  <span class="badge badge-prototype">Facility Access</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  SCIEnT Facility Access — Standard Request
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Equipment authorization for 3D printers, laser cutters, PCB prototyper, and test stations.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 2–5 working days</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+
+            <!-- Quick Item 2 -->
+            <a href="processes.html?id=PR001" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">👩‍🏫</span>
+                  <span class="badge badge-research">Research</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  Faculty Research Project Participation
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Guidelines for undergraduate and PG students joining ongoing sponsored research with faculty guides.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 5–10 working days</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+
+            <!-- Quick Item 3 -->
+            <a href="processes.html?id=PR003" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">💡</span>
+                  <span class="badge badge-idea">Idea Intake</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  Idea Intake & Advisory Assessment
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Submit your early-stage venture concept to receive a structured technical review and referral pathway.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 3–5 working days</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+
+            <!-- Quick Item 4 -->
+            <a href="processes.html?id=PR012" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">🔁</span>
+                  <span class="badge badge-pilot">Continuation</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  Post-SIH Project Continuation & Seed
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Framework for Smart India Hackathon finalists to transition software/hardware hacks into validated startups.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 5–7 working days</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+
+            <!-- Quick Item 5 -->
+            <a href="processes.html?id=PR004" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">⚖️</span>
+                  <span class="badge badge-research">IP Protection</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  IP & Patent Assessment Referral
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Engage the NITT IPR Cell for preliminary prior art search and institutional provisional filing support.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 2–6 weeks</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+
+            <!-- Quick Item 6 -->
+            <a href="processes.html?id=PR009" class="quick-item">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-3);">
+                  <span style="font-size: 1.5rem;">🏛️</span>
+                  <span class="badge badge-active">Endorsement</span>
+                </div>
+                <div style="font-weight: var(--fw-semibold); color: var(--c-text-primary); font-size: var(--fs-sm); line-height: var(--lh-snug);">
+                  Central & State Grant Endorsement
+                </div>
+                <p class="text-muted" style="font-size: var(--fs-xs); margin-top: var(--sp-2);">
+                  Protocol for securing institutional host endorsements from the Office of Dean (R&C) for DST/MeitY grants.
+                </p>
+              </div>
+              <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--c-accent);">
+                <span>⏱️ 7–14 working days</span>
+                <span style="font-weight: 600;">View SOP →</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Institutional Disclaimer & Verification Notice -->
+    <section class="section">
+      <div class="container">
+        <div class="disclaimer-card">
+          <div style="display: flex; gap: var(--sp-5); align-items: flex-start; flex-wrap: wrap;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--c-accent-dim); border: 1px solid var(--c-border-accent); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; flex-shrink: 0;">
+              🛡️
+            </div>
+            <div style="flex: 1; min-width: 280px;">
+              <div style="display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;">
+                <h3 class="heading-4" style="color: var(--c-text-primary);">Institutional Policy & Verification Disclaimer</h3>
+                <span class="badge badge-active">Audited for Academic Year 2026–27</span>
+              </div>
+              <p style="color: var(--c-text-secondary); font-size: var(--fs-sm); line-height: var(--lh-relaxed); margin-top: var(--sp-3);">
+                All standard operating procedures, facility tariff rates, patent guidelines, and grant application workflows listed on FIRE are actively coordinated and verified with the respective administrative authorities — including the <strong>Office of Dean (Research & Consultancy)</strong>, <strong>SCIEnT Management Committee</strong>, and the <strong>NITT IPR Cell</strong>.
+              </p>
+              <p style="color: var(--c-text-muted); font-size: var(--fs-xs); line-height: var(--lh-relaxed); margin-top: var(--sp-2);">
+                Always check the specific <em>Last-Verified Date</em> and version stamping displayed on individual detail modals and document header templates before relying on any process, fee exemption, or eligibility criterion. If you observe any policy divergence or expired deadline, kindly flag it to the FIRE Operations Desk.
+              </p>
+
+              <div class="trust-badge-row">
+                <div class="trust-stat">
+                  <div class="trust-stat-icon">✓</div>
+                  <div>
+                    <div style="font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--c-text-primary);">Bi-Annual Review Cycle</div>
+                    <div style="font-size: 11px; color: var(--c-text-muted);">Last comprehensive audit: Oct 2026</div>
+                  </div>
+                </div>
+
+                <div class="trust-stat">
+                  <div class="trust-stat-icon">🏛️</div>
+                  <div>
+                    <div style="font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--c-text-primary);">Official Institute Signoff</div>
+                    <div style="font-size: 11px; color: var(--c-text-muted);">Dean (R&C) & Student Welfare approved</div>
+                  </div>
+                </div>
+
+                <div class="trust-stat">
+                  <div class="trust-stat-icon">📬</div>
+                  <div>
+                    <div style="font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--c-text-primary);">Direct Clarifications Desk</div>
+                    <div style="font-size: 11px; color: var(--c-text-muted);"><a href="mailto:fire-ops@nitt.edu" style="color: var(--c-accent);">fire-ops@nitt.edu</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help & Assistance Banner -->
+    <section class="section-sm" style="background: var(--c-bg-card); border-top: 1px solid var(--c-border);">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6);">
+        <div>
+          <h3 class="heading-4" style="color: var(--c-text-primary);">Need Guidance On Where to Start?</h3>
+          <p class="text-muted" style="font-size: var(--fs-sm); margin-top: var(--sp-1);">
+            Use our interactive founder pathways or schedule an exploratory advisory session with the student coordination desk.
+          </p>
+        </div>
+        <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+          <a href="../start-here/which-path.html" class="btn btn-secondary">Find Your Pathway →</a>
+          <a href="../connect/mentors.html" class="btn btn-outline">Consult a Mentor</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    // Horizontal quick-track scroll controls
+    const track = document.getElementById('processQuickTrack');
+    const btnLeft = document.getElementById('scrollTrackLeft');
+    const btnRight = document.getElementById('scrollTrackRight');
+
+    if (track && btnLeft && btnRight) {
+      btnLeft.addEventListener('click', () => {
+        track.scrollBy({ left: -340, behavior: 'smooth' });
+      });
+      btnRight.addEventListener('click', () => {
+        track.scrollBy({ left: 340, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>

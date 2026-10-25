@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My FIRE Dashboard — FIRE | NIT Trichy</title>
+  <meta name="description" content="Personal entrepreneurship dashboard for students and founders at NIT Trichy. Track ideas, applications, projects, mentorship sessions, and tasks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="sidebar-layout">
+      <!-- Left Sidebar Navigation -->
+      <aside class="sidebar">
+        <!-- User Mini Profile -->
+        <div style="padding: 0 var(--sp-4) var(--sp-6);">
+          <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg);">
+            <div class="avatar" style="background:var(--grad-accent); color:#070D1B; font-weight:700; font-size:var(--fs-sm); width:38px; height:38px;">AS</div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Aravind Selvam</div>
+              <div style="font-size:var(--fs-xs); color:var(--c-accent); font-weight:500;">B.Tech CSE (Year IV)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label">My Workspace</div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="sidebar-link active">
+            <span>📊</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="ideas.html" class="sidebar-link">
+            <span>💡</span>
+            <span>My Ideas</span>
+            <span class="badge badge-idea" style="margin-left:auto; font-size:10px; padding:1px 7px;">2</span>
+          </a>
+          <a href="applications.html" class="sidebar-link">
+            <span>📋</span>
+            <span>My Applications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;">3</span>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <span>🚀</span>
+            <span>My Projects</span>
+            <span class="badge badge-active" style="margin-left:auto; font-size:10px; padding:1px 7px;">1</span>
+          </a>
+          <a href="connections.html" class="sidebar-link">
+            <span>🤝</span>
+            <span>My Connections</span>
+            <span class="badge badge-pilot" style="margin-left:auto; font-size:10px; padding:1px 7px;">4</span>
+          </a>
+          <a href="#tasks-section" class="sidebar-link">
+            <span>✅</span>
+            <span>My Tasks</span>
+            <span class="badge badge-closed" style="margin-left:auto; font-size:10px; padding:1px 7px;" id="sidebarTaskCount">4</span>
+          </a>
+          <a href="notifications.html" class="sidebar-link">
+            <span>🔔</span>
+            <span>Notifications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;" id="sidebarNotifBadge">3</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-section-label" style="margin-top:var(--sp-6);">Resources & Tools</div>
+        <nav class="sidebar-nav">
+          <a href="../../pages/start-here/idea.html" class="sidebar-link">
+            <span>✨</span>
+            <span>Submit New Idea</span>
+          </a>
+          <a href="../../pages/resources/facilities.html" class="sidebar-link">
+            <span>🔧</span>
+            <span>Facility Booking</span>
+          </a>
+          <a href="../../pages/resources/funding.html" class="sidebar-link">
+            <span>💰</span>
+            <span>Funding Finder</span>
+          </a>
+          <a href="../../pages/about/index.html#contact" class="sidebar-link">
+            <span>❓</span>
+            <span>Help & Support</span>
+          </a>
+        </nav>
+
+        <!-- Academic Affiliation Note -->
+        <div style="padding:var(--sp-6) var(--sp-4) var(--sp-2); margin-top:auto;">
+          <div style="padding:var(--sp-3); background:rgba(0,198,162,0.05); border:1px dashed var(--c-border-accent); border-radius:var(--radius-md); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <div style="display:flex; align-items:center; gap:var(--sp-2); color:var(--c-accent); font-weight:600; margin-bottom:4px;">
+              <span>🎓</span> NIT Trichy Verified
+            </div>
+            Roll: 106121018<br>
+            SPIDER Club Lead
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Dashboard Area -->
+      <main class="sidebar-main">
+        <!-- Welcome Banner -->
+        <div class="card card-glass" style="padding:var(--sp-6); margin-bottom:var(--sp-8); position:relative; overflow:hidden;">
+          <div style="position:absolute; top:-40px; right:-40px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(0,198,162,0.15), transparent 70%); pointer-events:none;"></div>
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-4); position:relative; z-index:1;">
+            <div>
+              <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-2);">
+                <h1 class="heading-2" style="margin:0;">Welcome back, <span class="text-gradient">Aravind</span> 👋</h1>
+                <span class="badge badge-pilot">Student</span>
+              </div>
+              <p style="color:var(--c-text-secondary); font-size:var(--fs-sm); max-width:620px; margin:0; line-height:var(--lh-relaxed);">
+                Track your active ideas, lab equipment reservations, mentorship milestones, and research expressions of interest all in one unified cockpit.
+              </p>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:var(--sp-1);">
+              <span class="badge badge-active"><span class="badge-dot"></span> Academic Year 2026–27</span>
+              <span style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">Semester VII · CSE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background:rgba(245,158,11,0.12); color:var(--c-warning);">💡</div>
+            <div class="stat-widget-num" data-count="2">2</div>
+            <div class="stat-widget-label">Ideas Submitted</div>
+            <div class="stat-widget-trend" style="color:var(--c-text-muted);">1 Under Review · 1 Draft</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background:rgba(59,130,246,0.12); color:var(--c-info);">⏳</div>
+            <div class="stat-widget-num" data-count="3">3</div>
+            <div class="stat-widget-label">Applications Pending</div>
+            <div class="stat-widget-trend" style="color:var(--c-warning);">Facility, Mentor & Cohort</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background:var(--c-accent-dim); color:var(--c-accent);">🚀</div>
+            <div class="stat-widget-num" data-count="1">1</div>
+            <div class="stat-widget-label">Active Project</div>
+            <div class="stat-widget-trend" style="color:var(--c-success);">SPIDER Campus AR App</div>
+          </div>
+          <div class="card stat-widget">
+            <div class="stat-widget-icon" style="background:rgba(124,58,237,0.12); color:#A78BFA;">🤝</div>
+            <div class="stat-widget-num" data-count="4">4</div>
+            <div class="stat-widget-label">Connections</div>
+            <div class="stat-widget-trend" style="color:var(--c-accent);">1 Mentor · 3 Collaborators</div>
+          </div>
+        </div>
+
+        <!-- Quick Action Row -->
+        <div style="margin-bottom:var(--sp-8);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+            <div class="section-label">Quick Actions</div>
+            <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Common founder workflows</span>
+          </div>
+          <div class="quick-actions-grid">
+            <a href="../../pages/start-here/idea.html" class="quick-action-card">
+              <div class="quick-action-icon" style="color:var(--c-accent);">💡</div>
+              <div>
+                <div class="quick-action-title">Submit New Idea</div>
+                <div class="quick-action-desc">Route your innovation through FIRE committee review and funding channels.</div>
+              </div>
+              <div class="quick-action-arrow">→</div>
+            </a>
+            <a href="../../pages/explore/faculty-projects.html" class="quick-action-card">
+              <div class="quick-action-icon" style="color:var(--c-info);">🔬</div>
+              <div>
+                <div class="quick-action-title">Browse Projects</div>
+                <div class="quick-action-desc">Join active faculty research or club initiatives seeking student members.</div>
+              </div>
+              <div class="quick-action-arrow">→</div>
+            </a>
+            <a href="../../pages/explore/mentors.html" class="quick-action-card">
+              <div class="quick-action-icon" style="color:var(--c-accent-warm);">🧑‍🏫</div>
+              <div>
+                <div class="quick-action-title">Find a Mentor</div>
+                <div class="quick-action-desc">Connect with seasoned NITT alumni founders and deep tech investors.</div>
+              </div>
+              <div class="quick-action-arrow">→</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent Ideas Section -->
+        <div class="card" style="margin-bottom:var(--sp-8);">
+          <div class="card-body" style="padding-bottom:0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+              <div>
+                <h2 class="heading-4" style="margin-bottom:var(--sp-1);">Recent Ideas</h2>
+                <p style="font-size:var(--fs-xs); color:var(--c-text-muted);">Concepts and proposals routed to the FIRE Technical Review Committee</p>
+              </div>
+              <a href="ideas.html" class="btn btn-outline btn-sm">View All Ideas →</a>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Title & Domain</th>
+                  <th>Stage</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span style="font-family:var(--font-mono); font-weight:600; color:var(--c-accent); font-size:var(--fs-xs);">FIRE-2024</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:600; color:var(--c-text-primary);">IoT Water Quality Analyzer for Campus Tanks</div>
+                    <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">CleanTech / IoT · Assigned Reviewer: Dr. Rajesh Kumar</div>
+                  </td>
+                  <td>
+                    <span class="badge badge-prototype">Prototype</span>
+                  </td>
+                  <td>
+                    <span class="badge badge-pending"><span class="badge-dot"></span> Under Review</span>
+                  </td>
+                  <td>Oct 12, 2026</td>
+                  <td style="text-align:right;">
+                    <a href="ideas.html" class="btn btn-secondary btn-sm">View Details</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="font-family:var(--font-mono); font-weight:600; color:var(--c-text-secondary); font-size:var(--fs-xs);">FIRE-2038</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:600; color:var(--c-text-primary);">Autonomous Solar-Powered Grass Trimmer</div>
+                    <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Robotics / Clean Energy · Draft (60% complete)</div>
+                  </td>
+                  <td>
+                    <span class="badge badge-idea">Idea / Concept</span>
+                  </td>
+                  <td>
+                    <span class="badge badge-closed">Draft</span>
+                  </td>
+                  <td>Oct 21, 2026</td>
+                  <td style="text-align:right;">
+                    <a href="ideas.html" class="btn btn-outline btn-sm">Edit Draft</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pending Applications Section -->
+        <div class="card" style="margin-bottom:var(--sp-8);">
+          <div class="card-body" style="padding-bottom:0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+              <div>
+                <h2 class="heading-4" style="margin-bottom:var(--sp-1);">Pending Applications</h2>
+                <p style="font-size:var(--fs-xs); color:var(--c-text-muted);">Live status of lab facilities, programmes, and mentor connection requests</p>
+              </div>
+              <a href="applications.html" class="btn btn-outline btn-sm">Manage Applications →</a>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Application Type</th>
+                  <th>Resource / Programme</th>
+                  <th>Submitted</th>
+                  <th>Current Status</th>
+                  <th style="text-align:right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="tag" style="font-size:11px;">🔧 Facility Access</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:600; color:var(--c-text-primary);">SCIEnT Prototyping Lab — 3D Printer & PCB Bench</div>
+                    <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Ref: REQ-FAC-4091 · Slot: Oct 28, 2026 (2:00 PM)</div>
+                  </td>
+                  <td>Oct 18, 2026</td>
+                  <td>
+                    <span class="badge badge-pending"><span class="badge-dot"></span> Safety Induction (Step 3/5)</span>
+                  </td>
+                  <td style="text-align:right;">
+                    <a href="applications.html" class="btn btn-secondary btn-sm">Track Progress</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tag" style="font-size:11px;">🤝 Mentorship</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:600; color:var(--c-text-primary);">Mentorship Request: Deepa Shanmugam</div>
+                    <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Partner, Stellaris Venture Partners · Pitch Review</div>
+                  </td>
+                  <td>Oct 15, 2026</td>
+                  <td>
+                    <span class="badge badge-pending">Awaiting Mentor Response</span>
+                  </td>
+                  <td style="text-align:right;">
+                    <a href="applications.html" class="btn btn-outline btn-sm">View Request</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tag" style="font-size:11px;">🚀 Programme</span>
+                  </td>
+                  <td>
+                    <div style="font-weight:600; color:var(--c-text-primary);">Post-SIH Continuation Programme — Cohort 2</div>
+                    <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Structured 6-week incubation sprint for NITT teams</div>
+                  </td>
+                  <td>Oct 20, 2026</td>
+                  <td>
+                    <span class="badge badge-pilot"><span class="badge-dot"></span> Shortlisted for Interview</span>
+                  </td>
+                  <td style="text-align:right;">
+                    <a href="applications.html" class="btn btn-secondary btn-sm">View Details</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Two Column Bottom Section: Recent Notifications + My Tasks -->
+        <div class="grid-2" style="align-items:start;">
+          <!-- Recent Notifications -->
+          <div class="card">
+            <div class="card-body">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+                <div style="display:flex; align-items:center; gap:var(--sp-2);">
+                  <h3 class="heading-5" style="margin:0;">Recent Notifications</h3>
+                  <span class="badge badge-pending" style="font-size:10px;">2 Unread</span>
+                </div>
+                <a href="notifications.html" style="font-size:var(--fs-xs); color:var(--c-accent); font-weight:600;">View All →</a>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:var(--sp-2);">
+                <div class="notif-item unread">
+                  <div class="notif-icon" style="color:var(--c-accent);">🔧</div>
+                  <div class="notif-content">
+                    <div class="notif-title">SCIEnT Lab Slot Confirmed</div>
+                    <div class="notif-msg">Your induction and 3D printing equipment slot is confirmed for Oct 28 at 2:00 PM.</div>
+                    <div class="notif-time">15 mins ago · Facility</div>
+                  </div>
+                </div>
+
+                <div class="notif-item unread">
+                  <div class="notif-icon" style="color:var(--c-accent-warm);">🤝</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Mentor Match Accepted</div>
+                    <div class="notif-msg">Vikram Nair (Founder, AgriSense) accepted your connection request for hardware IoT review.</div>
+                    <div class="notif-time">2 hours ago · Mentorship</div>
+                  </div>
+                </div>
+
+                <div class="notif-item">
+                  <div class="notif-icon" style="color:var(--c-info);">💼</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Research EOI Shortlist</div>
+                    <div class="notif-msg">Dr. Rajesh Kumar scheduled an informal discussion for the Water Quality Monitoring project.</div>
+                    <div class="notif-time">Yesterday · Research</div>
+                  </div>
+                </div>
+
+                <div class="notif-item">
+                  <div class="notif-icon" style="color:var(--c-accent);">🚀</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Post-SIH Cohort 2 Update</div>
+                    <div class="notif-msg">Your stage-1 documentation was verified by the FIRE Operations Team.</div>
+                    <div class="notif-time">3 days ago · Programmes</div>
+                  </div>
+                </div>
+
+                <div class="notif-item">
+                  <div class="notif-icon" style="color:var(--c-warning);">💡</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Idea Review Underway</div>
+                    <div class="notif-msg">Submission FIRE-2024 has been forwarded to the Civil & Electronics evaluation committee.</div>
+                    <div class="notif-time">5 days ago · Ideas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- My Tasks (Interactive) -->
+          <div class="card" id="tasks-section">
+            <div class="card-body">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+                <div style="display:flex; align-items:center; gap:var(--sp-2);">
+                  <h3 class="heading-5" style="margin:0;">My Tasks</h3>
+                  <span class="badge badge-closed" id="pendingTasksBadge" style="font-size:10px;">4 Pending</span>
+                </div>
+                <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Click to complete</span>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:var(--sp-3);" id="taskList">
+                <!-- Task 1 -->
+                <label style="display:flex; align-items:flex-start; gap:var(--sp-3); padding:var(--sp-3); background:var(--c-bg-elevated); border:1px solid var(--c-border); border-radius:var(--radius-md); cursor:pointer; transition:all var(--t-fast);">
+                  <input type="checkbox" class="task-checkbox" style="margin-top:3px; accent-color:var(--c-accent); width:16px; height:16px; cursor:pointer;">
+                  <div style="flex:1;">
+                    <div class="task-text" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-primary);">Upload project progress report for SPIDER Campus AR App</div>
+                    <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:4px;">
+                      <span class="badge badge-pending" style="font-size:10px; padding:1px 6px;">Due Oct 30</span>
+                      <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Club Projects</span>
+                    </div>
+                  </div>
+                </label>
+
+                <!-- Task 2 -->
+                <label style="display:flex; align-items:flex-start; gap:var(--sp-3); padding:var(--sp-3); background:var(--c-bg-elevated); border:1px solid var(--c-border); border-radius:var(--radius-md); cursor:pointer; transition:all var(--t-fast);">
+                  <input type="checkbox" class="task-checkbox" style="margin-top:3px; accent-color:var(--c-accent); width:16px; height:16px; cursor:pointer;">
+                  <div style="flex:1;">
+                    <div class="task-text" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-primary);">Complete SCIEnT facility safety induction test online</div>
+                    <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:4px;">
+                      <span class="badge badge-pending" style="font-size:10px; padding:1px 6px;">Due Nov 02</span>
+                      <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Required for Lab Access</span>
+                    </div>
+                  </div>
+                </label>
+
+                <!-- Task 3 -->
+                <label style="display:flex; align-items:flex-start; gap:var(--sp-3); padding:var(--sp-3); background:var(--c-bg-elevated); border:1px solid var(--c-border); border-radius:var(--radius-md); cursor:pointer; transition:all var(--t-fast);">
+                  <input type="checkbox" class="task-checkbox" style="margin-top:3px; accent-color:var(--c-accent); width:16px; height:16px; cursor:pointer;">
+                  <div style="flex:1;">
+                    <div class="task-text" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-primary);">Submit revised pitch deck for Post-SIH Cohort 2 interview</div>
+                    <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:4px;">
+                      <span class="badge badge-idea" style="font-size:10px; padding:1px 6px;">Due Nov 05</span>
+                      <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Max 10 slides (PDF)</span>
+                    </div>
+                  </div>
+                </label>
+
+                <!-- Task 4 -->
+                <label style="display:flex; align-items:flex-start; gap:var(--sp-3); padding:var(--sp-3); background:var(--c-bg-elevated); border:1px solid var(--c-border); border-radius:var(--radius-md); cursor:pointer; transition:all var(--t-fast);">
+                  <input type="checkbox" class="task-checkbox" style="margin-top:3px; accent-color:var(--c-accent); width:16px; height:16px; cursor:pointer;">
+                  <div style="flex:1;">
+                    <div class="task-text" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-primary);">Confirm 1:1 meeting agenda with Mentor Vikram Nair</div>
+                    <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:4px;">
+                      <span class="badge badge-pilot" style="font-size:10px; padding:1px 6px;">Due Nov 08</span>
+                      <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Hardware BOM Review</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Quick Add Task -->
+              <div style="margin-top:var(--sp-4); padding-top:var(--sp-3); border-top:1px solid var(--c-border); display:flex; gap:var(--sp-2);">
+                <input type="text" id="newTaskInput" class="form-input" placeholder="Add a quick task..." style="font-size:var(--fs-xs); padding:6px 12px;">
+                <button type="button" id="addTaskBtn" class="btn btn-secondary btn-sm" style="flex-shrink:0;">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize common layout components with depth 2
+    Components.init(2);
+
+    // Interactive Tasks logic
+    const taskCheckboxes = document.querySelectorAll('.task-checkbox');
+    const pendingTasksBadge = document.getElementById('pendingTasksBadge');
+    const sidebarTaskCount = document.getElementById('sidebarTaskCount');
+
+    function updateTaskCount() {
+      const all = document.querySelectorAll('.task-checkbox');
+      let pending = 0;
+      all.forEach(cb => {
+        const textEl = cb.closest('label').querySelector('.task-text');
+        if (cb.checked) {
+          textEl.style.textDecoration = 'line-through';
+          textEl.style.color = 'var(--c-text-muted)';
+          cb.closest('label').style.opacity = '0.65';
+        } else {
+          textEl.style.textDecoration = 'none';
+          textEl.style.color = 'var(--c-text-primary)';
+          cb.closest('label').style.opacity = '1';
+          pending++;
+        }
+      });
+      if (pendingTasksBadge) pendingTasksBadge.textContent = pending + ' Pending';
+      if (sidebarTaskCount) sidebarTaskCount.textContent = pending;
+    }
+
+    document.getElementById('taskList').addEventListener('change', (e) => {
+      if (e.target.classList.contains('task-checkbox')) {
+        updateTaskCount();
+        if (e.target.checked) {
+          showToast('Task marked as completed! 🎉', 'success');
+        }
+      }
+    });
+
+    // Add task feature
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const newTaskInput = document.getElementById('newTaskInput');
+    if (addTaskBtn && newTaskInput) {
+      addTaskBtn.addEventListener('click', () => {
+        const val = newTaskInput.value.trim();
+        if (!val) return;
+        const newLabel = document.createElement('label');
+        newLabel.style.cssText = 'display:flex; align-items:flex-start; gap:var(--sp-3); padding:var(--sp-3); background:var(--c-bg-elevated); border:1px solid var(--c-border); border-radius:var(--radius-md); cursor:pointer; transition:all var(--t-fast);';
+        newLabel.innerHTML = `
+          <input type="checkbox" class="task-checkbox" style="margin-top:3px; accent-color:var(--c-accent); width:16px; height:16px; cursor:pointer;">
+          <div style="flex:1;">
+            <div class="task-text" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-primary);">${val}</div>
+            <div style="display:flex; align-items:center; gap:var(--sp-2); margin-top:4px;">
+              <span class="badge badge-pending" style="font-size:10px; padding:1px 6px;">New</span>
+              <span style="font-size:var(--fs-xs); color:var(--c-text-muted);">Personal Task</span>
+            </div>
+          </div>
+        `;
+        document.getElementById('taskList').prepend(newLabel);
+        newTaskInput.value = '';
+        updateTaskCount();
+        showToast('Task added to your dashboard', 'info');
+      });
+      newTaskInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addTaskBtn.click();
+      });
+    }
+  </script>
+</body>
+</html>

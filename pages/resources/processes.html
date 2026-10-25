@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process Repository — FIRE | NIT Trichy</title>
+  <meta name="description" content="Official operating procedures, approval workflows, timelines, and documentation guides for all entrepreneurship, research, and facility requests at NIT Trichy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+  <style>
+    .processes-header {
+      padding: var(--sp-12) 0 var(--sp-6);
+    }
+    .process-filter-scroll {
+      display: flex;
+      gap: var(--sp-2);
+      overflow-x: auto;
+      padding-bottom: var(--sp-3);
+      margin-top: var(--sp-4);
+      -webkit-overflow-scrolling: touch;
+    }
+    .process-filter-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+    .process-filter-scroll::-webkit-scrollbar-thumb {
+      background: var(--c-border);
+      border-radius: var(--radius-full);
+    }
+    .process-card-custom {
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--t-normal);
+      position: relative;
+    }
+    .process-card-custom:hover {
+      border-color: var(--c-border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-accent);
+    }
+    .process-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-md);
+      background: var(--c-bg-elevated);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .step-counter-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--c-accent);
+      background: var(--c-accent-dim);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--c-border-accent);
+    }
+    .process-detail-modal-body {
+      padding: var(--sp-6);
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+    .modal-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      margin: var(--sp-5) 0;
+      position: relative;
+    }
+    .modal-step-item {
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+      position: relative;
+    }
+    .modal-step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--c-accent-dim);
+      border: 1px solid var(--c-border-accent);
+      color: var(--c-accent);
+      font-weight: var(--fw-bold);
+      font-size: var(--fs-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .modal-step-text {
+      font-size: var(--fs-sm);
+      color: var(--c-text-primary);
+      line-height: var(--lh-relaxed);
+      padding-top: 5px;
+    }
+    .modal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-4);
+      padding: var(--sp-4);
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      margin-top: var(--sp-5);
+    }
+    @media (max-width: 640px) {
+      .modal-meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .meta-box-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c-text-muted);
+    }
+    .meta-box-val {
+      font-size: var(--fs-sm);
+      color: var(--c-text-primary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="container">
+      <!-- Top Breadcrumb & Header -->
+      <header class="processes-header">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Resources</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Process Repository</span>
+        </nav>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6);">
+          <div>
+            <div class="section-label">Institutional Standard Operating Procedures</div>
+            <h1 class="heading-1">Process <span class="text-gradient">Repository</span></h1>
+            <p class="text-muted" style="max-width: 650px; margin-top: var(--sp-2);">
+              Clear, transparent step-by-step guides for every formal administrative, academic, and technical innovation workflow at NIT Trichy. Verified and updated for academic year 2026–27.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;">
+            <div class="search-bar" style="max-width: 340px; width: 100%;">
+              <span>🔍</span>
+              <input type="text" id="processSearchInput" placeholder="Search by procedure, office, or role…" autocomplete="off">
+            </div>
+            <button class="btn btn-outline btn-sm" id="resetFiltersBtn">Reset</button>
+          </div>
+        </div>
+
+        <!-- 12 Category Filter Pills -->
+        <div class="process-filter-scroll" id="categoryFilters" role="tablist">
+          <button class="filter-pill active" data-filter="all">All (12)</button>
+          <button class="filter-pill" data-filter="Student Project Participation">Student Research</button>
+          <button class="filter-pill" data-filter="Facility Access">Facility Access</button>
+          <button class="filter-pill" data-filter="Idea Submission">Idea Submission</button>
+          <button class="filter-pill" data-filter="IP and Legal">IP & Legal</button>
+          <button class="filter-pill" data-filter="Faculty and Mentor Engagement">Mentorship</button>
+          <button class="filter-pill" data-filter="Club Project Listing">Club Projects</button>
+          <button class="filter-pill" data-filter="Incubation & Acceleration">Incubation</button>
+          <button class="filter-pill" data-filter="Company Incorporation">Incorporation</button>
+          <button class="filter-pill" data-filter="Government Grants">Govt Grants</button>
+          <button class="filter-pill" data-filter="Startup Internships">Internships</button>
+          <button class="filter-pill" data-filter="Research Commercialisation">Commercialisation</button>
+          <button class="filter-pill" data-filter="Post-SIH Continuation">Post-SIH Pathway</button>
+        </div>
+      </header>
+
+      <!-- Processes Grid -->
+      <section class="section-sm" style="padding-top: var(--sp-4);">
+        <div style="margin-bottom: var(--sp-4); display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-size: var(--fs-xs); color: var(--c-text-muted);" id="resultsCounter">
+            Showing all 12 official institutional processes
+          </div>
+        </div>
+
+        <div class="grid-3" id="processesContainer">
+          <!-- Process Cards will be rendered and managed by script -->
+        </div>
+
+        <!-- Empty state if search finds nothing -->
+        <div id="noResultsState" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-title">No matching processes found</div>
+          <div class="empty-state-desc">Try clearing your search query or switching categories.</div>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllFilters()">Reset All Filters</button>
+        </div>
+      </section>
+
+      <!-- Need Help Card -->
+      <div class="card card-glass" style="margin-bottom: var(--sp-16); padding: var(--sp-6);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-4);">
+          <div>
+            <h3 class="heading-4" style="color: var(--c-text-primary);">Procedure not listed or facing escalation delays?</h3>
+            <p class="text-muted" style="font-size: var(--fs-sm); margin-top: 4px;">
+              The FIRE Operations team can help resolve bottlenecks, clarify jurisdictional authority, and liaison with institute administration.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--sp-3);">
+            <a href="mailto:fire-ops@nitt.edu" class="btn btn-secondary btn-sm">Email Operations Desk</a>
+            <a href="templates.html" class="btn btn-outline btn-sm">Browse Forms Library →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Modal for Full Process -->
+  <div class="modal-overlay" id="processDetailModal">
+    <div class="modal" style="max-width: 720px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: var(--sp-3);">
+          <div id="modalIcon" style="font-size: 1.75rem;">📋</div>
+          <div>
+            <div id="modalCategoryBadge" class="badge badge-active">Category</div>
+            <h3 class="heading-4" id="modalTitle" style="color: var(--c-text-primary); margin-top: 4px;">Process Title</h3>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-icon" data-modal-close aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="process-detail-modal-body">
+        <!-- Target Applicant -->
+        <div style="background: var(--c-bg-card); border-left: 3px solid var(--c-accent); padding: var(--sp-3) var(--sp-4); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: var(--sp-5);">
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-accent); letter-spacing: 0.05em;">Who Can Apply / Initiate</div>
+          <div id="modalWho" style="font-size: var(--fs-sm); color: var(--c-text-primary); margin-top: 2px;">Applicant group</div>
+        </div>
+
+        <!-- Step by Step instructions -->
+        <div style="margin-top: var(--sp-4);">
+          <div style="font-weight: var(--fw-semibold); font-size: var(--fs-sm); color: var(--c-text-primary); display: flex; align-items: center; justify-content: space-between;">
+            <span>Step-by-Step Procedure</span>
+            <span id="modalStepsCount" class="step-counter-badge">5 Steps</span>
+          </div>
+          <div class="modal-step-list" id="modalStepsList">
+            <!-- Steps injected here -->
+          </div>
+        </div>
+
+        <!-- Meta Details Grid -->
+        <div class="modal-meta-grid">
+          <div>
+            <div class="meta-box-label">Approving Authority</div>
+            <div class="meta-box-val" id="modalAuthority">Authority</div>
+          </div>
+          <div>
+            <div class="meta-box-label">Expected Timeline</div>
+            <div class="meta-box-val" id="modalTimeline" style="color: var(--c-accent);">Timeline</div>
+          </div>
+          <div>
+            <div class="meta-box-label">Responsible Office</div>
+            <div class="meta-box-val" id="modalOwner">Owner Office</div>
+          </div>
+          <div>
+            <div class="meta-box-label">Last Policy Verification</div>
+            <div class="meta-box-val" id="modalLastVerified" style="color: var(--c-text-secondary);">Date</div>
+          </div>
+        </div>
+
+        <!-- Required Forms -->
+        <div style="margin-top: var(--sp-5); padding: var(--sp-4); background: var(--c-bg-card); border: 1px solid var(--c-border); border-radius: var(--radius-md);">
+          <div class="meta-box-label" style="margin-bottom: var(--sp-2);">Mandatory Forms & Attachments</div>
+          <div id="modalFormsList" style="display: flex; flex-direction: column; gap: var(--sp-2);">
+            <!-- Forms injected here -->
+          </div>
+        </div>
+
+        <!-- Escalation Contact -->
+        <div style="margin-top: var(--sp-4); padding: var(--sp-3) var(--sp-4); background: rgba(255, 107, 53, 0.08); border: 1px solid rgba(255, 107, 53, 0.25); border-radius: var(--radius-md); display: flex; align-items: center; gap: var(--sp-3);">
+          <span style="font-size: 1.25rem;">⚠️</span>
+          <div>
+            <div style="font-size: 11px; font-weight: 600; color: #FFA07A; text-transform: uppercase;">Escalation Contact</div>
+            <div id="modalEscalation" style="font-size: var(--fs-xs); color: var(--c-text-secondary);">Escalation details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="templates.html" class="btn btn-outline btn-sm">Open Forms Library</a>
+        <button class="btn btn-secondary btn-sm" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Complete 12 Process Dataset combining FIRE_DATA with 6 additional hardcoded processes
+    const EXTENDED_PROCESSES = [
+      {
+        id: "PR001",
+        title: "Faculty Research Project — Student Participation",
+        category: "Student Project Participation",
+        icon: "👩‍🏫",
+        who: "Registered NITT students (UG / PG / Ph.D.)",
+        steps: [
+          "Browse faculty research listings and open project positions on FIRE Explore.",
+          "Submit Expression of Interest (EOI) detailing relevant coursework, technical skills, and weekly commitment hours.",
+          "Faculty Project Lead reviews application profile and schedules a brief technical interaction within 5–7 working days.",
+          "Upon mutual acceptance, execute the Student Research Undertaking and IP confidentiality agreement.",
+          "Faculty Supervisor formally updates project membership on FIRE, granting lab access and academic credit tracking."
+        ],
+        authority: "Faculty Project Lead / Respective HoD",
+        timeline: "5–10 working days from EOI submission",
+        owner: "Office of Dean (R&C) & Respective Department",
+        forms: ["Faculty Collaboration Request Form (FCR-01)", "Student Undertaking on Research Integrity"],
+        escalation: "Head of Respective Academic Department",
+        lastVerified: "October 18, 2026"
+      },
+      {
+        id: "PR002",
+        title: "SCIEnT Facility Access — Standard Request",
+        category: "Facility Access",
+        icon: "🔧",
+        who: "All registered NITT students and faculty working on verified projects",
+        steps: [
+          "Identify required equipment (3D printers, laser cutter, electronics workstations) via FIRE Facility Directory.",
+          "Verify completion of mandatory General Lab Safety and Machine Operation briefing.",
+          "Submit Facility Access Request specifying intended build specifications, material requirements, and estimated runtime.",
+          "SCIEnT Facility Coordinator evaluates safety clearance and assigns technician or machine time slot.",
+          "Access pass activated on student biometric / smart card; pick up materials from inventory desk.",
+          "Log equipment runtime and clean up work area at the end of every operating session."
+        ],
+        authority: "SCIEnT Facility Coordinator",
+        timeline: "2–5 working days",
+        owner: "SCIEnT Management Office",
+        forms: ["Facility Access Application (FAA-02)", "Laboratory Safety Protocol Sign-off"],
+        escalation: "Faculty Advisor, SCIEnT (Intercom 3840)",
+        lastVerified: "October 20, 2026"
+      },
+      {
+        id: "PR003",
+        title: "Idea Submission and Initial Assessment",
+        category: "Idea Submission",
+        icon: "💡",
+        who: "Any NITT student, faculty member, or registered alumni founder",
+        steps: [
+          "Complete the FIRE Structured Idea Intake Questionnaire outlining problem, target customer, and novelty.",
+          "System assigns a unique FIRE Request ID (e.g. ID-2026-XXXX) and sends acknowledgment notification.",
+          "FIRE Operations Assessment Panel performs preliminary triage within 3 working days.",
+          "Applicant receives written feedback scorecard with suggested next milestones and resource allocations.",
+          "Direct referral dispatched for mentorship matching, prototyping lab access, or funding cohort review."
+        ],
+        authority: "FIRE Operations Review Committee",
+        timeline: "3–5 working days for initial review",
+        owner: "FIRE Operations Desk",
+        forms: ["FIRE Idea Intake Questionnaire (FIQ-01)"],
+        escalation: "Student Convener / Faculty In-Charge, FIRE",
+        lastVerified: "October 22, 2026"
+      },
+      {
+        id: "PR004",
+        title: "IP and Patent Assessment Referral",
+        category: "IP and Legal",
+        icon: "⚖️",
+        who: "Students, research scholars, and faculty with potentially patentable technologies",
+        steps: [
+          "Complete the Invention Disclosure Record (IDR) checklist detailing novelty, non-obviousness, and technical claims.",
+          "FIRE securely routes the disclosure file to the official NITT IPR Cell.",
+          "IPR Cell conducts comprehensive prior-art search across global patent databases (WIPO, USPTO, InPASS).",
+          "Inventor receives preliminary patentability opinion and institutional ownership classification report.",
+          "If approved for filing, institute empanelled patent attorneys draft provisional or complete patent specification.",
+          "Application filed with the Indian Patent Office Chennai with full fee sponsorship under NITT policy."
+        ],
+        authority: "NITT IPR Cell Committee",
+        timeline: "2–6 weeks for prior-art search and patentability opinion",
+        owner: "NITT IPR Cell",
+        forms: ["Invention Disclosure Record (IDR-01)", "Prior Art Search Request Form"],
+        escalation: "Chairperson, NITT IPR Cell (Admin Block, 2nd Floor)",
+        lastVerified: "September 30, 2026"
+      },
+      {
+        id: "PR005",
+        title: "Mentorship Request & Expert Allocation",
+        category: "Faculty and Mentor Engagement",
+        icon: "🤝",
+        who: "Registered student founders, project leads, and innovation teams",
+        steps: [
+          "Explore the Mentor Directory on FIRE filtering by industry domain, tech stack, and functional expertise.",
+          "Submit a targeted mentorship request outlining current roadblocks, business/tech ask, and pitch materials.",
+          "FIRE Mentor Coordinator verifies request readiness and forwards dossier to the prospective mentor.",
+          "Mentor confirms availability or recommends alternate date within 5 working days.",
+          "First 45-minute structured virtual or on-campus advisory session scheduled with joint milestone log."
+        ],
+        authority: "Selected Mentor (Discretionary Acceptance)",
+        timeline: "Mentor response within 5 working days",
+        owner: "FIRE Mentor Coordination Cell",
+        forms: ["Mentor Engagement Dossier (MED-04)"],
+        escalation: "Alumni Relations & FIRE Coordinator",
+        lastVerified: "October 12, 2026"
+      },
+      {
+        id: "PR006",
+        title: "Club Project — Publication & Verification",
+        category: "Club Project Listing",
+        icon: "📋",
+        who: "Authorised club conveners, technical leads, and society heads",
+        steps: [
+          "Log in to My FIRE portal using designated Club Administrator credentials.",
+          "Draft project showcase listing with problem statement, architecture diagrams, and skill recruitment vacancies.",
+          "Faculty Club Advisor reviews technical validity and approves publication submission.",
+          "FIRE Moderation Team validates content compliance and verifies external repository links.",
+          "Project published live on FIRE Explore directory with public collaboration request channel."
+        ],
+        authority: "Faculty Club Advisor + FIRE Moderator",
+        timeline: "3–5 working days",
+        owner: "FIRE Moderation Team",
+        forms: ["Club Project Listing Sheet (CPL-01)"],
+        escalation: "Office of Dean (Student Welfare)",
+        lastVerified: "October 08, 2026"
+      },
+      {
+        id: "PR007",
+        title: "Startup Incubation Application",
+        category: "Incubation & Acceleration",
+        icon: "🚀",
+        who: "Student, faculty, or alumni ventures with validated proof-of-concept or MVP",
+        steps: [
+          "Complete the comprehensive incubation application covering market validation, business model, and cap table.",
+          "Undergo preliminary screening by the FIRE Incubation Committee for technical feasibility and team balance.",
+          "Shortlisted founders present a 10-minute pitch and live demo before the Incubation Advisory Board.",
+          "Committee reviews space requirements, cloud compute needs, and potential seed grant eligibility.",
+          "Execute Incubation Agreement, Code of Conduct, and IP non-encumbrance declarations.",
+          "Receive co-working workstation keys, high-speed network access, and legal compliance advisory."
+        ],
+        authority: "NITT Incubation Advisory Board",
+        timeline: "2–3 weeks from submission cut-off",
+        owner: "FIRE Incubation Management Team",
+        forms: ["Incubation Application Dossier (INC-01)", "Founder Equity & Space Usage Agreement"],
+        escalation: "Faculty In-Charge, Incubation Facility",
+        lastVerified: "October 16, 2026"
+      },
+      {
+        id: "PR008",
+        title: "Company Incorporation & Compliance Guidance",
+        category: "Company Incorporation",
+        icon: "🏢",
+        who: "Student or faculty teams ready to incorporate a Private Limited company or LLP",
+        steps: [
+          "Request Institutional No-Objection Certificate (NOC) for registered campus address usage.",
+          "Obtain Digital Signature Certificates (DSC) and Director Identification Numbers (DIN) for all founders.",
+          "Conduct corporate name availability search and reserve name via Ministry of Corporate Affairs SPICe+ portal.",
+          "Draft customized Memorandum of Association (MoA) and Articles of Association (AoA) with FIRE Legal panel.",
+          "Receive Certificate of Incorporation, corporate PAN, TAN, and EPFO/ESIC registrations.",
+          "Apply for DPIIT Startup India Recognition and open corporate current bank account."
+        ],
+        authority: "FIRE Legal Advisory Panel & Registrar of Companies (Coimbatore)",
+        timeline: "10–15 working days",
+        owner: "FIRE Legal & Compliance Cell",
+        forms: ["Institutional Address NOC Request (NOC-INC)", "MCA SPICe+ Documentation Checklist"],
+        escalation: "Legal Counsel, FIRE Advisory Desk",
+        lastVerified: "September 25, 2026"
+      },
+      {
+        id: "PR009",
+        title: "Central & State Government Grant Endorsement",
+        category: "Government Grants",
+        icon: "🏛️",
+        who: "Students, researchers, and faculty applying for external schemes (DST, MeitY, BIRAC, TANSIM)",
+        steps: [
+          "Prepare grant proposal and budget breakdown in strict accordance with scheme guidelines.",
+          "Submit draft proposal to FIRE Grant Review Desk at least 10 working days prior to national portal deadline.",
+          "Internal Technical Evaluation Committee conducts proposal peer review and financial line-item check.",
+          "Secure institutional host institute endorsement letter signed by the Dean (Research & Consultancy).",
+          "Upload proposal documents to official government portal with institutional registration credentials.",
+          "Deposit application acknowledgment slip and portal reference ID with the Dean (R&C) office."
+        ],
+        authority: "Office of Dean (Research & Consultancy)",
+        timeline: "7–14 working days before scheme deadline",
+        owner: "Office of Dean (R&C) / FIRE Grants Desk",
+        forms: ["Institutional Endorsement Request (IER-01)", "Budget Head Justification Worksheet"],
+        escalation: "Office of Dean (R&C) (Admin Block, 1st Floor)",
+        lastVerified: "October 14, 2026"
+      },
+      {
+        id: "PR010",
+        title: "Startup Student Internship Posting & Hiring",
+        category: "Startup Internships",
+        icon: "💼",
+        who: "Incubated ventures, student-led startups, and faculty spin-offs",
+        steps: [
+          "Register venture profile on My FIRE talent portal with verification of corporate or incubation status.",
+          "Submit internship opening specifying job description, stipend amount, duration, and required competencies.",
+          "FIRE Internship Coordinator checks role legitimacy and alignment with NITT student training guidelines.",
+          "Approved job post published on campus dashboard with automated student applicant tracker.",
+          "Conduct technical interviews, release offer letters, and execute training non-disclosure agreements."
+        ],
+        authority: "FIRE Talent Coordinator & Respective Faculty In-Charge",
+        timeline: "3–5 working days",
+        owner: "FIRE Talent & Internship Cell",
+        forms: ["Internship Posting Declaration (IPD-02)", "Student Academic Internship NOC"],
+        escalation: "Faculty Advisor, Training & Placement Cell",
+        lastVerified: "October 05, 2026"
+      },
+      {
+        id: "PR011",
+        title: "Faculty & Student Research Commercialisation & Spin-off",
+        category: "Research Commercialisation",
+        icon: "🔬",
+        who: "Faculty principal investigators, research scholars, and student co-inventors with TRL >= 4",
+        steps: [
+          "Submit Commercialisation Intent Notice with evidence of validated technology readiness level (TRL >= 4).",
+          "Technology Transfer Office conducts patent freedom-to-operate search, market analysis, and valuation.",
+          "Convene meeting of the NITT Technology Commercialisation Committee (TCC).",
+          "Determine commercial route: arm's-length technology licensing, royalty agreement, or faculty equity spin-off.",
+          "Draft Technology Transfer Agreement (TTA) incorporating institute IP policy and revenue share schedules.",
+          "Formal execution approved by Director NIT Trichy and technology dossier handed over to licensee."
+        ],
+        authority: "NITT Technology Commercialisation Committee & Director NITT",
+        timeline: "4–8 weeks for due diligence & contract execution",
+        owner: "NITT Technology Transfer Office (TTO)",
+        forms: ["Technology Commercialisation Disclosure (TCD-01)", "Faculty Equity & Conflict of Interest Declaration"],
+        escalation: "Associate Dean (TTO) / Dean (R&C)",
+        lastVerified: "September 15, 2026"
+      },
+      {
+        id: "PR012",
+        title: "Post-SIH Project Continuation & Seed Pathway",
+        category: "Post-SIH Continuation",
+        icon: "🔁",
+        who: "NIT Trichy Smart India Hackathon finalists, runners-up, and winners",
+        steps: [
+          "Register hackathon team and code/hardware repository on the FIRE Post-SIH continuation portal.",
+          "Meet with problem statement mentor and designated department faculty advisor to review hack feasibility.",
+          "Formulate a 6-month productization roadmap including beta testing with problem-issuing ministry or PSU.",
+          "Obtain priority workstation allocation in SCIEnT prototyping facility and cloud infrastructure credits.",
+          "Apply for prototype refinement micro-grants under the Director's Innovation Discretionary Fund.",
+          "Mid-term milestone demonstration with fast-track fast-lane consideration for institutional incubation."
+        ],
+        authority: "SIH Institutional Nodal Committee & SCIEnT Management",
+        timeline: "5–7 working days",
+        owner: "NITT SIH Coordination Cell & FIRE",
+        forms: ["Post-SIH Continuation Intake (PSI-01)", "Prototype Milestone & Component Budget Form"],
+        escalation: "Institutional SPOC for Smart India Hackathon",
+        lastVerified: "October 19, 2026"
+      }
+    ];
+
+    // Render Cards
+    const container = document.getElementById('processesContainer');
+    const counter = document.getElementById('resultsCounter');
+    const searchInput = document.getElementById('processSearchInput');
+    const noResults = document.getElementById('noResultsState');
+
+    function renderProcesses(list) {
+      if (!list.length) {
+        container.style.display = 'none';
+        noResults.style.display = 'flex';
+        counter.textContent = 'Showing 0 matching processes';
+        return;
+      }
+      container.style.display = 'grid';
+      noResults.style.display = 'none';
+      counter.textContent = `Showing ${list.length} of ${EXTENDED_PROCESSES.length} official institutional processes`;
+
+      container.innerHTML = list.map(item => `
+        <div class="process-card-custom" data-category="${item.category}" data-searchable>
+          <div>
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--sp-4);">
+              <div class="process-icon-box">${item.icon}</div>
+              <span class="step-counter-badge">${item.steps.length} Steps</span>
+            </div>
+
+            <div style="margin-bottom: var(--sp-2);">
+              <span class="badge badge-active" style="font-size: 10px;">${item.category}</span>
+            </div>
+
+            <h3 class="heading-5" style="color: var(--c-text-primary); font-size: 1.05rem; line-height: var(--lh-snug); margin-bottom: var(--sp-2);">
+              ${item.title}
+            </h3>
+
+            <div style="font-size: var(--fs-xs); color: var(--c-text-muted); margin-bottom: var(--sp-3); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              <strong style="color: var(--c-text-secondary);">Who:</strong> ${item.who}
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--c-border); padding-top: var(--sp-3); margin-top: var(--sp-3);">
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--c-text-muted); margin-bottom: var(--sp-3);">
+              <span>⏱️ ${item.timeline}</span>
+              <span style="max-width: 130px; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${item.owner}">🏛️ ${item.owner}</span>
+            </div>
+
+            <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="openProcessModal('${item.id}')">
+              View Full Process →
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Modal Opening & Population
+    function openProcessModal(processId) {
+      const item = EXTENDED_PROCESSES.find(p => p.id === processId);
+      if (!item) return;
+
+      document.getElementById('modalIcon').textContent = item.icon;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalCategoryBadge').textContent = item.category;
+      document.getElementById('modalWho').textContent = item.who;
+      document.getElementById('modalStepsCount').textContent = `${item.steps.length} Steps`;
+      document.getElementById('modalAuthority').textContent = item.authority;
+      document.getElementById('modalTimeline').textContent = item.timeline;
+      document.getElementById('modalOwner').textContent = item.owner;
+      document.getElementById('modalLastVerified').textContent = item.lastVerified;
+      document.getElementById('modalEscalation').textContent = item.escalation;
+
+      // Render Steps
+      const stepsListEl = document.getElementById('modalStepsList');
+      stepsListEl.innerHTML = item.steps.map((st, i) => `
+        <div class="modal-step-item">
+          <div class="modal-step-number">${i + 1}</div>
+          <div class="modal-step-text">${st}</div>
+        </div>
+      `).join('');
+
+      // Render Forms
+      const formsListEl = document.getElementById('modalFormsList');
+      formsListEl.innerHTML = item.forms.map(f => `
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--sp-2) var(--sp-3); background: var(--c-bg-elevated); border-radius: var(--radius-sm); border: 1px solid var(--c-border-light);">
+          <span style="font-size: var(--fs-xs); color: var(--c-text-primary); font-weight: 500;">📄 ${f}</span>
+          <a href="templates.html" class="btn btn-ghost btn-sm" style="font-size: 11px; padding: 2px 8px; color: var(--c-accent);">Get Form ↗</a>
+        </div>
+      `).join('');
+
+      // Open Modal
+      document.getElementById('processDetailModal').classList.add('open');
+    }
+
+    // Filtering Logic
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterData() {
+      let filtered = EXTENDED_PROCESSES;
+
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
+      }
+
+      if (currentSearch.trim()) {
+        const q = currentSearch.toLowerCase();
+        filtered = filtered.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.who.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.owner.toLowerCase().includes(q) ||
+          p.authority.toLowerCase().includes(q) ||
+          p.steps.some(s => s.toLowerCase().includes(q))
+        );
+      }
+
+      renderProcesses(filtered);
+    }
+
+    // Event Listeners for Filters
+    document.querySelectorAll('#categoryFilters .filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.dataset.filter;
+        filterData();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      filterData();
+    });
+
+    function resetAllFilters() {
+      currentFilter = 'all';
+      currentSearch = '';
+      searchInput.value = '';
+      document.querySelectorAll('#categoryFilters .filter-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.filter === 'all');
+      });
+      filterData();
+    }
+
+    document.getElementById('resetFiltersBtn').addEventListener('click', resetAllFilters);
+
+    // Initial render
+    renderProcesses(EXTENDED_PROCESSES);
+
+    // Check for ?id= query param on load (e.g. from quick-access on index.html)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetId = urlParams.get('id');
+      if (targetId) {
+        setTimeout(() => openProcessModal(targetId), 200);
+      }
+    });
+
+    Components.init(2);
+  </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Ecosystem — FIRE | NIT Trichy</title>
+  <meta name="description" content="Discover the complete NIT Trichy innovation ecosystem: faculty research, student club projects, industry challenges, alumni mentors, and campus startups.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 72vh; padding-top: var(--sp-20); padding-bottom: var(--sp-12);">
+      <div class="hero-bg">
+        <div class="hero-mesh"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container hero-content">
+        <div class="hero-badge anim-on-scroll">
+          <span class="hero-badge-dot"></span>
+          <span>Unified Innovation Directory · NIT Trichy</span>
+        </div>
+        <h1 class="hero-title anim-on-scroll delay-1" style="max-width: 860px;">
+          Discover the <span class="text-gradient">NITT Innovation</span> Ecosystem
+        </h1>
+        <p class="hero-desc anim-on-scroll delay-2" style="max-width: 680px;">
+          Connect across disciplines, departments, and cohorts. Explore ongoing faculty research labs, high-impact student club initiatives, live industry problem statements, experienced alumni mentors, and thriving campus ventures.
+        </p>
+
+        <!-- Animated Stats Counter Row -->
+        <div class="hero-stats anim-on-scroll delay-3">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="24" data-suffix="+">0</span>
+            <span class="hero-stat-label">Faculty Projects</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="15" data-suffix="+">0</span>
+            <span class="hero-stat-label">Club Initiatives</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="12" data-suffix="+">0</span>
+            <span class="hero-stat-label">Industry Challenges</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="35" data-suffix="+">0</span>
+            <span class="hero-stat-label">Expert Mentors</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="18" data-suffix="+">0</span>
+            <span class="hero-stat-label">Incubated Startups</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Directory Hub Navigation Cards -->
+    <section class="section-sm" style="background: var(--c-bg-surface); border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: var(--sp-6); flex-wrap:wrap; gap:var(--sp-3);">
+          <div>
+            <div class="section-label">Directory Pillars</div>
+            <h2 class="heading-3" style="margin-top:var(--sp-2);">Explore by Innovation Category</h2>
+          </div>
+          <span class="text-muted text-small">Dedicated directories with advanced search and full submissions</span>
+        </div>
+
+        <div class="grid-4" style="grid-template-columns: repeat(5, 1fr);">
+          <a href="faculty-projects.html" class="quick-action-card">
+            <div class="quick-action-icon">👩‍🏫</div>
+            <div class="quick-action-title">Faculty Projects</div>
+            <div class="quick-action-desc">Research labs, funded grants, and student openings</div>
+            <div class="quick-action-arrow">→</div>
+          </a>
+          <a href="club-projects.html" class="quick-action-card">
+            <div class="quick-action-icon">🏆</div>
+            <div class="quick-action-title">Club Projects</div>
+            <div class="quick-action-desc">Student technical teams building real-world solutions</div>
+            <div class="quick-action-arrow">→</div>
+          </a>
+          <a href="challenges.html" class="quick-action-card">
+            <div class="quick-action-icon">💼</div>
+            <div class="quick-action-title">Industry Challenges</div>
+            <div class="quick-action-desc">Enterprise problem statements open for solutions</div>
+            <div class="quick-action-arrow">→</div>
+          </a>
+          <a href="mentors.html" class="quick-action-card">
+            <div class="quick-action-icon">🤝</div>
+            <div class="quick-action-title">Alumni Mentors</div>
+            <div class="quick-action-desc">Founders and tech leaders guiding NITT teams</div>
+            <div class="quick-action-arrow">→</div>
+          </a>
+          <a href="startups.html" class="quick-action-card">
+            <div class="quick-action-icon">🚀</div>
+            <div class="quick-action-title">Campus Startups</div>
+            <div class="quick-action-desc">Venture directory of student and faculty spin-offs</div>
+            <div class="quick-action-arrow">→</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Explorer Section with Tabs -->
+    <section class="section" id="explorer" data-tabs-container>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Live Directory</div>
+            <h2 class="heading-2">Unified Ecosystem Explorer</h2>
+            <p class="text-muted" style="max-width: 640px;">
+              Filter, search, and discover active opportunities across all 5 FIRE directories without leaving this view.
+            </p>
+          </div>
+
+          <!-- Main Tabs Buttons -->
+          <div class="tabs" style="background: var(--c-bg-card); border: 1px solid var(--c-border); padding: 6px;">
+            <button class="tab-btn active" data-tab="faculty">👩‍🏫 Faculty Projects</button>
+            <button class="tab-btn" data-tab="clubs">🏆 Club Projects</button>
+            <button class="tab-btn" data-tab="challenges">💼 Industry Challenges</button>
+            <button class="tab-btn" data-tab="mentors">🤝 Mentors & Alumni</button>
+            <button class="tab-btn" data-tab="startups">🚀 Startups</button>
+          </div>
+        </div>
+
+        <!-- ================= TAB 1: FACULTY PROJECTS ================= -->
+        <div class="tab-content active" data-tab-content="faculty">
+          <div class="filter-bar" style="justify-content: space-between;">
+            <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; flex:1;">
+              <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="facultySearchInput" placeholder="Search by project, faculty, skill, domain…">
+              </div>
+              <div class="filter-pills" id="facultyPills">
+                <button class="filter-pill active" data-faculty-stage="all">All Stages</button>
+                <button class="filter-pill" data-faculty-stage="Research">Research</button>
+                <button class="filter-pill" data-faculty-stage="Prototype">Prototype</button>
+                <button class="filter-pill" data-faculty-stage="Testing">Testing</button>
+                <button class="filter-pill" data-faculty-stage="Pilot">Pilot</button>
+                <button class="filter-pill" data-faculty-stage="Concept">Concept</button>
+              </div>
+            </div>
+            <a href="faculty-projects.html" class="btn btn-outline btn-sm">Full Directory & Filters →</a>
+          </div>
+
+          <div id="facultyGrid" class="grid-3">
+            <!-- Dynamic Faculty Cards Rendered Here -->
+          </div>
+          <div id="facultyEmpty" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🔬</div>
+            <div class="empty-state-title">No matching faculty projects</div>
+            <div class="empty-state-desc">Try clearing filters or searching for different keywords.</div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: CLUB PROJECTS ================= -->
+        <div class="tab-content" data-tab-content="clubs">
+          <div class="filter-bar" style="justify-content: space-between;">
+            <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; flex:1;">
+              <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="clubSearchInput" placeholder="Search club, project title, lead, skills…">
+              </div>
+              <div class="filter-pills" id="clubPills">
+                <button class="filter-pill active" data-club-status="all">All Statuses</button>
+                <button class="filter-pill" data-club-status="Active">Active</button>
+                <button class="filter-pill" data-club-status="Prototype">Prototype</button>
+                <button class="filter-pill" data-club-status="Testing">Testing</button>
+              </div>
+            </div>
+            <a href="club-projects.html" class="btn btn-outline btn-sm">Full Directory & Collaboration →</a>
+          </div>
+
+          <div id="clubGrid" class="grid-3">
+            <!-- Dynamic Club Cards Rendered Here -->
+          </div>
+          <div id="clubEmpty" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🏆</div>
+            <div class="empty-state-title">No matching club projects</div>
+            <div class="empty-state-desc">Try another keyword or select All Statuses.</div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: INDUSTRY CHALLENGES ================= -->
+        <div class="tab-content" data-tab-content="challenges">
+          <div class="filter-bar" style="justify-content: space-between;">
+            <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; flex:1;">
+              <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="challengeSearchInput" placeholder="Search by enterprise, title, domain…">
+              </div>
+              <div class="filter-pills" id="challengePills">
+                <button class="filter-pill active" data-challenge-status="all">All Statuses</button>
+                <button class="filter-pill" data-challenge-status="Published">Published</button>
+                <button class="filter-pill" data-challenge-status="Receiving proposals">Receiving Proposals</button>
+                <button class="filter-pill" data-challenge-status="In discussion">In Discussion</button>
+              </div>
+            </div>
+            <a href="challenges.html" class="btn btn-outline btn-sm">Full Challenge Board →</a>
+          </div>
+
+          <div id="challengeGrid" class="grid-2">
+            <!-- Dynamic Challenge Cards Rendered Here -->
+          </div>
+          <div id="challengeEmpty" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">💼</div>
+            <div class="empty-state-title">No matching challenges</div>
+            <div class="empty-state-desc">Try adjusting your search criteria.</div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: MENTORS & ALUMNI ================= -->
+        <div class="tab-content" data-tab-content="mentors">
+          <div class="filter-bar" style="justify-content: space-between;">
+            <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; flex:1;">
+              <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="mentorSearchInput" placeholder="Search mentor name, company, domain…">
+              </div>
+              <div class="filter-pills" id="mentorPills">
+                <button class="filter-pill active" data-mentor-domain="all">All Domains</button>
+                <button class="filter-pill" data-mentor-domain="AgriTech">AgriTech</button>
+                <button class="filter-pill" data-mentor-domain="Deep Tech">Deep Tech</button>
+                <button class="filter-pill" data-mentor-domain="SaaS">SaaS</button>
+                <button class="filter-pill" data-mentor-domain="Manufacturing">Manufacturing</button>
+                <button class="filter-pill" data-mentor-domain="HealthTech">HealthTech</button>
+                <button class="filter-pill" data-mentor-domain="IP Law">IP Law</button>
+              </div>
+            </div>
+            <a href="mentors.html" class="btn btn-outline btn-sm">Mentor Roster & Bookings →</a>
+          </div>
+
+          <div id="mentorGrid" class="grid-3">
+            <!-- Dynamic Mentor Cards Rendered Here -->
+          </div>
+          <div id="mentorEmpty" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🤝</div>
+            <div class="empty-state-title">No mentors found</div>
+            <div class="empty-state-desc">Try selecting a different domain filter or clear your search query.</div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 5: STARTUPS ================= -->
+        <div class="tab-content" data-tab-content="startups">
+          <div class="filter-bar" style="justify-content: space-between;">
+            <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; flex:1;">
+              <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="startupSearchInput" placeholder="Search startup name, product, domain…">
+              </div>
+              <div class="filter-pills" id="startupPills">
+                <button class="filter-pill active" data-startup-stage="all">All Stages</button>
+                <button class="filter-pill" data-startup-stage="Seed Funded">Seed Funded</button>
+                <button class="filter-pill" data-startup-stage="Revenue Stage">Revenue Stage</button>
+                <button class="filter-pill" data-startup-stage="Pre-Seed">Pre-Seed</button>
+                <button class="filter-pill" data-startup-stage="Grant Funded">Grant Funded</button>
+                <button class="filter-pill" data-startup-stage="Pilot">Pilot</button>
+                <button class="filter-pill" data-startup-stage="Beta">Beta</button>
+              </div>
+            </div>
+            <a href="startups.html" class="btn btn-outline btn-sm">Full Startup Showcase →</a>
+          </div>
+
+          <div id="startupGrid" class="grid-3">
+            <!-- Dynamic Startup Cards Rendered Here -->
+          </div>
+          <div id="startupEmpty" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🚀</div>
+            <div class="empty-state-title">No matching startups</div>
+            <div class="empty-state-desc">Try clearing your filters or search keywords.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Quick Callout Banner -->
+    <section class="section-sm" style="background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-surface) 100%);">
+      <div class="container">
+        <div class="card card-glass" style="padding: var(--sp-8); border: 1px solid var(--c-border-accent); position: relative; overflow: hidden;">
+          <div style="position:absolute; right: -50px; top: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(0,198,162,0.15), transparent); border-radius: 50%; pointer-events:none;"></div>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-6); position:relative; z-index:1;">
+            <div>
+              <span class="badge badge-pilot" style="margin-bottom:var(--sp-2);">Have an Idea or Challenge?</span>
+              <h3 class="heading-3" style="margin-top:var(--sp-2); margin-bottom:var(--sp-2);">Need guidance on where your idea fits?</h3>
+              <p class="text-muted" style="max-width: 580px;">
+                Use the FIRE "Start Here" guided pathway or browse our formal institutional process repository to turn concepts into validated ventures.
+              </p>
+            </div>
+            <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap;">
+              <a href="../start-here/idea.html" class="btn btn-primary">Submit Your Idea 💡</a>
+              <a href="../start-here/which-path.html" class="btn btn-outline">Explore Which Path 🔀</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Shared Global Quick Interest Modal -->
+  <div class="modal-overlay" id="quickInterestModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-5" id="quickModalTitle">Express Interest</h3>
+          <p class="text-muted text-xs" id="quickModalSubtitle" style="margin-top:2px;">Submit details to initiate connection via FIRE</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      <form id="quickInterestForm" data-validate>
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <input type="hidden" id="quickTargetId" name="targetId">
+          <input type="hidden" id="quickTargetType" name="targetType">
+          
+          <div class="alert alert-info" style="font-size:var(--fs-xs);">
+            <span>ℹ️</span>
+            <span>Your request will be validated by FIRE Operations and forwarded directly to the project lead or mentor.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" required placeholder="e.g. S. Harish Kumar">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Roll Number *</label>
+              <input type="text" class="form-input" required placeholder="e.g. 106121045">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Year of Study *</label>
+              <select class="form-select" required>
+                <option value="">Select Year</option>
+                <option value="1">1st Year B.Tech</option>
+                <option value="2">2nd Year B.Tech</option>
+                <option value="3">3rd Year B.Tech</option>
+                <option value="4">4th Year B.Tech</option>
+                <option value="PG">M.Tech / MS / MBA</option>
+                <option value="PhD">Research Scholar (PhD)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department / Branch *</label>
+              <input type="text" class="form-input" required placeholder="e.g. Computer Science & Engg">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Brief Note & Motivation *</label>
+            <textarea class="form-textarea" required placeholder="Why are you interested in this project/mentor? What relevant skills or experience do you bring?" style="min-height:90px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Weekly Availability *</label>
+            <select class="form-select" required>
+              <option value="5-8">5 – 8 hours/week</option>
+              <option value="8-12">8 – 12 hours/week</option>
+              <option value="12-16">12 – 16 hours/week</option>
+              <option value="16+">16+ hours/week (Full time research)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Request 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    // Helpers
+    function getStageBadgeClass(stage) {
+      const s = (stage || '').toLowerCase();
+      if (s.includes('prototype')) return 'badge-prototype';
+      if (s.includes('research')) return 'badge-research';
+      if (s.includes('pilot')) return 'badge-pilot';
+      if (s.includes('concept') || s.includes('idea')) return 'badge-idea';
+      if (s.includes('test') || s.includes('active') || s.includes('seed')) return 'badge-active';
+      return 'badge-pending';
+    }
+
+    function getInitials(name) {
+      if (!name) return 'NI';
+      return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    // Modal Trigger Helper
+    function openQuickInterest(id, type, title) {
+      const modal = document.getElementById('quickInterestModal');
+      const titleEl = document.getElementById('quickModalTitle');
+      const subEl = document.getElementById('quickModalSubtitle');
+      const targetId = document.getElementById('quickTargetId');
+      const targetType = document.getElementById('quickTargetType');
+
+      if (modal && titleEl && targetId && targetType) {
+        targetId.value = id;
+        targetType.value = type;
+        titleEl.textContent = type === 'mentor' ? `Request Mentorship: ${title}` : `Express Interest: ${title}`;
+        subEl.textContent = `Reference ID: ${id} · Routed via FIRE Operations`;
+        modal.classList.add('open');
+      }
+    }
+
+    // Dynamic Rendering
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.FIRE_DATA) return;
+
+      // 1. Render Faculty Projects
+      const facultyContainer = document.getElementById('facultyGrid');
+      const facultySearch = document.getElementById('facultySearchInput');
+      const facultyEmpty = document.getElementById('facultyEmpty');
+      let activeFacultyStage = 'all';
+
+      function renderFaculty() {
+        if (!facultyContainer) return;
+        const q = (facultySearch?.value || '').toLowerCase();
+        const filtered = FIRE_DATA.facultyProjects.filter(p => {
+          const matchQuery = !q || p.title.toLowerCase().includes(q) ||
+            p.faculty.toLowerCase().includes(q) ||
+            p.domain.toLowerCase().includes(q) ||
+            p.skills.some(s => s.toLowerCase().includes(q));
+          const matchStage = activeFacultyStage === 'all' || p.stage.toLowerCase() === activeFacultyStage.toLowerCase();
+          return matchQuery && matchStage;
+        });
+
+        if (filtered.length === 0) {
+          facultyContainer.innerHTML = '';
+          facultyEmpty.style.display = 'flex';
+          return;
+        }
+        facultyEmpty.style.display = 'none';
+
+        facultyContainer.innerHTML = filtered.map(p => `
+          <div class="card project-card">
+            <div class="project-card-head">
+              <span class="badge ${p.availability === 'Open' ? 'badge-active' : 'badge-pending'} badge-dot">
+                ${p.availability}
+              </span>
+              <span class="badge ${getStageBadgeClass(p.stage)}">${p.stage}</span>
+            </div>
+            <div class="project-card-body">
+              <div class="text-xs text-muted" style="margin-bottom:var(--sp-1); font-family:var(--font-mono);">${p.id} · ${p.domain}</div>
+              <h4 class="project-card-title">${p.title}</h4>
+              <p class="project-card-desc">${p.summary}</p>
+              
+              <div class="project-card-avatar" style="margin-top:var(--sp-4);">
+                <div class="avatar" style="width:32px; height:32px; font-size:var(--fs-xs);">${getInitials(p.faculty)}</div>
+                <div>
+                  <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-text-primary);">${p.faculty}</div>
+                  <div style="font-size:11px; color:var(--c-text-muted);">${p.department}</div>
+                </div>
+              </div>
+
+              <div class="project-card-tags">
+                ${p.skills.slice(0, 3).map(s => `<span class="tag">${s}</span>`).join('')}
+                ${p.skills.length > 3 ? `<span class="tag">+${p.skills.length - 3}</span>` : ''}
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="faculty-projects.html?id=${p.id}" class="btn btn-ghost btn-sm">Details</a>
+              <button type="button" class="btn btn-primary btn-sm" onclick="openQuickInterest('${p.id}', 'faculty', '${p.title.replace(/'/g, "\\'")}')">
+                Express Interest 🤝
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      facultySearch?.addEventListener('input', debounce(renderFaculty, 200));
+      document.querySelectorAll('#facultyPills .filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('#facultyPills .filter-pill').forEach(b => b.classList.remove('active'));
+          pill.classList.add('active');
+          activeFacultyStage = pill.dataset.facultyStage;
+          renderFaculty();
+        });
+      });
+      renderFaculty();
+
+      // 2. Render Club Projects
+      const clubContainer = document.getElementById('clubGrid');
+      const clubSearch = document.getElementById('clubSearchInput');
+      const clubEmpty = document.getElementById('clubEmpty');
+      let activeClubStatus = 'all';
+
+      function renderClubs() {
+        if (!clubContainer) return;
+        const q = (clubSearch?.value || '').toLowerCase();
+        const filtered = FIRE_DATA.clubProjects.filter(p => {
+          const matchQuery = !q || p.title.toLowerCase().includes(q) ||
+            p.club.toLowerCase().includes(q) ||
+            p.lead.toLowerCase().includes(q) ||
+            p.skills.some(s => s.toLowerCase().includes(q));
+          const matchStatus = activeClubStatus === 'all' || p.status.toLowerCase() === activeClubStatus.toLowerCase();
+          return matchQuery && matchStatus;
+        });
+
+        if (filtered.length === 0) {
+          clubContainer.innerHTML = '';
+          clubEmpty.style.display = 'flex';
+          return;
+        }
+        clubEmpty.style.display = 'none';
+
+        clubContainer.innerHTML = filtered.map(p => `
+          <div class="card project-card">
+            <div class="project-card-head">
+              <span class="badge badge-pilot">🏆 ${p.club.split('—')[0].trim()}</span>
+              <span class="badge ${getStageBadgeClass(p.status)}">${p.status}</span>
+            </div>
+            <div class="project-card-body">
+              <div class="text-xs text-muted" style="margin-bottom:var(--sp-1); font-family:var(--font-mono);">${p.id}</div>
+              <h4 class="project-card-title">${p.title}</h4>
+              <p class="project-card-desc" style="color:var(--c-text-secondary);">${p.problem}</p>
+              
+              <div style="margin-top:var(--sp-3); padding:var(--sp-2) var(--sp-3); background:var(--c-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--c-border);">
+                <div style="font-size:11px; font-weight:var(--fw-semibold); color:var(--c-accent);">LOOKING FOR:</div>
+                <div style="font-size:var(--fs-xs); color:var(--c-text-primary); margin-top:2px;">${p.seeking}</div>
+              </div>
+
+              <div class="project-card-tags">
+                ${p.skills.slice(0, 3).map(s => `<span class="tag">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <div style="font-size:11px; color:var(--c-text-muted);">Lead: ${p.lead.split('(')[0]}</div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="openQuickInterest('${p.id}', 'club', '${p.title.replace(/'/g, "\\'")}')">
+                Collaborate
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      clubSearch?.addEventListener('input', debounce(renderClubs, 200));
+      document.querySelectorAll('#clubPills .filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('#clubPills .filter-pill').forEach(b => b.classList.remove('active'));
+          pill.classList.add('active');
+          activeClubStatus = pill.dataset.clubStatus;
+          renderClubs();
+        });
+      });
+      renderClubs();
+
+      // 3. Render Industry Challenges
+      const challengeContainer = document.getElementById('challengeGrid');
+      const challengeSearch = document.getElementById('challengeSearchInput');
+      const challengeEmpty = document.getElementById('challengeEmpty');
+      let activeChallengeStatus = 'all';
+
+      function renderChallenges() {
+        if (!challengeContainer) return;
+        const q = (challengeSearch?.value || '').toLowerCase();
+        const filtered = FIRE_DATA.challenges.filter(c => {
+          const matchQuery = !q || c.title.toLowerCase().includes(q) ||
+            c.org.toLowerCase().includes(q) ||
+            c.domain.toLowerCase().includes(q);
+          const matchStatus = activeChallengeStatus === 'all' || c.status.toLowerCase() === activeChallengeStatus.toLowerCase();
+          return matchQuery && matchStatus;
+        });
+
+        if (filtered.length === 0) {
+          challengeContainer.innerHTML = '';
+          challengeEmpty.style.display = 'flex';
+          return;
+        }
+        challengeEmpty.style.display = 'none';
+
+        challengeContainer.innerHTML = filtered.map(c => `
+          <div class="card challenge-card">
+            <div class="challenge-card-head">
+              <div class="challenge-card-org-logo">${c.orgIcon || '💼'}</div>
+              <div style="flex:1;">
+                <div class="text-xs text-muted">${c.org}</div>
+                <h4 class="challenge-card-title">${c.title}</h4>
+              </div>
+              <span class="badge ${c.status === 'Receiving proposals' ? 'badge-active' : 'badge-prototype'}">
+                ${c.status}
+              </span>
+            </div>
+            <div class="challenge-card-body">
+              <p class="challenge-card-desc">${c.description}</p>
+              
+              <div style="display:flex; gap:var(--sp-4); align-items:center; margin-top:var(--sp-2); font-size:var(--fs-xs); color:var(--c-text-muted);">
+                <span>🎯 Deliverable: <strong style="color:var(--c-text-primary);">${c.deliverable}</strong></span>
+              </div>
+
+              <div class="challenge-card-tags">
+                <span class="tag tag-active">${c.engagement}</span>
+                ${c.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div class="challenge-card-footer">
+              <span style="font-size:var(--fs-xs); color:var(--c-warning);">⏰ Deadline: ${c.deadline}</span>
+              <a href="challenges.html?id=${c.id}" class="btn btn-warm btn-sm">
+                Submit Proposal →
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      challengeSearch?.addEventListener('input', debounce(renderChallenges, 200));
+      document.querySelectorAll('#challengePills .filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('#challengePills .filter-pill').forEach(b => b.classList.remove('active'));
+          pill.classList.add('active');
+          activeChallengeStatus = pill.dataset.challengeStatus;
+          renderChallenges();
+        });
+      });
+      renderChallenges();
+
+      // 4. Render Mentors
+      const mentorContainer = document.getElementById('mentorGrid');
+      const mentorSearch = document.getElementById('mentorSearchInput');
+      const mentorEmpty = document.getElementById('mentorEmpty');
+      let activeMentorDomain = 'all';
+
+      function renderMentors() {
+        if (!mentorContainer) return;
+        const q = (mentorSearch?.value || '').toLowerCase();
+        const filtered = FIRE_DATA.mentors.filter(m => {
+          const matchQuery = !q || m.name.toLowerCase().includes(q) ||
+            m.company.toLowerCase().includes(q) ||
+            m.role.toLowerCase().includes(q);
+          const matchDomain = activeMentorDomain === 'all' || m.domains.some(d => d.toLowerCase().includes(activeMentorDomain.toLowerCase()));
+          return matchQuery && matchDomain;
+        });
+
+        if (filtered.length === 0) {
+          mentorContainer.innerHTML = '';
+          mentorEmpty.style.display = 'flex';
+          return;
+        }
+        mentorEmpty.style.display = 'none';
+
+        mentorContainer.innerHTML = filtered.map(m => `
+          <div class="card mentor-card">
+            <div class="mentor-card-head">
+              <div class="avatar avatar-lg">${getInitials(m.name)}</div>
+              <div class="mentor-card-info">
+                <div class="mentor-card-name">${m.name}</div>
+                <div class="mentor-card-role">${m.role}</div>
+                <div class="mentor-card-company">${m.company}</div>
+                <div style="font-size:11px; color:var(--c-text-muted); margin-top:2px;">🎓 ${m.batch}</div>
+              </div>
+            </div>
+            <div class="mentor-card-tags">
+              ${m.domains.map(d => `<span class="tag tag-active">${d}</span>`).join('')}
+              ${m.expertise.map(e => `<span class="tag">${e}</span>`).join('')}
+            </div>
+            <div class="mentor-card-footer">
+              <span class="badge ${m.available ? 'badge-active' : 'badge-closed'}">
+                ${m.available ? 'Available' : 'Booked'}
+              </span>
+              <button type="button" class="btn ${m.available ? 'btn-primary' : 'btn-outline'} btn-sm" 
+                ${m.available ? '' : 'disabled style="opacity:0.6; cursor:not-allowed;"'} 
+                onclick="openQuickInterest('${m.id}', 'mentor', '${m.name.replace(/'/g, "\\'")}')">
+                ${m.available ? 'Request Mentorship' : 'Waitlist'}
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      mentorSearch?.addEventListener('input', debounce(renderMentors, 200));
+      document.querySelectorAll('#mentorPills .filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('#mentorPills .filter-pill').forEach(b => b.classList.remove('active'));
+          pill.classList.add('active');
+          activeMentorDomain = pill.dataset.mentorDomain;
+          renderMentors();
+        });
+      });
+      renderMentors();
+
+      // 5. Render Startups
+      const startupContainer = document.getElementById('startupGrid');
+      const startupSearch = document.getElementById('startupSearchInput');
+      const startupEmpty = document.getElementById('startupEmpty');
+      let activeStartupStage = 'all';
+
+      function renderStartups() {
+        if (!startupContainer) return;
+        const q = (startupSearch?.value || '').toLowerCase();
+        const filtered = FIRE_DATA.startups.filter(s => {
+          const matchQuery = !q || s.name.toLowerCase().includes(q) ||
+            s.domain.toLowerCase().includes(q) ||
+            s.product.toLowerCase().includes(q);
+          const matchStage = activeStartupStage === 'all' || s.stage.toLowerCase() === activeStartupStage.toLowerCase();
+          return matchQuery && matchStage;
+        });
+
+        if (filtered.length === 0) {
+          startupContainer.innerHTML = '';
+          startupEmpty.style.display = 'flex';
+          return;
+        }
+        startupEmpty.style.display = 'none';
+
+        startupContainer.innerHTML = filtered.map(s => `
+          <div class="card startup-card">
+            <div class="startup-card-head">
+              <div class="startup-logo">${s.icon || '🚀'}</div>
+              <div style="flex:1;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <h4 style="font-size:var(--fs-base); font-weight:var(--fw-semibold);">${s.name}</h4>
+                  <span class="badge ${getStageBadgeClass(s.stage)}">${s.stage}</span>
+                </div>
+                <div class="text-xs text-muted" style="margin-top:2px;">${s.domain}</div>
+              </div>
+            </div>
+            <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed); margin-top:var(--sp-2);">
+              ${s.product}
+            </p>
+            <div style="margin-top:auto; padding-top:var(--sp-3); border-top:1px solid var(--c-border); display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; color:var(--c-text-muted);">${s.founders} · Est. ${s.founded}</span>
+              <a href="startups.html?id=${s.id}" class="btn btn-outline btn-sm">Explore Venture →</a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      startupSearch?.addEventListener('input', debounce(renderStartups, 200));
+      document.querySelectorAll('#startupPills .filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('#startupPills .filter-pill').forEach(b => b.classList.remove('active'));
+          pill.classList.add('active');
+          activeStartupStage = pill.dataset.startupStage;
+          renderStartups();
+        });
+      });
+      renderStartups();
+
+      // Form submission handling for quick interest modal
+      const quickForm = document.getElementById('quickInterestForm');
+      if (quickForm) {
+        quickForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const targetTitle = document.getElementById('quickModalTitle')?.textContent || 'Opportunity';
+          const modal = document.getElementById('quickInterestModal');
+          if (modal) modal.classList.remove('open');
+          showToast(`Success! Your interest in "${targetTitle}" has been recorded. Check My FIRE for updates.`, 'success');
+          quickForm.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

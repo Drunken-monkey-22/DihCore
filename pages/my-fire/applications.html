@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications & Requests — FIRE | NIT Trichy</title>
+  <meta name="description" content="Track your applications for campus facilities, research mentorship, incubation programmes, and faculty expressions of interest.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <div class="sidebar-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <!-- User Mini Profile -->
+        <div style="padding: 0 var(--sp-4) var(--sp-6);">
+          <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg);">
+            <div class="avatar" style="background:var(--grad-accent); color:#070D1B; font-weight:700; font-size:var(--fs-sm); width:38px; height:38px;">AS</div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Aravind Selvam</div>
+              <div style="font-size:var(--fs-xs); color:var(--c-accent); font-weight:500;">B.Tech CSE (Year IV)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label">My Workspace</div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="sidebar-link">
+            <span>📊</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="ideas.html" class="sidebar-link">
+            <span>💡</span>
+            <span>My Ideas</span>
+            <span class="badge badge-idea" style="margin-left:auto; font-size:10px; padding:1px 7px;">2</span>
+          </a>
+          <a href="applications.html" class="sidebar-link active">
+            <span>📋</span>
+            <span>My Applications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;">3</span>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <span>🚀</span>
+            <span>My Projects</span>
+            <span class="badge badge-active" style="margin-left:auto; font-size:10px; padding:1px 7px;">1</span>
+          </a>
+          <a href="connections.html" class="sidebar-link">
+            <span>🤝</span>
+            <span>My Connections</span>
+            <span class="badge badge-pilot" style="margin-left:auto; font-size:10px; padding:1px 7px;">4</span>
+          </a>
+          <a href="index.html#tasks-section" class="sidebar-link">
+            <span>✅</span>
+            <span>My Tasks</span>
+            <span class="badge badge-closed" style="margin-left:auto; font-size:10px; padding:1px 7px;">4</span>
+          </a>
+          <a href="notifications.html" class="sidebar-link">
+            <span>🔔</span>
+            <span>Notifications</span>
+            <span class="badge badge-pending" style="margin-left:auto; font-size:10px; padding:1px 7px;">3</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-section-label" style="margin-top:var(--sp-6);">Resources & Tools</div>
+        <nav class="sidebar-nav">
+          <a href="../../pages/start-here/idea.html" class="sidebar-link">
+            <span>✨</span>
+            <span>Submit New Idea</span>
+          </a>
+          <a href="../../pages/resources/facilities.html" class="sidebar-link">
+            <span>🔧</span>
+            <span>Facility Booking</span>
+          </a>
+          <a href="../../pages/resources/funding.html" class="sidebar-link">
+            <span>💰</span>
+            <span>Funding Finder</span>
+          </a>
+          <a href="../../pages/about/index.html#contact" class="sidebar-link">
+            <span>❓</span>
+            <span>Help & Support</span>
+          </a>
+        </nav>
+
+        <div style="padding:var(--sp-6) var(--sp-4) var(--sp-2); margin-top:auto;">
+          <div style="padding:var(--sp-3); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <div style="color:var(--c-accent); font-weight:600; margin-bottom:4px;">⏱️ SLA Norms</div>
+            Facilities: 2–5 days<br>
+            Mentors: 5 days max<br>
+            Research EOI: 5–7 days
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="sidebar-main">
+        <!-- Header -->
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-4); margin-bottom:var(--sp-8);">
+          <div>
+            <div class="section-label" style="margin-bottom:var(--sp-2);">Requests & Tracking</div>
+            <h1 class="heading-2" style="margin:0;">My <span class="text-gradient">Applications</span></h1>
+            <p style="color:var(--c-text-secondary); font-size:var(--fs-sm); max-width:640px; margin-top:var(--sp-2); line-height:var(--lh-relaxed);">
+              Monitor real-time approval stages for university lab reservations, mentor office hours, incubation cohort screenings, and faculty research expressions of interest.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3);">
+            <a href="../../pages/resources/facilities.html" class="btn btn-outline btn-sm">
+              <span>🔧</span>
+              <span>New Facility Request</span>
+            </a>
+            <a href="../../pages/connect/mentors.html" class="btn btn-primary btn-sm">
+              <span>🤝</span>
+              <span>Request Mentor</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Progress Tracker Spotlight: Pending Facility Request -->
+        <div class="card card-glass" style="margin-bottom:var(--sp-8); position:relative; overflow:hidden;">
+          <div style="position:absolute; top:-60px; right:-60px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(0,198,162,0.12), transparent 70%); pointer-events:none;"></div>
+          <div class="card-body">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3); margin-bottom:var(--sp-6);">
+              <div>
+                <div style="display:flex; align-items:center; gap:var(--sp-2); margin-bottom:var(--sp-2);">
+                  <span class="badge badge-pending"><span class="badge-dot"></span> Live Application Tracker</span>
+                  <span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-text-muted);">Ref: REQ-FAC-4091</span>
+                </div>
+                <h2 class="heading-4" style="margin:0;">SCIEnT Prototyping Lab — 3D Printing & PCB Station Access</h2>
+                <div style="font-size:var(--fs-xs); color:var(--c-text-muted); margin-top:4px;">
+                  Project: <strong>IoT Water Quality Analyzer (FIRE-2024)</strong> · Target Lab: SCIEnT Ground Floor
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge badge-prototype">Step 3 of 5 In Progress</span>
+                <div style="font-size:11px; color:var(--c-text-muted); margin-top:4px;">Expected Completion: Oct 29, 2026</div>
+              </div>
+            </div>
+
+            <!-- 5-Step Stepper -->
+            <div class="form-stepper" style="margin-bottom:var(--sp-6);">
+              <!-- Step 1: Done -->
+              <div class="form-step-item done">
+                <div class="form-step-circle">✓</div>
+                <div>
+                  <div class="form-step-label">1. Request Submitted</div>
+                  <div style="font-size:11px; color:var(--c-text-muted);">Oct 18 · Done</div>
+                </div>
+              </div>
+              <div class="form-step-line" style="background:var(--c-success);"></div>
+
+              <!-- Step 2: Done -->
+              <div class="form-step-item done">
+                <div class="form-step-circle">✓</div>
+                <div>
+                  <div class="form-step-label">2. Dept. Endorsement</div>
+                  <div style="font-size:11px; color:var(--c-text-muted);">Oct 20 · Approved</div>
+                </div>
+              </div>
+              <div class="form-step-line" style="background:var(--c-accent);"></div>
+
+              <!-- Step 3: Active Current -->
+              <div class="form-step-item active">
+                <div class="form-step-circle">3</div>
+                <div>
+                  <div class="form-step-label" style="font-weight:700;">3. Safety & Induction</div>
+                  <div style="font-size:11px; color:var(--c-accent); font-weight:600;">Scheduled Oct 28</div>
+                </div>
+              </div>
+              <div class="form-step-line"></div>
+
+              <!-- Step 4: Upcoming -->
+              <div class="form-step-item">
+                <div class="form-step-circle">4</div>
+                <div>
+                  <div class="form-step-label">4. Slot Allocation</div>
+                  <div style="font-size:11px; color:var(--c-text-muted);">FDM Printers</div>
+                </div>
+              </div>
+              <div class="form-step-line"></div>
+
+              <!-- Step 5: Upcoming -->
+              <div class="form-step-item">
+                <div class="form-step-circle">5</div>
+                <div>
+                  <div class="form-step-label">5. Lab Pass Issued</div>
+                  <div style="font-size:11px; color:var(--c-text-muted);">RFID Access</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Step Callout Banner -->
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3); padding:var(--sp-4); background:rgba(0,198,162,0.06); border:1px solid var(--c-border-accent); border-radius:var(--radius-md);">
+              <div style="display:flex; align-items:center; gap:var(--sp-3);">
+                <div style="font-size:1.75rem;">🗓️</div>
+                <div>
+                  <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary);">Mandatory Safety Induction Session</div>
+                  <div style="font-size:var(--fs-xs); color:var(--c-text-secondary);">
+                    Your in-person equipment safety orientation with SCIEnT Lab Coordinator (Mr. K. Murugan) is set for <strong>Wednesday, Oct 28 at 2:00 PM</strong>.
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex; gap:var(--sp-2);">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Induction guide downloaded (PDF)', 'info')">
+                  📥 Download Safety Brief
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="showToast('Reschedule request sent to Lab Admin', 'info')">
+                  Reschedule
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs Container for All Applications -->
+        <div data-tabs-container>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-3); margin-bottom:var(--sp-4);">
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="all">All Applications (5)</button>
+              <button class="tab-btn" data-tab="facilities">Facility Requests (2)</button>
+              <button class="tab-btn" data-tab="mentors">Mentor Requests (1)</button>
+              <button class="tab-btn" data-tab="programmes">Programme Applications (1)</button>
+              <button class="tab-btn" data-tab="eois">Project EOIs (1)</button>
+            </div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">
+              Filtered by active semester records
+            </div>
+          </div>
+
+          <!-- Tab Content: ALL (5 items) -->
+          <div class="tab-content active" data-tab-content="all">
+            <div class="card">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Application Type</th>
+                      <th>Resource / Programme Name</th>
+                      <th>Submitted</th>
+                      <th>Status</th>
+                      <th>Last Updated</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Item 1: Facility Request -->
+                    <tr>
+                      <td>
+                        <span class="tag" style="background:rgba(0,198,162,0.12); color:var(--c-accent); border-color:var(--c-border-accent); font-weight:600;">
+                          🔧 Facility
+                        </span>
+                      </td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">SCIEnT Prototyping Lab — 3D Printers & PCB Station</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">REQ-FAC-4091 · Induction on Oct 28</div>
+                      </td>
+                      <td>Oct 18, 2026</td>
+                      <td>
+                        <span class="badge badge-pending"><span class="badge-dot"></span> Under Review (Step 3/5)</span>
+                      </td>
+                      <td>Oct 22, 2026</td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp1">Track Progress</button>
+                      </td>
+                    </tr>
+
+                    <!-- Item 2: Facility Request (Approved) -->
+                    <tr>
+                      <td>
+                        <span class="tag" style="background:rgba(0,198,162,0.12); color:var(--c-accent); border-color:var(--c-border-accent); font-weight:600;">
+                          🔧 Facility
+                        </span>
+                      </td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Centre for Nanotechnology — Class 1000 Clean Room</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">REQ-FAC-3820 · Surface Profilometer & Spin Coater</div>
+                      </td>
+                      <td>Sep 28, 2026</td>
+                      <td>
+                        <span class="badge badge-active"><span class="badge-dot"></span> Approved & Active</span>
+                      </td>
+                      <td>Oct 04, 2026</td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-outline btn-sm" data-modal-open="modalApp2">View Permit</button>
+                      </td>
+                    </tr>
+
+                    <!-- Item 3: Mentor Request -->
+                    <tr>
+                      <td>
+                        <span class="tag" style="background:rgba(255,107,53,0.12); color:var(--c-accent-warm); border-color:rgba(255,107,53,0.3); font-weight:600;">
+                          🤝 Mentor
+                        </span>
+                      </td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Mentorship Request: Deepa Shanmugam</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">REQ-MEN-1044 · Partner, Stellaris Venture Partners</div>
+                      </td>
+                      <td>Oct 15, 2026</td>
+                      <td>
+                        <span class="badge badge-pending">Pending Acceptance</span>
+                      </td>
+                      <td>Oct 19, 2026</td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-outline btn-sm" data-modal-open="modalApp3">View Request</button>
+                      </td>
+                    </tr>
+
+                    <!-- Item 4: Programme Application -->
+                    <tr>
+                      <td>
+                        <span class="tag" style="background:rgba(59,130,246,0.12); color:var(--c-info); border-color:rgba(59,130,246,0.3); font-weight:600;">
+                          🚀 Programme
+                        </span>
+                      </td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Post-SIH Continuation Programme — Cohort 2</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">REQ-PRG-0292 · 6-Week Structured Acceleration</div>
+                      </td>
+                      <td>Oct 20, 2026</td>
+                      <td>
+                        <span class="badge badge-pilot"><span class="badge-dot"></span> Shortlisted for Interview</span>
+                      </td>
+                      <td>Oct 24, 2026</td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp4">View Schedule</button>
+                      </td>
+                    </tr>
+
+                    <!-- Item 5: Project EOI -->
+                    <tr>
+                      <td>
+                        <span class="tag" style="background:rgba(124,58,237,0.12); color:#A78BFA; border-color:rgba(124,58,237,0.3); font-weight:600;">
+                          🔬 Project EOI
+                        </span>
+                      </td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">EOI: AI-Driven Water Quality Monitoring (FP001)</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted); font-family:var(--font-mono);">REQ-EOI-0819 · Supervisor: Dr. Rajesh Kumar</div>
+                      </td>
+                      <td>Oct 10, 2026</td>
+                      <td>
+                        <span class="badge badge-prototype"><span class="badge-dot"></span> Interview Scheduled</span>
+                      </td>
+                      <td>Oct 14, 2026</td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp5">Interview Details</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Facility Requests (2 items) -->
+          <div class="tab-content" data-tab-content="facilities">
+            <div class="card">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Ref ID</th>
+                      <th>Facility & Equipment</th>
+                      <th>Submitted</th>
+                      <th>Status</th>
+                      <th>Validity / Slot</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-accent);">REQ-FAC-4091</span></td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">SCIEnT Prototyping Lab</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">FDM 3D Printers + PCB Prototyping Bench</div>
+                      </td>
+                      <td>Oct 18, 2026</td>
+                      <td><span class="badge badge-pending">Induction Pending (Step 3/5)</span></td>
+                      <td>Slot: Oct 28, 2:00 PM</td>
+                      <td style="text-align:right;"><button class="btn btn-secondary btn-sm" data-modal-open="modalApp1">Track</button></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-accent);">REQ-FAC-3820</span></td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Centre for Nanotechnology Clean Room</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Class 1000/100 · Surface Profilometer</div>
+                      </td>
+                      <td>Sep 28, 2026</td>
+                      <td><span class="badge badge-active">Approved</span></td>
+                      <td>Valid thru Dec 31, 2026</td>
+                      <td style="text-align:right;"><button class="btn btn-outline btn-sm" data-modal-open="modalApp2">View Pass</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Mentor Requests (1 item) -->
+          <div class="tab-content" data-tab-content="mentors">
+            <div class="card">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Ref ID</th>
+                      <th>Mentor</th>
+                      <th>Focus Area</th>
+                      <th>Submitted</th>
+                      <th>Status</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-accent-warm);">REQ-MEN-1044</span></td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Deepa Shanmugam</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Partner, Stellaris Venture Partners (NITT '10)</div>
+                      </td>
+                      <td>Go-to-Market & Seed Fundraising Readiness</td>
+                      <td>Oct 15, 2026</td>
+                      <td><span class="badge badge-pending">Pending Mentor Acceptance</span></td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp3">View Details</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Programme Applications (1 item) -->
+          <div class="tab-content" data-tab-content="programmes">
+            <div class="card">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Ref ID</th>
+                      <th>Programme Name</th>
+                      <th>Cohort</th>
+                      <th>Submitted</th>
+                      <th>Status</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-info);">REQ-PRG-0292</span></td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">Post-SIH Continuation Programme</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">SCIEnT Lab & Design Studio Sprint</div>
+                      </td>
+                      <td>Cohort 2 (Winter 2026)</td>
+                      <td>Oct 20, 2026</td>
+                      <td><span class="badge badge-pilot">Shortlisted for Pitch Interview</span></td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp4">Pitch Info</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Project EOIs (1 item) -->
+          <div class="tab-content" data-tab-content="eois">
+            <div class="card">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Ref ID</th>
+                      <th>Faculty Project</th>
+                      <th>Supervisor</th>
+                      <th>Submitted</th>
+                      <th>Status</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:#A78BFA);">REQ-EOI-0819</span></td>
+                      <td>
+                        <div style="font-weight:600; color:var(--c-text-primary);">AI-Driven Water Quality Monitoring System (FP001)</div>
+                        <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">IoT & ML Anomaly Detection</div>
+                      </td>
+                      <td>Dr. Rajesh Kumar (Civil Engg)</td>
+                      <td>Oct 10, 2026</td>
+                      <td><span class="badge badge-prototype">Interview Scheduled</span></td>
+                      <td style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" data-modal-open="modalApp5">View EOI</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Modal 1: Details for REQ-FAC-4091 -->
+  <div class="modal-overlay" id="modalApp1">
+    <div class="modal" style="max-width:600px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2);">
+            <span style="font-family:var(--font-mono); font-weight:700; color:var(--c-accent); font-size:var(--fs-xs);">REQ-FAC-4091</span>
+            <span class="badge badge-pending">Under Review</span>
+          </div>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">SCIEnT Prototyping Lab Access</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div class="alert alert-info" style="font-size:var(--fs-xs);">
+          <span>ℹ️</span>
+          <div>
+            <strong>Induction Requirement:</strong> Complete your 30-minute machine operator orientation before card key activation.
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Requested Equipment</div>
+            <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary); margin-top:2px;">FDM 3D Printer (Prusa i3), PCB Milling</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Lab Location</div>
+            <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-text-primary); margin-top:2px;">SCIEnT Building, Ground Floor</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Faculty Endorsement</div>
+            <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-success); margin-top:2px;">Approved by Dr. Rajesh Kumar</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Induction Slot</div>
+            <div style="font-weight:600; font-size:var(--fs-sm); color:var(--c-accent); margin-top:2px;">Oct 28, 2026 at 2:00 PM</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase; margin-bottom:4px;">Safety Guidelines</div>
+          <p style="font-size:var(--fs-xs); color:var(--c-text-secondary); line-height:var(--lh-normal); margin:0;">
+            Closed shoes mandatory. Eye protection required in machine room. All filament materials must be logged in the digital ledger.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Induction slot confirmed on calendar!', 'success'); setTimeout(()=>document.getElementById('modalApp1').classList.remove('open'), 500);">Confirm Attendance</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Permit for REQ-FAC-3820 -->
+  <div class="modal-overlay" id="modalApp2">
+    <div class="modal" style="max-width:580px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2);">
+            <span style="font-family:var(--font-mono); font-weight:700; color:var(--c-accent); font-size:var(--fs-xs);">REQ-FAC-3820</span>
+            <span class="badge badge-active">Active Lab Permit</span>
+          </div>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">Centre for Nanotechnology Clean Room</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div style="padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border-accent); border-radius:var(--radius-lg); text-align:center;">
+          <div style="font-size:var(--fs-xs); color:var(--c-accent); font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">NITT Electronic Access Token</div>
+          <div style="font-family:var(--font-mono); font-size:var(--fs-xl); font-weight:700; color:var(--c-text-primary); margin:var(--sp-2) 0;">CR-2026-NITT-8819</div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Bearer: Aravind Selvam · ID: 106121018</div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Class Category</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Class 1000 Thin Film Area</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Valid Period</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Until Dec 31, 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Digital pass saved to Apple/Google Wallet format', 'success')">Save Mobile Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Mentor Request Details -->
+  <div class="modal-overlay" id="modalApp3">
+    <div class="modal" style="max-width:580px;">
+      <div class="modal-header">
+        <div>
+          <span style="font-family:var(--font-mono); font-weight:700; color:var(--c-accent-warm); font-size:var(--fs-xs);">REQ-MEN-1044</span>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">Mentor Connection Request</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Target Mentor</div>
+          <div style="font-weight:600; font-size:var(--fs-md); color:var(--c-text-primary);">Deepa Shanmugam</div>
+          <div style="font-size:var(--fs-xs); color:var(--c-accent);">Partner at Stellaris Venture Partners (CSE 2010 Alumna)</div>
+        </div>
+        <div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Subject of Mentorship</div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); margin-top:2px; line-height:var(--lh-relaxed);">
+            Seed stage venture model feedback, market entry for municipal clean-tech hardware, and guidance on IP patent disclosures prior to commercialization.
+          </p>
+        </div>
+        <div class="alert alert-warning" style="font-size:var(--fs-xs);">
+          <span>⏳</span>
+          <div>Sent on Oct 15, 2026. Standard mentor response window is 5 business days. A gentle system reminder will be automatically triggered on Day 7 if unacknowledged.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Gentle notification sent to mentor', 'info'); setTimeout(()=>document.getElementById('modalApp3').classList.remove('open'), 500);">Send Gentle Nudge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Programme Schedule -->
+  <div class="modal-overlay" id="modalApp4">
+    <div class="modal" style="max-width:580px;">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-pilot">Interview Round</span>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">Post-SIH Continuation Programme</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div class="alert alert-success" style="font-size:var(--fs-xs);">
+          <span>🎉</span>
+          <div>
+            <strong>Congratulations!</strong> Your SIH project has been shortlisted for the Continuation Cohort 2 interview panel.
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Pitch Date</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Nov 05, 2026 · 11:30 AM</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Venue</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Design Thinking Studio, FIRE</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted); text-transform:uppercase;">Required Materials</div>
+          <ul style="font-size:var(--fs-sm); color:var(--c-text-secondary); margin-top:4px; line-height:1.6;">
+            <li>• 10-slide deck (Problem, Architecture, Validation, 6-Month Roadmap)</li>
+            <li>• Working demo or hardware bench prototype</li>
+            <li>• Faculty recommendation letter</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Pitch slot confirmed on calendar!', 'success'); setTimeout(()=>document.getElementById('modalApp4').classList.remove('open'), 500);">Accept Pitch Schedule</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Project EOI Details -->
+  <div class="modal-overlay" id="modalApp5">
+    <div class="modal" style="max-width:580px;">
+      <div class="modal-header">
+        <div>
+          <span style="font-family:var(--font-mono); font-weight:700; color:#A78BFA; font-size:var(--fs-xs);">REQ-EOI-0819</span>
+          <h3 class="heading-4" style="margin-top:var(--sp-1); font-size:var(--fs-lg);">Research Project EOI</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+        <div>
+          <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Project & Faculty Lead</div>
+          <div style="font-weight:600; font-size:var(--fs-md);">AI-Driven Water Quality Monitoring System (FP001)</div>
+          <div style="font-size:var(--fs-xs); color:var(--c-accent);">Dr. Rajesh Kumar (Dept. of Civil Engineering)</div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Discussion Date</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Oct 29, 2026 · 4:00 PM</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Location</div>
+            <div style="font-weight:600; font-size:var(--fs-sm);">Civil Dept. Faculty Chamber #204</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" data-modal-close>Close</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Discussion confirmed on schedule', 'success'); setTimeout(()=>document.getElementById('modalApp5').classList.remove('open'), 500);">Confirm Slot</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    // Initialize standard template components
+    Components.init(2);
+  </script>
+</body>
+</html>

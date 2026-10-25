@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industry Challenges Directory — FIRE | NIT Trichy</title>
+  <meta name="description" content="Solve real-world industrial and public sector challenges at NIT Trichy. Submit technical proposals, win research grants, internships, and corporate partnerships.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/css/globals.css">
+  <link rel="stylesheet" href="../../src/css/nav.css">
+  <link rel="stylesheet" href="../../src/css/pages.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb & Header -->
+    <section class="section-sm" style="padding-top: var(--sp-12); padding-bottom: var(--sp-8); background: linear-gradient(180deg, rgba(12,21,38,0.9) 0%, var(--c-bg) 100%); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <nav class="breadcrumb" style="margin-bottom: var(--sp-4);">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Explore</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="current">Industry Challenges</span>
+        </nav>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <div class="section-label">Enterprise & Public Sector Problems</div>
+            <h1 class="heading-1" style="margin-top:var(--sp-2);">Industry Challenges Directory</h1>
+            <p class="text-muted" style="max-width: 680px; margin-top:var(--sp-2);">
+              Real-world technical bottlenecks posted by corporate leaders and public utilities. Team up with faculty advisors or student peers, propose validated solutions, and unlock funding, IP licensing, and industry validation.
+            </p>
+          </div>
+          <div style="display:flex; gap:var(--sp-3); align-items:center;">
+            <a href="../connect/industry-challenge.html" class="btn btn-outline btn-sm">
+              🏢 Submit Enterprise Challenge
+            </a>
+            <a href="../resources/funding.html" class="btn btn-warm btn-sm">
+              View Matching Grants 💰
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenge Lifecycle Status Banner -->
+    <section class="section-sm" style="padding-top: var(--sp-6); padding-bottom: var(--sp-6); background: var(--c-bg-surface); border-bottom: 1px solid var(--c-border);">
+      <div class="container">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-3); flex-wrap:wrap; gap:var(--sp-2);">
+          <div style="display:flex; align-items:center; gap:var(--sp-2);">
+            <span class="badge badge-prototype" style="text-transform:uppercase;">Workflow Pipeline</span>
+            <span style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-text-primary);">
+              FIRE Industry Problem Lifecycle
+            </span>
+          </div>
+          <span class="text-xs text-muted">Challenges below are currently active in Published, Receiving Proposals, or In Discussion stages</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:var(--sp-2); overflow-x:auto; padding-bottom:var(--sp-2);">
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; opacity:0.6;">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-text-muted);">STEP 1</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); margin-top:2px;">Draft</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">Scoping</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; opacity:0.6;">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-text-muted);">STEP 2</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); margin-top:2px;">Under Review</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">FIRE Moderation</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; border-color:var(--c-info);">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-info);">STEP 3</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-info); margin-top:2px;">Published</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">Open to Campus</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; border-color:var(--c-accent); background:var(--c-accent-dim); box-shadow:0 0 16px var(--c-accent-glow);">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-accent);">STEP 4 (ACTIVE)</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-bold); color:var(--c-accent); margin-top:2px;">Receiving Proposals</div>
+            <div style="font-size:10px; color:var(--c-text-primary); margin-top:2px;">Accepting Teams</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; border-color:var(--c-warning);">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-warning);">STEP 5</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-warning); margin-top:2px;">In Discussion</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">Pitch & Scope</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; opacity:0.8;">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-success);">STEP 6</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-success); margin-top:2px;">Matched</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">MOU / Pilot Signed</div>
+          </div>
+
+          <div class="card card-glass" style="padding:var(--sp-3); text-align:center; opacity:0.5;">
+            <div style="font-size:10px; font-weight:var(--fw-bold); color:var(--c-text-muted);">STEP 7</div>
+            <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); margin-top:2px;">Closed</div>
+            <div style="font-size:10px; color:var(--c-text-muted); margin-top:2px;">Completed</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Directory Section -->
+    <section class="section-sm" style="padding-top: var(--sp-8);">
+      <div class="container">
+        
+        <!-- Filter Bar -->
+        <div class="card card-glass" style="padding: var(--sp-5); margin-bottom: var(--sp-8);">
+          <div class="filter-bar" style="margin-bottom:0; gap:var(--sp-4);">
+            
+            <!-- Search Input -->
+            <div class="search-bar" style="flex: 2; max-width: none;">
+              <span>🔍</span>
+              <input type="text" id="challengeSearch" placeholder="Search by organization, title, deliverable, or skill…">
+            </div>
+
+            <!-- Domain Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Domain:</span>
+              <select class="filter-select" id="domainFilter">
+                <option value="all">All Domains</option>
+                <option value="Manufacturing / AI">Manufacturing / AI</option>
+                <option value="Infrastructure / Sensors">Infrastructure / Sensors</option>
+                <option value="Renewable Energy / Data Science">Renewable Energy / Data Science</option>
+                <option value="HCI / Accessibility">HCI / Accessibility</option>
+              </select>
+            </div>
+
+            <!-- Status Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Status:</span>
+              <select class="filter-select" id="statusFilter">
+                <option value="all">All Statuses</option>
+                <option value="Receiving proposals">Receiving Proposals</option>
+                <option value="Published">Published</option>
+                <option value="In discussion">In Discussion</option>
+              </select>
+            </div>
+
+            <!-- Engagement Type Select -->
+            <div style="display:flex; align-items:center; gap:var(--sp-2);">
+              <span class="filter-label">Engagement:</span>
+              <select class="filter-select" id="engagementFilter">
+                <option value="all">All Engagements</option>
+                <option value="Research Collaboration">Research Collaboration</option>
+                <option value="Pilot Project">Pilot Project</option>
+                <option value="Internship + Licensing">Internship + Licensing</option>
+                <option value="Project Collaboration">Project Collaboration</option>
+              </select>
+            </div>
+
+            <!-- Reset Button -->
+            <button class="btn btn-ghost btn-sm" id="resetChallengeFiltersBtn" style="color:var(--c-text-muted);">
+              Reset ↺
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status Summary -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--sp-6);">
+          <div id="challengeResultsCount" style="font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--c-text-secondary);">
+            Showing 4 of 4 industry challenges
+          </div>
+          <div style="display:flex; gap:var(--sp-2); font-size:var(--fs-xs); color:var(--c-text-muted);">
+            <span>⚡ Corporate sponsored</span>
+            <span>·</span>
+            <span>📑 Direct proposal review</span>
+          </div>
+        </div>
+
+        <!-- Grid-2 of Challenge Cards -->
+        <div class="grid-2" id="challengesGrid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="challengeEmptyState" style="display:none; padding:var(--sp-20) 0;">
+          <div class="empty-state-icon">💼</div>
+          <h3 class="empty-state-title">No matching industry challenges</h3>
+          <p class="empty-state-desc">Try clearing your filters or searching with terms like 'Sensor', 'ML', or 'Energy'.</p>
+          <button class="btn btn-secondary btn-sm" onclick="resetAllChallengeFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- ================= PROPOSAL SUBMISSION MODAL ================= -->
+  <div class="modal-overlay" id="proposalModal">
+    <div class="modal" style="max-width: 640px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="heading-5" id="proposalModalTitle">Submit Solution Proposal</h3>
+          <p class="text-muted text-xs" id="proposalModalSubtitle" style="margin-top:2px;">
+            Target Organization: Bharat Forge Limited
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+      
+      <form id="proposalForm" data-validate>
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <input type="hidden" id="proposalChallengeId" name="challengeId">
+          <input type="hidden" id="proposalChallengeTitle" name="challengeTitle">
+          
+          <div class="alert alert-warning" style="font-size:var(--fs-xs);">
+            <span>⚠️</span>
+            <div>
+              Proposals are screened by FIRE Technical Panel and forwarded to the industry sponsor. Selected teams enter bilateral discussions within <strong>14 working days</strong>.
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Team or Venture Name *</label>
+              <input type="text" class="form-input" id="teamName" required placeholder="e.g. MechSense Innovations">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Team Size *</label>
+              <select class="form-select" id="teamSize" required>
+                <option value="1">Individual Researcher</option>
+                <option value="2-3" selected>2 – 3 Members (Recommended)</option>
+                <option value="4-5">4 – 5 Members</option>
+                <option value="Faculty-led">Faculty-led Lab Group</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Team Lead Name & Roll No *</label>
+              <input type="text" class="form-input" id="teamLead" required placeholder="e.g. R. Karthik (107121034)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Lead Webmail / Contact Email *</label>
+              <input type="email" class="form-input" id="teamEmail" required placeholder="e.g. karthik@nitt.edu">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Faculty Mentor / Department Advisor (Optional)</label>
+            <input type="text" class="form-input" id="facultyAdvisor" placeholder="e.g. Dr. Rajesh Kumar, Mechanical Engg">
+            <div class="form-hint">Having a faculty mentor strengthens proposal evaluation for research collaborations.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Proposed Technical Approach & Architecture *</label>
+            <textarea class="form-textarea" id="proposedApproach" required placeholder="Outline your solution methodology, algorithms, sensors/hardware, and how you will meet the target deliverable..." style="min-height:100px;"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Expected Execution Timeline *</label>
+              <select class="form-select" id="timeline" required>
+                <option value="2-3 months">2 – 3 Months (Rapid Prototype)</option>
+                <option value="4-6 months" selected>4 – 6 Months (Complete System Validation)</option>
+                <option value="6-12 months">6 – 12 Months (Comprehensive Pilot)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Required NITT Facility</label>
+              <select class="form-select" id="facilityNeeded">
+                <option value="SCIEnT">SCIEnT Prototyping Lab</option>
+                <option value="HPC">HPC GPU Cluster</option>
+                <option value="CleanRoom">Nanotech Clean Room</option>
+                <option value="DesignStudio">Design Thinking Studio</option>
+                <option value="Self-contained">Independent / No Facility Required</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Proposal Pitch Deck / Technical Document URL *</label>
+            <input type="url" class="form-input" id="deckLink" required placeholder="https://drive.google.com/file/d/... (View permission enabled)">
+            <div class="form-hint">Provide link to your slide deck or PDF whitepaper detailing architecture and team credentials.</div>
+          </div>
+
+          <div style="display:flex; align-items:flex-start; gap:var(--sp-2); margin-top:var(--sp-2);">
+            <input type="checkbox" id="ndaConsent" required style="margin-top:3px; accent-color:var(--c-accent);">
+            <label for="ndaConsent" style="font-size:var(--fs-xs); color:var(--c-text-secondary); line-height:var(--lh-relaxed);">
+              We agree to comply with NITT FIRE industry engagement ethics, mutual confidentiality, and provisional IP protection procedures.
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-warm btn-sm">Submit Proposal 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CHALLENGE DETAILS MODAL ================= -->
+  <div class="modal-overlay" id="challengeDetailsModal">
+    <div class="modal" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:var(--sp-2); margin-bottom:4px;">
+            <span class="badge badge-active" id="modalChallengeStatus">Receiving proposals</span>
+            <span class="badge badge-pilot" id="modalChallengeDomain">Manufacturing / AI</span>
+            <span style="font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--c-text-muted);" id="modalChallengeId">IC001</span>
+          </div>
+          <h3 class="heading-4" id="modalChallengeTitle">Challenge Title</h3>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-modal-close>✕</button>
+      </div>
+
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:var(--sp-5);">
+        
+        <!-- Sponsoring Organization Banner -->
+        <div style="display:flex; gap:var(--sp-4); align-items:center; padding:var(--sp-4); background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div class="challenge-card-org-logo" style="width:52px; height:52px; font-size:1.75rem;" id="modalOrgIcon">🔩</div>
+          <div>
+            <div style="font-size:var(--fs-base); font-weight:var(--fw-semibold); color:var(--c-text-primary);" id="modalOrgName">Bharat Forge Limited</div>
+            <div style="font-size:var(--fs-sm); color:var(--c-accent);" id="modalEngagementType">Engagement: Research Collaboration</div>
+            <div style="font-size:var(--fs-xs); color:var(--c-warning); margin-top:2px;">⏰ Application Deadline: <span id="modalDeadline">Dec 2026</span></div>
+          </div>
+        </div>
+
+        <!-- Problem Statement -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Challenge Description</h4>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-secondary); line-height:var(--lh-relaxed);" id="modalChallengeDesc">
+            Full problem description.
+          </p>
+        </div>
+
+        <!-- Expected Deliverable -->
+        <div style="padding:var(--sp-4); background:var(--c-accent-dim); border:1px solid var(--c-border-accent); border-radius:var(--radius-md);">
+          <div style="font-size:var(--fs-xs); font-weight:var(--fw-semibold); color:var(--c-accent); text-transform:uppercase; letter-spacing:0.06em;">
+            MANDATORY DELIVERABLE & ACCEPTANCE CRITERIA
+          </div>
+          <p style="font-size:var(--fs-sm); color:var(--c-text-primary); font-weight:var(--fw-semibold); margin-top:var(--sp-1);" id="modalDeliverable">
+            Deliverable details.
+          </p>
+        </div>
+
+        <!-- Required Skills -->
+        <div>
+          <h4 class="heading-5" style="margin-bottom:var(--sp-2);">Target Disciplines & Required Skills</h4>
+          <div class="challenge-card-tags" id="modalChallengeSkills">
+            <!-- Tags -->
+          </div>
+        </div>
+
+        <!-- Benefits & Next Steps -->
+        <div class="grid-2" style="background:var(--c-bg-card); padding:var(--sp-4); border:1px solid var(--c-border); border-radius:var(--radius-md);">
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Sponsor Benefits</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">Prototype Grant + PoC Pilot + Licensing</div>
+          </div>
+          <div>
+            <div style="font-size:var(--fs-xs); color:var(--c-text-muted);">Institutional Framework</div>
+            <div style="font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--c-text-primary); margin-top:2px;">Coordinated via FIRE Industry Cell</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer" style="justify-content:space-between;">
+        <span class="text-xs text-muted" style="align-self:center;">Proposals evaluated on novelty, feasibility, & timeline</span>
+        <div style="display:flex; gap:var(--sp-3);">
+          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Close</button>
+          <button type="button" class="btn btn-warm btn-sm" id="modalSubmitProposalBtn">
+            Submit Proposal Now 🚀
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/data/mock-data.js"></script>
+  <script src="../../src/js/components.js"></script>
+  <script src="../../src/js/main.js"></script>
+  <script>
+    Components.init(2);
+
+    function getStatusBadgeClass(status) {
+      const s = (status || '').toLowerCase();
+      if (s.includes('receiving')) return 'badge-active';
+      if (s.includes('published')) return 'badge-prototype';
+      if (s.includes('discussion')) return 'badge-pending';
+      return 'badge-pilot';
+    }
+
+    function openChallengeModal(challengeId) {
+      const c = FIRE_DATA.challenges.find(item => item.id === challengeId);
+      if (!c) return;
+
+      document.getElementById('modalChallengeId').textContent = c.id;
+      document.getElementById('modalChallengeTitle').textContent = c.title;
+      document.getElementById('modalOrgName').textContent = c.org;
+      document.getElementById('modalOrgIcon').textContent = c.orgIcon || '💼';
+      document.getElementById('modalEngagementType').textContent = `Engagement: ${c.engagement}`;
+      document.getElementById('modalDeadline').textContent = c.deadline;
+      document.getElementById('modalChallengeDomain').textContent = c.domain;
+      document.getElementById('modalChallengeDesc').textContent = c.description;
+      document.getElementById('modalDeliverable').textContent = c.deliverable;
+
+      const statusBadge = document.getElementById('modalChallengeStatus');
+      statusBadge.className = `badge ${getStatusBadgeClass(c.status)}`;
+      statusBadge.textContent = c.status;
+
+      const skillsContainer = document.getElementById('modalChallengeSkills');
+      skillsContainer.innerHTML = c.skills.map(s => `<span class="tag tag-active">${s}</span>`).join('');
+
+      const submitBtn = document.getElementById('modalSubmitProposalBtn');
+      submitBtn.onclick = () => {
+        document.getElementById('challengeDetailsModal').classList.remove('open');
+        openProposalModal(c.id, c.title, c.org);
+      };
+
+      document.getElementById('challengeDetailsModal').classList.add('open');
+    }
+
+    function openProposalModal(id, title, org) {
+      const modal = document.getElementById('proposalModal');
+      document.getElementById('proposalChallengeId').value = id;
+      document.getElementById('proposalChallengeTitle').value = title;
+      document.getElementById('proposalModalTitle').textContent = `Submit Proposal: ${title}`;
+      document.getElementById('proposalModalSubtitle').textContent = `Sponsor: ${org} · Ref: ${id}`;
+      modal.classList.add('open');
+    }
+
+    function resetAllChallengeFilters() {
+      document.getElementById('challengeSearch').value = '';
+      document.getElementById('domainFilter').value = 'all';
+      document.getElementById('statusFilter').value = 'all';
+      document.getElementById('engagementFilter').value = 'all';
+      filterChallenges();
+    }
+
+    function filterChallenges() {
+      const search = (document.getElementById('challengeSearch')?.value || '').toLowerCase();
+      const domainFilter = document.getElementById('domainFilter')?.value || 'all';
+      const statusFilter = document.getElementById('statusFilter')?.value || 'all';
+      const engagementFilter = document.getElementById('engagementFilter')?.value || 'all';
+
+      const filtered = FIRE_DATA.challenges.filter(c => {
+        const matchSearch = !search ||
+          c.title.toLowerCase().includes(search) ||
+          c.org.toLowerCase().includes(search) ||
+          c.domain.toLowerCase().includes(search) ||
+          c.description.toLowerCase().includes(search) ||
+          c.skills.some(s => s.toLowerCase().includes(search));
+        
+        const matchDomain = domainFilter === 'all' || c.domain.toLowerCase() === domainFilter.toLowerCase();
+        const matchStatus = statusFilter === 'all' || c.status.toLowerCase() === statusFilter.toLowerCase();
+        const matchEngagement = engagementFilter === 'all' || c.engagement.toLowerCase() === engagementFilter.toLowerCase();
+
+        return matchSearch && matchDomain && matchStatus && matchEngagement;
+      });
+
+      renderChallenges(filtered);
+    }
+
+    function renderChallenges(challenges) {
+      const container = document.getElementById('challengesGrid');
+      const emptyState = document.getElementById('challengeEmptyState');
+      const counter = document.getElementById('challengeResultsCount');
+
+      counter.textContent = `Showing ${challenges.length} of ${FIRE_DATA.challenges.length} industry challenges`;
+
+      if (challenges.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'flex';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      container.innerHTML = challenges.map(c => `
+        <div class="card challenge-card anim-on-scroll">
+          <div class="challenge-card-head">
+            <div class="challenge-card-org-logo">${c.orgIcon || '💼'}</div>
+            <div style="flex:1;">
+              <div class="text-xs text-muted">${c.org} · <span style="font-family:var(--font-mono);">${c.id}</span></div>
+              <h3 class="challenge-card-title">${c.title}</h3>
+            </div>
+            <span class="badge ${getStatusBadgeClass(c.status)}">
+              ${c.status}
+            </span>
+          </div>
+
+          <div class="challenge-card-body">
+            <div style="display:flex; gap:6px; align-items:center; margin-bottom:var(--sp-2);">
+              <span class="badge badge-pilot">${c.domain}</span>
+              <span class="tag tag-active">${c.engagement}</span>
+            </div>
+
+            <p class="challenge-card-desc">${c.description}</p>
+
+            <div style="margin-top:var(--sp-3); font-size:var(--fs-xs); background:var(--c-bg-elevated); padding:var(--sp-3); border-radius:var(--radius-sm); border:1px solid var(--c-border);">
+              <span style="color:var(--c-accent); font-weight:var(--fw-semibold);">🎯 Deliverable:</span>
+              <span style="color:var(--c-text-primary); font-weight:var(--fw-medium);"> ${c.deliverable}</span>
+            </div>
+
+            <div class="challenge-card-tags">
+              ${c.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="challenge-card-footer">
+            <div style="display:flex; align-items:center; gap:var(--sp-1); font-size:var(--fs-xs); color:var(--c-warning);">
+              <span>⏰ Deadline: <strong>${c.deadline}</strong></span>
+            </div>
+            <div style="display:flex; gap:var(--sp-2);">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openChallengeModal('${c.id}')">
+                Details 👁️
+              </button>
+              <button type="button" class="btn btn-warm btn-sm" onclick="openProposalModal('${c.id}', '${c.title.replace(/'/g, "\\'")}', '${c.org.replace(/'/g, "\\'")}')">
+                Submit Proposal 🚀
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('challengeSearch')?.addEventListener('input', debounce(filterChallenges, 200));
+      document.getElementById('domainFilter')?.addEventListener('change', filterChallenges);
+      document.getElementById('statusFilter')?.addEventListener('change', filterChallenges);
+      document.getElementById('engagementFilter')?.addEventListener('change', filterChallenges);
+      document.getElementById('resetChallengeFiltersBtn')?.addEventListener('click', resetAllChallengeFilters);
+
+      // Render initial
+      filterChallenges();
+
+      // Check URL query parameters (e.g. ?id=IC001)
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedId = urlParams.get('id');
+      if (requestedId) {
+        setTimeout(() => openChallengeModal(requestedId), 300);
+      }
+
+      // Handle Proposal Form Submission
+      const proposalForm = document.getElementById('proposalForm');
+      proposalForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cTitle = document.getElementById('proposalChallengeTitle').value || 'Industry Challenge';
+        const modal = document.getElementById('proposalModal');
+        modal.classList.remove('open');
+        showToast(`Technical Proposal for "${cTitle}" submitted successfully! Reference tracking ID generated.`, 'success');
+        proposalForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>
